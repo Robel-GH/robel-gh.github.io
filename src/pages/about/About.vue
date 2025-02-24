@@ -12,7 +12,7 @@
                                 class="ma-2"
                             >
                                 <v-img
-                                    src="../../assets/images/profile.JPG"
+                                    src="../../assets/images/profile.jpeg"
                                     height="300"
                                     class="profile-image"
                                     cover
@@ -87,7 +87,13 @@
 import { ref } from 'vue'
 
 const bio = ref(
-    'I am a passionate full-stack developer with expertise in modern web technologies. I love creating elegant solutions to complex problems and continuously learning new technologies.'
+    '5+ years of expertise in building modern web applications with Vue.js and Node.js.'+
+    ' Proven ability to design intuitive, visually engaging interfaces—including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.'+
+    ' Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.'+
+    ' Proficient in crafting clean, maintainable code using MVC architecture, middleware, and validation. '+
+    'Passionate about delivering seamless, end-to-end user experiences.'+
+    'I am also an  assistant lecturer at Mekelle Institute of Technology, Mekelle University University, Ethiopia.'+
+    'I have a strong background in computer science and software engineering.'
 )
 
 const skills = ref([
