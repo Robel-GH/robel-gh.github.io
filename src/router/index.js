@@ -9,10 +9,10 @@ import { createRouter, createWebHistory } from 'vue-router/auto'
 // import { setupLayouts } from 'virtual:generated-layouts'
 // import { routes } from 'vue-router/auto-routes'
 const routes = [
-  {
-    path: '/',
-    redirect: '/about', 
-  },
+  // {
+  //   path: '/',
+  //   redirect: '/about', 
+  // },
  {
    path : '/',
   component:  () => import('../layouts/default.vue'),
@@ -20,6 +20,10 @@ const routes = [
     {
       path:"/about",
       component: () => import('../pages/about/About.vue')
+    },
+    {
+      path:"/projects",
+      component: () => import('../pages/projects/Projects.vue')
     }
   ]
 },
