@@ -1,26 +1,25 @@
 <template>
   <v-container fluid>
      <h1 class="ml-4">Projects</h1>
-     <v-card class="ma-4" variant="outlined"  color= "primary" v-for="project in Projects" :key="project.title">
-     
-      <v-card-text >
+     <v-card class="ma-4" variant="text" elevation="10" rounded="xl" v-for="project in Projects" :key="project.title">
+      <v-card-title><strong>{{ project.title }}</strong></v-card-title>
+      <v-card-text class="ma-4">
         <v-row >
-            <v-col cols="12"  md="4"> 
-                <v-responsive aspect-ratio="16/9">
-                    <iframe
-                        width="100%"
-                        height="100%"
-                        :src="project.videoUrl"
-                        title="YouTube Video"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                    ></iframe>
-                 </v-responsive>
+            <v-col cols="12" md="4" class="d-flex flex-column">
+                <iframe
+                    class="flex-grow-1"
+                    width="100%"
+                    height="100%"
+                    :src="project.videoUrl"
+                    title="YouTube Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
             </v-col>
             <v-col cols="12"  md="8">
-             <v-card rounded="lg" class="pa-4" dark>
-                <v-card-title>{{ project.title }}</v-card-title>
+             <v-card variant="text" class="pa-4" dark>
+                <v-card-title>Description</v-card-title>
                 <v-divider></v-divider>
                 <v-card-text>{{ project.description }}</v-card-text>
                 
