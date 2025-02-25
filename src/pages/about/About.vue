@@ -58,7 +58,7 @@
             </v-col>
         </v-row>
         <v-divider></v-divider>
-        <v-row class="mt-8">
+        <!-- <v-row class="mt-8">
             <v-col cols="12">
                 <v-slide-y-transition>
                     <v-timeline side="end">
@@ -79,7 +79,7 @@
                     </v-timeline>
                 </v-slide-y-transition>
             </v-col>
-        </v-row>
+        </v-row> -->
     </v-container>
 </template>
 
