@@ -59,7 +59,7 @@ const Projects = ref([
     },
      {
        title: "Sales Management System",
-       description: "This is a cool project built with Vue and Vuetify.",
+       description: "A robust application to optimize sales tracking, streamline client management, and enhance inventory control, resulting in improved operational efficiency. Indigent Management System | Full-stack Developer Developed a system to effectively manage resources and track data for indigent support programs, with a focus on accessibility and ease of use.",
        videoUrl: "https://youtube.com/embed/ccpMfbHWkHI", 
        githubLink: "https://github.com/your-repo-link", 
        role:"Full Stack Developer"
