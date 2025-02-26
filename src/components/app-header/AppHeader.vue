@@ -202,7 +202,7 @@
           <template v-slot:activator="{ props }">
             <v-switch
               v-model="model"
-              class="mr-2"
+              class="mr-2 "
               @click="toggleTheme"
               hide-details
               inset
@@ -234,6 +234,7 @@ const currentDateTime = '2025-02-22 17:29:02'
 // Navigation items (same as before)
 const headerItems = [
   { title: 'About', icon: 'mdi-information', link: '/about', isMenu: false },
+   { title: 'Skills', icon: 'mdi-information', link: '/skills', isMenu: false },
   {
     title: 'Projects',
     icon: 'mdi-folder-outline ',
