@@ -1,7 +1,7 @@
 <template>
-  <!-- <v-container class="education-timeline" fluid> -->
+  <v-container class="education-timeline" >
     <v-row justify="center" class="ma-4">
-      <v-col cols="12" md="10">
+      <v-col cols="11" md="11">
         <!-- Header -->
         <div class="text-center mb-8">
           <h2 class="text-h4 font-weight-bold primary--text">
@@ -27,7 +27,7 @@
             </template>
 
             <!-- Education Card -->
-            <v-card class="elevation-2 timeline-card " variant="text" rounded="lg">
+            <v-card class="elevation-2 timeline-card "  rounded="lg">
               <v-card-item>
                 <v-card-title class="text-h6 font-weight-bold">
                   {{ education.degree }}
@@ -90,7 +90,7 @@
         </v-timeline>
       </v-col>
     </v-row>
-  <!-- </v-container> -->
+  </v-container>
 </template>
 
 <script>
@@ -161,7 +161,7 @@ export default {
 <style scoped>
 .education-timeline {
   padding: 4rem 0;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 }
 
 .timeline-card {
