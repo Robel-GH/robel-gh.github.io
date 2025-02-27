@@ -1,7 +1,7 @@
 <template>
   <v-container class="education-timeline" >
     <v-row justify="center" class="ma-4">
-      <v-col cols="11" md="11">
+      <v-col cols="12" md="11">
         <!-- Header -->
         <div class="text-center mb-8">
           <h2 class="text-h4 font-weight-bold primary--text">

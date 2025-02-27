@@ -1,7 +1,7 @@
 <template>
   <v-container class="skills-container py-8" fluid>
     <v-row justify="center">
-      <v-col cols="11" md="11">
+      <v-col cols="12" md="11">
         <h2 class="text-h4 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
           Technical Skills & Expertise
         </h2>

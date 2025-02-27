@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="work-experience py-8">
     <v-row justify="center" class="mt-16" no-gutters>
-      <v-col cols="11" md="11">
+      <v-col cols="12" md="11">
         <h2 class="text-h4 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
           Work Experience
           <div class="title-underline"></div>

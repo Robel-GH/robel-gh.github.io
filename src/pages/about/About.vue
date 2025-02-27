@@ -1,7 +1,7 @@
 <template>
     <v-container class="about-container" fluid>
         <v-row class="mb-8" justify="center">
-            <v-col cols="11" md="6" class="profile-section">
+            <v-col cols="12" md="6" class="profile-section">
                 <v-slide-x-transition>
                     <v-card class="profile-card d-flex flex-column align-center justify-center pa-2" elevation="10" rounded="xl" color="primary" variant="outlined">
                         <v-avatar
@@ -45,7 +45,7 @@
             <v-col cols="12" md="6" class="bio-section">
                 <v-fade-transition>
                     <div class="bio-content">
-                        <h2 class="text-h3 mb-6 animate__animated animate__fadeInDown">About Me</h2>
+                        <h2 class="text-h4 mb-6 animate__animated animate__fadeInDown">About Me</h2>
                         <p class="text-body-1 mb-6 animate__animated animate__fadeIn" style="animation-delay: 0.3s">
                             {{ bio }}
                         </p>

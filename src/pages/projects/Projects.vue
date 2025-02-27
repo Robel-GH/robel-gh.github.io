@@ -5,7 +5,7 @@
     </h1>
     
     <v-row justify="center">
-      <v-col cols="11" md="11">
+      <v-col cols="12" md="11">
         <div 
           v-for="(project, index) in Projects" 
           :key="project.title"
