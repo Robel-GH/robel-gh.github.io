@@ -8,7 +8,7 @@
                             color="primary"
                             rounded="10"
                             size="300"
-                            class="ma-2 animate__animated animate__fadeIn"
+                            class="mx-auto animate__animated animate__fadeIn"
                         >
                             <v-img
                                 src="../../assets/images/profile.jpeg"
