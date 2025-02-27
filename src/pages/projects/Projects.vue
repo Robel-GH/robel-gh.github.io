@@ -16,11 +16,11 @@
           <v-hover v-slot="{ isHovering, props }">
             <v-card 
               v-bind="props"
-              :elevation="isHovering ? 16 : 4"
+              :elevation="isHovering ? 20 : 8"
               :class="{ 'on-hover': isHovering }"
               class="ma-4 project-card"
               rounded="xl"
-            
+              variant="text"
             >
               <v-card-title class="text-h5 pa-6 d-flex align-center" variant="text">
                 <v-icon 

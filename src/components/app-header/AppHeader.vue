@@ -30,17 +30,19 @@
         <div class="mobile-menu-content ">
           <!-- Regular Buttons -->
           <v-btn
-            v-for="item in headerItems.filter(item => !item.isMenu)"
-            :key="item.title"
-            :prepend-icon="item.icon"
-            :to="item.link"
-            block
-            class="mb-2 text-left justify-start"
-           
-            variant="text"
-            size="large"
-            @click="drawer = false"
-          >
+              v-for="item in headerItems.filter(item => !item.isMenu)"
+              :key="item.title"
+              :prepend-icon="item.icon"
+              :to="{ 
+                path: item.link.path,
+                hash: item.link.hash
+              }"
+              block
+              class="mb-2 text-left justify-start"
+              variant="text"
+              size="large"
+              @click="handleNavigation(item.link)"
+            >
             {{ item.title }}
           </v-btn>
 
@@ -141,6 +143,7 @@
           rounded="xl"
           size="large"
           color="primary"
+          
         >
           <v-btn
             v-for="item in headerItems"
@@ -149,6 +152,13 @@
             class="ma-1"
             :append-icon="item.isMenu ? 'mdi-chevron-down' : ''"
             exact
+                    :to="{ 
+              path: item.link.path,
+              hash: item.link.hash
+            }"
+            
+          
+            @click="handleNavigation(item.link)"
           >
             {{ item.title }}
 
@@ -219,7 +229,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useThemeStore } from '@/plugins/theme/themeStore'
-
+import { useRouter } from 'vue-router'
 // Initialize the store
 const themeStore = useThemeStore()
 
@@ -232,69 +242,135 @@ const currentUser = 'Robel-GH'
 const currentDateTime = '2025-02-22 17:29:02'
 
 // Navigation items (same as before)
+// const headerItems = [
+//   { title: 'About', icon: 'mdi-information', link: '/about', isMenu: false },
+//    { title: 'Skills', icon: 'mdi-information', link: '/skills', isMenu: false },
+//   {
+//     title: 'Projects',
+//     icon: 'mdi-folder-outline ',
+//     link: '/projects',
+//     isMenu: true,
+//     subMenu: [
+//       {
+//         title: 'Software Development',
+//         isSubMenu: true,
+//         subSubMenu: [
+//           { title: 'Web Development', isSubMenu: false },
+//           { title: 'Mobile Development', isSubMenu: false },
+//           { title: 'Desktop Development', isSubMenu: false },
+//           { title: 'Game Development', isSubMenu: false },
+//         ]
+//       },
+//       {
+//         title: 'Artificial Intelligence',
+//         isSubMenu: true,
+//         subSubMenu: [
+//           { title: 'Machine Learning', isSubMenu: false },
+//           { title: 'Deep Learning', isSubMenu: false },
+//           { title: 'Computer Vision', isSubMenu: false },
+//           { title: 'Natural Language Processing', isSubMenu: false },
+//           { title: 'Reinforcement Learning', isSubMenu: false },
+//         ]
+//       },
+//       { title: 'Data Science', isSubMenu: false },
+//     ]
+//   },
+//   {
+//     title: 'Education',
+//     icon: 'mdi-school',
+//     link: '/education',
+//     isMenu: true,
+//     subMenu: [
+//       { title: 'Master Degree' },
+//       { title: 'Bachelor Degree' },
+//       { title: 'Preparatory School' },
+//       { title: 'High School' },
+//     ]
+//   },
+//   {
+//     title: 'Experience',
+//     icon: 'mdi-briefcase',
+//     link: '/experience',
+//     isMenu: true,
+//     subMenu: [
+//       { title: 'Academic' },
+//       { title: 'Industry' },
+//       { title: 'Internship' }
+//     ]
+//   },
+//   { title: 'Contact', icon: 'mdi-email', link: '/contact', isMenu: false }
+// ]
+
 const headerItems = [
-  { title: 'About', icon: 'mdi-information', link: '/about', isMenu: false },
-   { title: 'Skills', icon: 'mdi-information', link: '/skills', isMenu: false },
+  { 
+    title: 'About', 
+    icon: 'mdi-information', 
+    link: { path: '/about', hash: '#about' }, 
+    isMenu: false 
+  },
+   
+  { 
+    title: 'Skills', 
+    icon: 'mdi-information', 
+    link: { path: '/skills', hash: '#skills' }, 
+    isMenu: false 
+  },
   {
     title: 'Projects',
-    icon: 'mdi-folder-outline ',
-    link: '/projects',
-    isMenu: true,
-    subMenu: [
-      {
-        title: 'Software Development',
-        isSubMenu: true,
-        subSubMenu: [
-          { title: 'Web Development', isSubMenu: false },
-          { title: 'Mobile Development', isSubMenu: false },
-          { title: 'Desktop Development', isSubMenu: false },
-          { title: 'Game Development', isSubMenu: false },
-        ]
-      },
-      {
-        title: 'Artificial Intelligence',
-        isSubMenu: true,
-        subSubMenu: [
-          { title: 'Machine Learning', isSubMenu: false },
-          { title: 'Deep Learning', isSubMenu: false },
-          { title: 'Computer Vision', isSubMenu: false },
-          { title: 'Natural Language Processing', isSubMenu: false },
-          { title: 'Reinforcement Learning', isSubMenu: false },
-        ]
-      },
-      { title: 'Data Science', isSubMenu: false },
-    ]
+    icon: 'mdi-folder-outline',
+    link: { path: '/projects', hash: '#projects' },
+    isMenu: false,
+    
   },
   {
     title: 'Education',
-    icon: 'mdi-school',
-    link: '/education',
-    isMenu: true,
-    subMenu: [
-      { title: 'Master Degree' },
-      { title: 'Bachelor Degree' },
-      { title: 'Preparatory School' },
-      { title: 'High School' },
-    ]
+    icon: 'mdi-folder-outline',
+    link: { path: '/education', hash: '#education' },
+    isMenu: false,
+    // ... rest of the projects configuration
   },
   {
     title: 'Experience',
-    icon: 'mdi-briefcase',
-    link: '/experience',
-    isMenu: true,
-    subMenu: [
-      { title: 'Academic' },
-      { title: 'Industry' },
-      { title: 'Internship' }
-    ]
+    icon: 'mdi-folder-outline',
+    link: { path: '/experience', hash: '#experience' },
+    isMenu: false,
+    
   },
-  { title: 'Contact', icon: 'mdi-email', link: '/contact', isMenu: false }
-]
-
+  {
+    title: 'Contact',
+    icon: 'mdi-folder-outline',
+    link: { path: '/contact', hash: '#contact' },
+    isMenu: false,
+    
+  },
+  ]
 // Methods
 const toggleTheme = () => {
   console.log('toggle theme')
   themeStore.toggleTheme()
+}
+
+
+
+const router = useRouter()
+
+const handleNavigation = async (link) => {
+  // Close mobile drawer if it's open
+  drawer.value = false
+  
+  // Navigate to the route
+  await router.push(link.path)
+  
+  // After route change, scroll to the section
+  if (link.hash) {
+    const element = document.querySelector(link.hash)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@
             class="mb-8 experience-card animate__animated"
             :class="index % 2 === 0 ? 'animate__slideInLeft' : 'animate__slideInRight'"
             :style="{ animationDelay: `${index * 0.2}s` }"
-            elevation="4"
+            elevation="16"
             rounded="xl"
             variant="text"
           >

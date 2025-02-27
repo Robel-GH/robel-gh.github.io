@@ -27,7 +27,7 @@
             </template>
 
             <!-- Education Card -->
-            <v-card class="elevation-2 timeline-card "  rounded="lg">
+            <v-card class="elevation-16 timeline-card " variant="text" rounded="lg">
               <v-card-item>
                 <v-card-title class="text-h6 font-weight-bold">
                   {{ education.degree }}

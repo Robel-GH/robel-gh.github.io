@@ -6,7 +6,7 @@
           Technical Skills & Expertise
         </h2>
 
-        <v-card class="skills-card animate__animated animate__fadeInUp">
+        <v-card class="skills-card animate__animated animate__fadeInUp" variant="text" rounded="xl">
           <v-tabs
             v-model="activeTab"
             backgroundColor="primary"
