@@ -3,17 +3,17 @@
         <v-row class="mb-8" justify="center">
             <v-col cols="11" md="6" class="profile-section">
                 <v-slide-x-transition>
-                    <v-card class="profile-card pa-10" elevation="10" rounded="xl" color="primary" variant="outlined">
+                    <v-card class="profile-card d-flex flex-column align-center justify-center pa-2" elevation="10" rounded="xl" color="primary" variant="outlined">
                         <v-avatar
                             color="primary"
                             rounded="10"
                             size="300"
-                            class="mx-auto animate__animated animate__fadeIn"
+                            class="animate__animated animate__fadeIn"
                         >
                             <v-img
                                 src="../../assets/images/profile.jpeg"
                                 height="300"
-                                class="profile-image"
+                                class="profile-image "
                                 cover
                                 :lazy-src="`https://picsum.photos/10/6?image1`"
                             ></v-img>
@@ -23,7 +23,7 @@
                             Robel Gebrehiwot
                         </v-card-title>
                         <v-card-subtitle class="mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                            Full Stack Developer | Assistant Lecturer
+                            Full Stack Developer | Assisant Lecturer
                         </v-card-subtitle>
                         <!-- <v-card-text class="social-links animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                             <v-btn
