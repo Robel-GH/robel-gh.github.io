@@ -56,7 +56,7 @@
                   label="Subject"
                   required
                   variant="outlined"
-                  prepend-inner-icon="mdi-format-title"
+                  prepend-inner-icon="mdi-text-box-outline"
                   :loading="loading"
                   :disabled="loading"
                   rounded
