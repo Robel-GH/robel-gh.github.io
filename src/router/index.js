@@ -12,11 +12,11 @@ const routes = [
     path: '/',
     component: () => import('../layouts/default.vue'),
     children: [
-      {
-        path: '',  // Empty path for root
-        name: 'home',
-        redirect: '/about'
-      },
+      // {
+      //   path: '',  // Empty path for root
+      //   name: 'home',
+      //   redirect: '/about'
+      // },
       {
         path: '/about',
         name: 'about',

@@ -34,8 +34,9 @@
               :key="item.title"
               :prepend-icon="item.icon"
               :to="{ 
-                path: item.link.path,
-                hash: item.link.hash
+                 hash: item.link.hash,
+                path: item.link.path
+               
               }"
               block
               class="mb-2 text-left justify-start"
@@ -152,14 +153,15 @@
             class="ma-1"
             :append-icon="item.isMenu ? 'mdi-chevron-down' : ''"
             exact
-                    :to="{ 
+            :to="{ 
               path: item.link.path,
               hash: item.link.hash
             }"
             
           
-            @click="handleNavigation(item.link)"
+           
           >
+           <!-- @click="handleNavigation(item.link)" -->
             {{ item.title }}
 
             <!-- Desktop Dropdown Menu -->
@@ -359,18 +361,18 @@ const handleNavigation = async (link) => {
   drawer.value = false
   
   // Navigate to the route
-  await router.push(link.path)
+  // await router.push(link.path)
   
-  // After route change, scroll to the section
-  if (link.hash) {
-    const element = document.querySelector(link.hash)
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      })
-    }
-  }
+  // // After route change, scroll to the section
+  // if (link.hash) {
+  //   const element = document.querySelector(link.hash)
+  //   if (element) {
+  //     element.scrollIntoView({ 
+  //       behavior: 'smooth',
+  //       block: 'start'
+  //     })
+  //   }
+  // }
 }
 </script>
 
@@ -445,6 +447,7 @@ const handleNavigation = async (link) => {
 .fade-leave-to {
   opacity: 0;
 }
+
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {
