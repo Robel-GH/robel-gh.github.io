@@ -1,8 +1,8 @@
 <template>
     <v-container class="about-container" fluid>
-        <v-row class="mb-8" justify="center">
+        <v-row class="mb-4" justify="center">
             <!-- Hero Section -->
-            <v-col cols="12" md="5" mb="6" class="title-section">
+            <v-col cols="12" md="5" mb="6" class="title-section mt-16" justify="center">
                 <v-card 
                     class="title-card pa-8 mt-md-16 pt-16" 
                     min-height="400" 
@@ -29,15 +29,25 @@
                                 rounded
                                 size="x-large"
                                 variant="outlined"
-                                href="www.upwork.com/freelancers/~01f7b3b3b3b3b3b3b3"
+                                href="https://www.upwork.com/freelancers/~013621e670994629ad"
                                 target="_blank">Hire Me</v-btn>
+                             <v-btn
+                                class="mt-6 ml-2"
+                                color="info"
+                                elevation="10"
+                                rounded
+                                prepend-icon="mdi-download"
+                                size="x-large"
+                                variant="outlined"
+                               @click="downloadCV"
+                                target="_blank">CV</v-btn>
                         </div>
                     </div>
                 </v-card>
             </v-col>
 
             <!-- Profile Section -->
-            <v-col cols="12" md="7" class="content-section">
+            <v-col cols="12" md="6" class="content-section">
                 <v-card 
                     class="content-card ma-8" 
                     elevation="3" 
@@ -131,8 +141,8 @@ const currentTimeGreeting = computed(() => {
 })
 
 const bioParagraphs = [
-    '5+ years of expertise in building modern web applications with Vue.js and Node.js.',
-    'Proven ability to design intuitive, visually engaging interfaces—including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.',
+    'Fullstack Developer with 5+ years of expertise in building modern web applications with Vue.js, React, Node.js, and Django.',
+    'Proven ability to design intuitive, visually engaging interfaces including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.',
     'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.',
     'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Ethiopia, with a strong background in computer science and software engineering.'
 ]
@@ -153,15 +163,14 @@ const skills = [
 ]
 
 const socialLinks = [
-    { icon: 'mdi-github', link: 'https://github.com/yourusername' },
-    { icon: 'mdi-linkedin', link: 'https://linkedin.com/in/yourusername' },
-    { icon: 'mdi-upwork', link: 'https://twitter.com/yourusername' },
-    { icon: 'mdi-email', link: 'mailto:your.email@example.com' }
+    { icon: 'mdi-github', link: 'https://github.com/Robel-GH' },
+    { icon: 'mdi-linkedin', link: 'https://linkedin.com/in/robel-gh' },
+    { icon: 'mdi-email', link: 'mailto:robelgh103@gmail.com' }
 ]
 
 
 const typingText = ref('')
-const texts = ['Fullstack Developer', 'Vue.js & Node.js Specialist', 'UI/UX Enthusiast']
+const texts = ['Fullstack Developer', 'Vue.js,React,Node.js and Django Specialist', 'ML/DL Enthusiast', 'Assitant Lecturer']
 let textIndex = 0
 let charIndex = 0
 let isDeleting = false
@@ -188,6 +197,17 @@ const typeEffect = () => {
 onMounted(() => {
     typeEffect()
 })
+
+
+const downloadCV = () => {
+  const pdfUrl = '/resume/resume.pdf'; 
+  const link = document.createElement('a');
+  link.href = pdfUrl;
+  link.setAttribute('download', 'robel-gh-resume.pdf'); 
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 </script>
 
 <style scoped>

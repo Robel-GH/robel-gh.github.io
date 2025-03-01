@@ -24,13 +24,13 @@
               <div>
                 <!-- Desktop Layout -->
                 <div class="d-none d-md-block">
-                  <v-row no-gutters>
+                  <v-row >
                     <v-col cols="5">
                       <v-img
                         :src="job.image"
                         :alt="job.title"
                         height="100%"
-                        cover
+                        
                         class="image-transform h-100"
                         :class="{ 'scale-up': isHovering }"
                         style="border-radius: 12px 0 0 12px;"
@@ -159,7 +159,7 @@
                           <p class="text-body-2 mb-4">{{ job.description }}</p>
                           
                           <v-expand-transition>
-                            <div v-if="isHovering">
+                            <div v-if="job.isHovering">
                               <div class="font-weight-medium mb-2">Key Responsibilities:</div>
                               <ul class="responsibilities-list">
                                 <li 
@@ -190,15 +190,15 @@
                           </v-expand-transition>
 
                           <v-btn
-                            block
-                            variant="text"
-                            @click="isHovering = !isHovering"
+                            
+                            variant="tonal"
+                            @click="job.isHovering = !job.isHovering"
                             class="mt-2"
                             rounded
                           >
-                            {{ isHovering ? 'Show Less' : 'Show More' }}
+                            {{ job.isHovering ? 'Show Less' : 'Show More' }}
                             <v-icon
-                              :icon="isHovering ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                              :icon="job.isHovering ? 'mdi-chevron-up' : 'mdi-chevron-down'"
                               class="ms-2"
                             ></v-icon>
                           </v-btn>
@@ -237,14 +237,15 @@ export default {
           'Optimizing application performance and scalability',
           'Writing clean, maintainable, and efficient code'
         ],
-        skills: ['Vue.js', 'Node.js', 'JavaScript', 'SQL', 'Git', 'REST APIs', 'Agile']
+        skills: ['Vue.js', 'Node.js', 'JavaScript', 'SQL', 'Git', 'REST APIs', 'Agile'],
+        isHovering: false
       },
       {
         id: 2,
         title: 'Assistant Lecturer',
         company: 'Mekelle Institute of Technology - Mekelle University',
         period: 'June, 2021 - Present',
-        image: 'https://vuetifyjs.b-cdn.net/docs/images/components/v-empty-state/astro-dog.svg',
+        image: '/images/mit.jpg',
         description: 'Taught computer science courses and supervised student projects.',
         responsibilities: [
           'Teaching programming fundamentals to undergraduate students',
@@ -252,14 +253,16 @@ export default {
           'Conducting laboratory sessions',
           'Mentoring student projects'
         ],
-        skills: ['Teaching', 'Python', 'Java', 'Data Structures', 'Algorithms', 'Project Management']
+        skills: ['Teaching', 'Python', 'Java', 'Data Structures', 'Algorithms', 'Project Management'],
+        isHovering: false
+
       },
       {
         id: 3,
         title: 'Junior ICT Officer',
         company: 'Guna Trading House PLC',
         period: 'December 2019 - July 2020',
-        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/connection.svg',
+        image: '/images/guna-logo.png',
         description: 'Provided technical support and maintained IT infrastructure.',
         responsibilities: [
           'Managing network infrastructure and security',
@@ -267,14 +270,16 @@ export default {
           'Maintaining hardware and software systems',
           'Implementing IT policies and procedures'
         ],
-        skills: ['Network Administration', 'System Maintenance', 'IT Support', 'Troubleshooting']
+        skills: ['Network Administration', 'System Maintenance', 'IT Support', 'Troubleshooting'],
+        isHovering: false
+
       },
       {
         id: 4,
         title: 'College Lecturer',
         company: 'Oxfo-Business and Technology College',
         period: 'October, 2019 - December, 2019',
-        image: 'https://vuetifyjs.b-cdn.net/docs/images/components/v-empty-state/astro-dog.svg',
+        image: '/images/oxfo.jpg',
         description: 'Taught computer science and programming courses at college level.',
         responsibilities: [
           'Developing and delivering lectures on programming and IT subjects',
@@ -282,7 +287,9 @@ export default {
           'Providing academic advice to students',
           'Participating in curriculum development'
         ],
-        skills: ['Teaching', 'Curriculum Development', 'Assessment', 'Mentoring', 'Technical Writing']
+        skills: ['Teaching', 'Curriculum Development', 'Assessment', 'Mentoring', 'Technical Writing'],
+        isHovering: false
+
       }
     ])
 

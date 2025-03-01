@@ -313,7 +313,7 @@ const headerItems = [
    
   { 
     title: 'Skills', 
-    icon: 'mdi-information', 
+    icon: 'mdi-tools', 
     link: { path: '/skills', hash: '#skills' }, 
     isMenu: false 
   },
@@ -326,21 +326,21 @@ const headerItems = [
   },
   {
     title: 'Education',
-    icon: 'mdi-folder-outline',
+    icon: 'mdi-school',
     link: { path: '/education', hash: '#education' },
     isMenu: false,
     // ... rest of the projects configuration
   },
   {
     title: 'Experience',
-    icon: 'mdi-folder-outline',
+    icon: 'mdi-briefcase',
     link: { path: '/experience', hash: '#experience' },
     isMenu: false,
     
   },
   {
     title: 'Contact',
-    icon: 'mdi-folder-outline',
+    icon: 'mdi-email',
     link: { path: '/contact', hash: '#contact' },
     isMenu: false,
     
