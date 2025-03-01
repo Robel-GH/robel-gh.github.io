@@ -144,7 +144,7 @@ const bioParagraphs = [
     'Fullstack Developer with 5+ years of expertise in building modern web applications with Vue.js, React, Node.js, and Django.',
     'Proven ability to design intuitive, visually engaging interfaces including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.',
     'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.',
-    'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Ethiopia, with a strong background in computer science and software engineering.'
+    'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Tigray, with a strong background in computer science and software engineering.'
 ]
 
 const skills = [
@@ -170,7 +170,7 @@ const socialLinks = [
 
 
 const typingText = ref('')
-const texts = ['Fullstack Developer', 'Vue.js,React,Node.js and Django Specialist', 'ML/DL Enthusiast', 'Assitant Lecturer']
+const texts = ['Fullstack Developer', 'Vue.js,React,Node.js and Django Specialist', 'ML/DL Enthusiast']
 let textIndex = 0
 let charIndex = 0
 let isDeleting = false
