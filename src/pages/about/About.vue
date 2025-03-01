@@ -1,244 +1,329 @@
 <template>
     <v-container class="about-container" fluid>
         <v-row class="mb-8" justify="center">
-            <v-col cols="12" md="6" class="profile-section">
-                <v-slide-x-transition>
-                    <v-card class="profile-card d-flex flex-column align-center justify-center pa-2" elevation="10" rounded="xl" color="primary" variant="outlined">
-                        <v-avatar
-                            color="primary"
-                            rounded="10"
-                            size="300"
-                            class="animate__animated animate__fadeIn"
-                        >
-                            <v-img
-                                src="../../assets/images/profile.jpeg"
-                                height="300"
-                                class="profile-image "
-                                cover
-                                :lazy-src="`https://picsum.photos/10/6?image1`"
-                            ></v-img>
-                        </v-avatar>
-                        <v-divider class="my-4"></v-divider>
-                        <v-card-title class="text-h5 animate__animated animate__fadeInUp">
-                            Robel Gebrehiwot
-                        </v-card-title>
-                        <v-card-subtitle class="mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
-                            Full Stack Developer | Assisant Lecturer
-                        </v-card-subtitle>
-                        <!-- <v-card-text class="social-links animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
-                            <v-btn
-                                v-for="(link, index) in socialLinks"
-                                :key="index"
-                                :href="link.url"
-                                target="_blank"
-                                icon
-                                class="mx-2"
-                                :color="link.color"
-                            >
-                                <v-icon>{{ link.icon }}</v-icon>
-                            </v-btn>
-                        </v-card-text> -->
-                    </v-card>
-                </v-slide-x-transition>
-            </v-col>
-            
-            <v-col cols="12" md="6" class="bio-section">
-                <v-fade-transition>
-                    <div class="bio-content">
-                        <h2 class="text-h4 mb-6 animate__animated animate__fadeInDown">About Me</h2>
-                        <p class="text-body-1 mb-6 animate__animated animate__fadeIn" style="animation-delay: 0.3s">
-                            {{ bio }}
-                        </p>
+            <!-- Hero Section -->
+            <v-col cols="12" md="5" mb="6" class="title-section">
+                <v-card 
+                    class="title-card pa-8 mt-md-16 pt-16" 
+                    min-height="400" 
+                    elevation="0"
+                    rounded="xl"
+                    variant="text"
+                    
+                >
+                    <div class="text-center">
+                        <div class="hero-content">
+                            <h1 class="greeting-text text-h3 font-weight-bold mb-4">
+                                <!-- {{ currentTimeGreeting }} -->
+                                Hello, I'm Robel!
+                            </h1>
+                            <div class="typing-container">
+                                <span class="typing">{{ typingText }}</span>
+                                <span class="cursor">|</span>
+                            </div>
 
-                        <!-- <h3 class="text-h5 mb-4 animate__animated animate__fadeIn" style="animation-delay: 0.4s">
-                            Technical Skills
-                        </h3> -->
-                        <!-- <v-row class="skills-section" dense>
-                            <v-col v-for="(skill, index) in skills" 
-                                  :key="index" 
-                                  cols="12"
-                                  class="animate__animated animate__fadeInUp"
-                                  :style="{ animationDelay: `${0.5 + index * 0.1}s` }"
-                            >
-                                <div class="d-flex justify-space-between align-center mb-1">
-                                    <span class="text-subtitle-1 font-weight-medium">{{ skill.name }}</span>
-                                    <span class="text-caption">{{ skill.level }}%</span>
-                                </div>
-                                <v-progress-linear
-                                    v-model="skill.level"
-                                    :color="skill.color"
-                                    height="10"
-                                    rounded
-                                    class="skill-progress"
-                                >
-                                    <template v-slot:default="{ value }">
-                                        <div class="skill-progress-overlay"></div>
-                                    </template>
-                                </v-progress-linear>
-                            </v-col>
-                        </v-row> -->
+                           <v-btn
+                                class="mt-6"
+                                color="info"
+                                elevation="10"
+                                rounded
+                                size="x-large"
+                                variant="outlined"
+                                href="www.upwork.com/freelancers/~01f7b3b3b3b3b3b3b3"
+                                target="_blank">Hire Me</v-btn>
+                        </div>
                     </div>
-                </v-fade-transition>
+                </v-card>
+            </v-col>
+
+            <!-- Profile Section -->
+            <v-col cols="12" md="7" class="content-section">
+                <v-card 
+                    class="content-card ma-8" 
+                    elevation="3" 
+                    rounded="xl" 
+                    :style="{ background: 'linear-gradient(135deg, var(--v-primary-base), var(--v-secondary-base))' }"
+                >
+                    <v-row class="ma-4">
+                        <!-- Profile Image -->
+                        <v-col cols="12" md="4" class="profile-section d-flex align-center justify-center">
+                            <div class="profile-wrapper">
+                                <v-avatar
+                                    size="200"
+                                    class="profile-avatar elevation-10"
+                                >
+                                    <v-img
+                                        src="../../assets/images/profile.jpeg"
+                                        class="profile-image"
+                                        cover
+                                        
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                            >
+                                                <v-progress-circular
+                                                    indeterminate
+                                                    color="primary"
+                                                ></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
+                                </v-avatar>
+                                <div class="social-links mt-4">
+                                    <v-btn
+                                        v-for="(social, index) in socialLinks"
+                                        :key="index"
+                                        :icon="social.icon"
+                                        variant="text"
+                                        size="small"
+                                        class="mx-1"
+                                        :href="social.link"
+                                        target="_blank"
+                                    ></v-btn>
+                                </div>
+                            </div>
+                        </v-col>
+
+                        <!-- Bio Section -->
+                        <v-col cols="12" md="8" class="bio-section pa-6">
+                            <v-fade-transition>
+                                <div class="bio-content">
+                                    <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
+                                    <div class="bio-text  text-body-1">
+                                        <v-expand-transition>
+                                            <div>
+                                                <p v-for="(paragraph, index) in bioParagraphs" 
+                                                   :key="index" 
+                                                   class="mb-0"
+                                                >
+                                                    {{ paragraph }}
+                                                </p>
+                                            </div>
+                                        </v-expand-transition>
+                                    </div>
+                                    
+                                   
+                                </div>
+                            </v-fade-transition>
+                        </v-col>
+                    </v-row>
+                </v-card>
             </v-col>
         </v-row>
-        <v-divider></v-divider>
     </v-container>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed , onMounted} from 'vue'
 import 'animate.css'
 
-const bio = ref(
-    '5+ years of expertise in building modern web applications with Vue.js and Node.js.'+
-    ' Proven ability to design intuitive, visually engaging interfaces—including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.'+
-    ' Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.'+
-    ' Proficient in crafting clean, maintainable code using MVC architecture, middleware, and validation. '+
-    'Passionate about delivering seamless, end-to-end user experiences.'+
-    'I am also an assistant lecturer at Mekelle Institute of Technology, Mekelle University, Ethiopia.'+
-    'I have a strong background in computer science and software engineering.'
-)
+const formattedDateTime = ref('2025-03-01 06:42:36')
+const userLogin = ref('Robel-GH')
 
-const skills = ref([
-    { name: 'Vue.js', level: 95, color: 'success' },
-    { name: 'React', level: 85, color: 'info' },
-    { name: 'Node.js', level: 90, color: 'primary' },
-    { name: 'TypeScript', level: 88, color: 'deep-purple' },
-    { name: 'Python', level: 85, color: 'warning' },
-    { name: 'AWS', level: 80, color: 'orange' },
-    { name: 'Docker', level: 82, color: 'blue' },
-    { name: 'MongoDB', level: 87, color: 'green' },
-    { name: 'GraphQL', level: 83, color: 'pink' }
-])
+const currentTimeGreeting = computed(() => {
+    const hour = new Date().getHours()
+    if (hour < 12) return "Good Morning!"
+    if (hour < 18) return "Good Afternoon!"
+    return "Good Evening!"
+})
 
-const socialLinks = ref([
-    { icon: 'mdi-github', url: 'https://github.com/Robel-GH', color: 'grey-darken-3' },
-    { icon: 'mdi-linkedin', url: 'https://linkedin.com/in/your-profile', color: 'blue' },
-    { icon: 'mdi-twitter', url: 'https://twitter.com/your-handle', color: 'light-blue' },
-    { icon: 'mdi-email', url: 'mailto:your.email@example.com', color: 'red' }
-])
+const bioParagraphs = [
+    '5+ years of expertise in building modern web applications with Vue.js and Node.js.',
+    'Proven ability to design intuitive, visually engaging interfaces—including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.',
+    'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.',
+    'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Ethiopia, with a strong background in computer science and software engineering.'
+]
+
+const skills = [
+    'Vue.js',
+    'Node.js',
+    'Express.js',
+    'MongoDB',
+    'MySQL',
+    'Firebase',
+    'Docker',
+    'Git',
+    'Linux',
+    'REST APIs',
+    'TypeScript',
+    'AWS'
+]
+
+const socialLinks = [
+    { icon: 'mdi-github', link: 'https://github.com/yourusername' },
+    { icon: 'mdi-linkedin', link: 'https://linkedin.com/in/yourusername' },
+    { icon: 'mdi-upwork', link: 'https://twitter.com/yourusername' },
+    { icon: 'mdi-email', link: 'mailto:your.email@example.com' }
+]
+
+
+const typingText = ref('')
+const texts = ['Fullstack Developer', 'Vue.js & Node.js Specialist', 'UI/UX Enthusiast']
+let textIndex = 0
+let charIndex = 0
+let isDeleting = false
+
+const typeEffect = () => {
+    if (!isDeleting && charIndex < texts[textIndex].length) {
+        typingText.value += texts[textIndex][charIndex]
+        charIndex++
+    } else if (isDeleting && charIndex > 0) {
+        typingText.value = typingText.value.slice(0, -1)
+        charIndex--
+    }
+
+    if (!isDeleting && charIndex === texts[textIndex].length) {
+        setTimeout(() => (isDeleting = true), 2000) // Pause before deleting
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false
+        textIndex = (textIndex + 1) % texts.length // Move to next text
+    }
+
+    setTimeout(typeEffect, isDeleting ? 100 : 150) // Typing and deleting speed
+}
 
 onMounted(() => {
-    // Animate skills progressively
-    skills.value.forEach((skill, index) => {
-        const initialLevel = skill.level
-        skill.level = 0
-        setTimeout(() => {
-            skill.level = initialLevel
-        }, 1000 + (index * 200))
-    })
+    typeEffect()
 })
 </script>
 
 <style scoped>
 .about-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    /* background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); */
+    background: var(--v-background-base);
+    min-height: 100vh;
 }
 
-.profile-section {
-    display: flex;
-    justify-content: center;
-    align-items: start;
+.title-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
-.profile-card {
-    max-width: 400px;
-    width: 100%;
-    transition: transform 0.3s ease;
-}
-
-.profile-card:hover {
+.title-card:hover {
     transform: translateY(-5px);
 }
 
-.profile-image {
-    border-radius: 4px;
+.greeting-text {
+    background: linear-gradient(45deg, #FF6B6B, #187c75);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeIn 1s ease-in;
+}
+
+.typing-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--v-primary-lighten-1);
+}
+
+.cursor {
+    font-size: 1.2rem;
+    color: var(--v-primary-lighten-1);
+    animation: cursor-blink 0.8s steps(2) infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.profile-avatar {
+    border: 4px solid rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease;
 }
 
-.profile-image:hover {
+.profile-avatar:hover {
     transform: scale(1.05);
 }
 
-.bio-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.social-links {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.social-links:hover {
+    opacity: 1;
 }
 
 .bio-content {
-    padding: 1rem;
+    animation: fadeIn 1s ease-in;
+}
+
+.bio-text {
+    line-height: 1.8;
+    opacity: 0.9;
 }
 
 .skills-section {
-    margin-top: 2rem;
+    animation: slideUp 0.5s ease-out;
 }
 
-.skill-progress {
-    position: relative;
-    overflow: hidden;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.skill-progress-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.3) 50%,
-        rgba(255,255,255,0) 100%
-    );
-    animation: shimmer 2s infinite;
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-@keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
-.social-links .v-btn {
-    transition: transform 0.3s ease;
+@keyframes typing-infinite {
+    0%, 50% { width: 100%; }
+    60%, 70% { width: 0; }
+    80%, 100% { width: 100%; }
 }
 
-.social-links .v-btn:hover {
-    transform: translateY(-3px);
-}
-
-/* Animate.css custom durations */
-.animate__animated {
-    animation-duration: 1s;
+.datetime-display {
+    animation: fadeIn 1s ease-in;
 }
 
 /* Responsive Design */
 @media (max-width: 960px) {
-    .profile-card {
-        margin-bottom: 2rem;
+    .profile-section {
+        order: -1;
     }
-
-    .bio-content {
-        padding: 1rem 0;
+    
+    .title-card {
+        margin-top: 2rem !important;
+    }
+    
+    .content-card {
+        margin: 1rem !important;
     }
 }
 
-/* Animation classes */
-.v-enter-active,
-.v-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-    opacity: 0;
+@media (max-width: 600px) {
+    .greeting-text {
+        font-size: 2rem !important;
+    }
+    
+    .typing::after {
+        font-size: 1rem;
+    }
+    
+    .profile-avatar {
+        size: 150px !important;
+    }
 }
 </style>
