@@ -40,7 +40,7 @@
                                 size="x-large"
                                 variant="outlined"
                                @click="downloadCV"
-                                target="_blank">CV</v-btn>
+                                target="_blank">Resume</v-btn>
                         </div>
                     </div>
                 </v-card>
@@ -49,21 +49,21 @@
             <!-- Profile Section -->
             <v-col cols="12" md="6" class="content-section">
                 <v-card 
-                    class="content-card ma-8" 
+                    class="content-card" 
                     elevation="3" 
                     rounded="xl" 
                     :style="{ background: 'linear-gradient(135deg, var(--v-primary-base), var(--v-secondary-base))' }"
                 >
-                    <v-row class="ma-4">
+                    <v-row class="ml-4 mt-4">
                         <!-- Profile Image -->
-                        <v-col cols="12" md="4" class="profile-section d-flex align-center justify-center">
+                        <v-col cols="12" md="12" class="profile-section d-flex align-center justify-center">
                             <div class="profile-wrapper">
                                 <v-avatar
                                     size="200"
                                     class="profile-avatar elevation-10"
                                 >
                                     <v-img
-                                        src="../../assets/images/profile.jpeg"
+                                        src="../../assets/images/profile.jpg"
                                         class="profile-image"
                                         cover
                                         
@@ -82,7 +82,7 @@
                                         </template>
                                     </v-img>
                                 </v-avatar>
-                                <div class="social-links mt-4">
+                                <div class="social-links mt-4 ml-6">
                                     <v-btn
                                         v-for="(social, index) in socialLinks"
                                         :key="index"
@@ -98,7 +98,7 @@
                         </v-col>
 
                         <!-- Bio Section -->
-                        <v-col cols="12" md="8" class="bio-section pa-6">
+                        <v-col cols="12" md="12" class="bio-section pa-6">
                             <v-fade-transition>
                                 <div class="bio-content">
                                     <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
@@ -141,9 +141,9 @@ const currentTimeGreeting = computed(() => {
 })
 
 const bioParagraphs = [
-    'Fullstack Developer with 5+ years of expertise in building modern web applications with Vue.js, React, Node.js, and Django.',
-    'Proven ability to design intuitive, visually engaging interfaces including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.',
-    'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.',
+    'Fullstack Developer with 5+ years of expertise in building modern web applications with Vue.js, React, Node.js, and Django.'+
+    'Proven ability to design intuitive, visually engaging interfaces including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.'+
+    'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.'+
     'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Tigray, with a strong background in computer science and software engineering.'
 ]
 
