@@ -63,7 +63,7 @@
                                     class="profile-avatar elevation-10"
                                 >
                                     <v-img
-                                        src="../../assets/images/profile.jpg"
+                                        src="../../assets/images/profile-0.jpg"
                                         class="profile-image"
                                         cover
                                         
