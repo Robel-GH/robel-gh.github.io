@@ -1,218 +1,146 @@
 <template>
-  <v-container fluid class="work-experience py-8">
-    <v-row justify="center" class="mt-16" no-gutters>
-      <v-col cols="12" md="11">
+  <v-container  class="work-experience py-8">
+   <v-row justify="center">
+    <v-col cols="12" md="11" >
+       <v-row justify="center" class="mt-16" >
+      <v-col cols="12" md="11" >
         <h2 class="text-h4 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-          Work Experience
+          Professional Experience
           <div class="title-underline"></div>
         </h2>
+      </v-col>
+    </v-row>
 
-        <div 
-          v-for="(job, index) in workExperience" 
-          :key="job.id"
-          class="experience-container"
+    <v-row justify="center" >
+      <v-col
+        v-for="(job, index) in workExperience"
+        :key="job.id"
+        cols="12"
+        sm="6"
+        md="6"
+        lg="6"
+        xl="3"
+        
+      >
+        <v-card
+          class="experience-card animate__animated h-100"
+          :class="index % 2 === 0 ? 'animate__slideInLeft' : 'animate__slideInRight'"
+          :style="{ animationDelay: `${index * 0.2}s` }"
+          elevation="16"
+          rounded="xl"
+          variant="text"
+          min-height="300"
+         
         >
-          <v-card
-            class="mb-8 experience-card animate__animated"
-            :class="index % 2 === 0 ? 'animate__slideInLeft' : 'animate__slideInRight'"
-            :style="{ animationDelay: `${index * 0.2}s` }"
-            elevation="16"
-            rounded="xl"
-            variant="text"
-          >
-            <v-hover v-slot="{ isHovering, props }">
+          <v-hover v-slot="{ isHovering, props }">
+            <div>
               <div>
-                <!-- Desktop Layout -->
-                <div class="d-none d-md-block">
-                  <v-row >
-                    <v-col cols="5">
-                      <v-img
-                        :src="job.image"
-                        :alt="job.title"
-                        height="100%"
-                        
-                        class="image-transform h-100"
-                        :class="{ 'scale-up': isHovering }"
-                        style="border-radius: 12px 0 0 12px;"
-                      >
-                        <div class="image-overlay" :class="{ 'show-overlay': isHovering }">
-                          <div class="d-flex align-center">
-                            <v-icon 
-                              :icon="job.icon || 'mdi-briefcase'"
-                              color="white"
-                              size="32"
-                              class="me-2"
-                            ></v-icon>
-                            <h3 class="text-h5 text-white mb-0">{{ job.title }}</h3>
-                          </div>
+                <v-expand-transition>
+                  <v-card
+                    class="mobile-card h-100"
+                    elevation="0"
+                  >
+                    <v-img
+                      :src="job.image"
+                      :alt="job.title"
+                      height="200"
+                      cover
+                      class="mobile-image"
+                    >
+                      <template v-slot:placeholder>
+                        <v-row
+                          class="fill-height ma-0"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-progress-circular
+                            indeterminate
+                            color="primary"
+                          ></v-progress-circular>
+                        </v-row>
+                      </template>
+                      <div class="mobile-overlay">
+                        <v-card-title class="text-white">
+                          <v-icon 
+                            :icon="job.icon || 'mdi-briefcase'"
+                            color="white"
+                            class="me-2"
+                          ></v-icon>
+                          {{ job.title }}
+                        </v-card-title>
+                      </div>
+                    </v-img>
+
+                    <v-card-item>
+                      <v-card-subtitle class="py-2">
+                        <div class="d-flex align-center">
+                          <v-icon icon="mdi-office-building" class="me-2"></v-icon>
+                          {{ job.company }}
                         </div>
-                      </v-img>
-                    </v-col>
-                    <v-col cols="7">
-                      <v-card-item class="h-100">
-                        <div class="d-flex flex-column h-100">
-                          <div>
-                            <v-card-title class="text-h5 mb-2">{{ job.title }}</v-card-title>
-                            <v-card-subtitle class="py-2">
-                              <div class="d-flex align-center company-info">
-                                <v-icon icon="mdi-office-building" class="me-2"></v-icon>
-                                {{ job.company }}
-                              </div>
-                              <div class="d-flex align-center period-info mt-1">
-                                <v-icon icon="mdi-calendar" class="me-2"></v-icon>
-                                {{ job.period }}
-                              </div>
-                            </v-card-subtitle>
-                          </div>
+                        <div class="d-flex align-center mt-1">
+                          <v-icon icon="mdi-calendar" class="me-2"></v-icon>
+                          {{ job.period }}
+                        </div>
+                      </v-card-subtitle>
 
-                          <v-card-text class="flex-grow-1">
-                            <p class="text-body-1 mb-4">{{ job.description }}</p>
-                            
-                            <div class="mb-4">
-                              <div class="font-weight-medium mb-3 primary--text">Key Responsibilities:</div>
-                              <ul class="responsibilities-list">
-                                <li 
-                                  v-for="(resp, rIndex) in job.responsibilities" 
-                                  :key="rIndex"
-                                  class="responsibility-item animate__animated animate__fadeInUp"
-                                  :style="{ animationDelay: `${rIndex * 0.2}s` }"
-                                >
-                                  {{ resp }}
-                                </li>
-                              </ul>
-                            </div>
+                      <v-card-text>
+                        <p class="text-body-2 mb-4">{{ job.description }}</p>
+                        
+                        <v-expand-transition>
+                          <div v-if="job.isHovering">
+                            <div class="font-weight-medium mb-2">Key Responsibilities:</div>
+                            <ul class="responsibilities-list">
+                              <li 
+                                v-for="(resp, rIndex) in job.responsibilities" 
+                                :key="rIndex"
+                                class="responsibility-item-mobile"
+                              >
+                                {{ resp }}
+                              </li>
+                            </ul>
 
-                            <div class="skills-section mt-auto">
-                              <div class="font-weight-medium mb-3 primary--text">Skills:</div>
+                            <div class="skills-section mt-4">
+                              <div class="font-weight-medium mb-2">Skills:</div>
                               <v-chip-group>
                                 <v-chip
-                                  v-for="(skill, sIndex) in job.skills"
+                                  v-for="skill in job.skills"
                                   :key="skill"
                                   color="primary"
                                   variant="outlined"
-                                  size="small"
-                                  class="skill-chip animate__animated animate__fadeIn"
-                                  :style="{ animationDelay: `${sIndex * 0.1}s` }"
+                                  size="x-small"
+                                  class="skill-chip-mobile"
                                 >
                                   {{ skill }}
                                 </v-chip>
                               </v-chip-group>
                             </div>
-                          </v-card-text>
-                        </div>
-                      </v-card-item>
-                    </v-col>
-                  </v-row>
-                </div>
-
-                <!-- Mobile Layout -->
-                <div class="d-md-none">
-                  <v-expand-transition>
-                    <v-card
-                      class="mobile-card"
-                      elevation="0"
-                    >
-                      <v-img
-                        :src="job.image"
-                        :alt="job.title"
-                        height="200"
-                        cover
-                        class="mobile-image"
-                      >
-                        <template v-slot:placeholder>
-                          <v-row
-                            class="fill-height ma-0"
-                            align="center"
-                            justify="center"
-                          >
-                            <v-progress-circular
-                              indeterminate
-                              color="primary"
-                            ></v-progress-circular>
-                          </v-row>
-                        </template>
-                        <div class="mobile-overlay">
-                          <v-card-title class="text-white">
-                            <v-icon 
-                              :icon="job.icon || 'mdi-briefcase'"
-                              color="white"
-                              class="me-2"
-                            ></v-icon>
-                            {{ job.title }}
-                          </v-card-title>
-                        </div>
-                      </v-img>
-
-                      <v-card-item>
-                        <v-card-subtitle class="py-2">
-                          <div class="d-flex align-center">
-                            <v-icon icon="mdi-office-building" class="me-2"></v-icon>
-                            {{ job.company }}
                           </div>
-                          <div class="d-flex align-center mt-1">
-                            <v-icon icon="mdi-calendar" class="me-2"></v-icon>
-                            {{ job.period }}
-                          </div>
-                        </v-card-subtitle>
+                        </v-expand-transition>
 
-                        <v-card-text>
-                          <p class="text-body-2 mb-4">{{ job.description }}</p>
-                          
-                          <v-expand-transition>
-                            <div v-if="job.isHovering">
-                              <div class="font-weight-medium mb-2">Key Responsibilities:</div>
-                              <ul class="responsibilities-list">
-                                <li 
-                                  v-for="(resp, rIndex) in job.responsibilities" 
-                                  :key="rIndex"
-                                  class="responsibility-item-mobile"
-                                >
-                                  {{ resp }}
-                                </li>
-                              </ul>
-
-                              <div class="skills-section mt-4">
-                                <div class="font-weight-medium mb-2">Skills:</div>
-                                <v-chip-group>
-                                  <v-chip
-                                    v-for="skill in job.skills"
-                                    :key="skill"
-                                    color="primary"
-                                    variant="outlined"
-                                    size="x-small"
-                                    class="skill-chip-mobile"
-                                  >
-                                    {{ skill }}
-                                  </v-chip>
-                                </v-chip-group>
-                              </div>
-                            </div>
-                          </v-expand-transition>
-
-                          <v-btn
-                            
-                            variant="tonal"
-                            @click="job.isHovering = !job.isHovering"
-                            class="mt-2"
-                            rounded
-                          >
-                            {{ job.isHovering ? 'Show Less' : 'Show More' }}
-                            <v-icon
-                              :icon="job.isHovering ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                              class="ms-2"
-                            ></v-icon>
-                          </v-btn>
-                        </v-card-text>
-                      </v-card-item>
-                    </v-card>
-                  </v-expand-transition>
-                </div>
+                        <v-btn
+                          variant="tonal"
+                          @click="job.isHovering = !job.isHovering"
+                          class="mt-2"
+                          rounded
+                        >
+                          {{ job.isHovering ? 'Show Less' : 'Show More' }}
+                          <v-icon
+                            :icon="job.isHovering ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                            class="ms-2"
+                          ></v-icon>
+                        </v-btn>
+                      </v-card-text>
+                    </v-card-item>
+                  </v-card>
+                </v-expand-transition>
               </div>
-            </v-hover>
-          </v-card>
-        </div>
+            </div>
+          </v-hover>
+        </v-card>
       </v-col>
     </v-row>
+    </v-col>
+   </v-row>
   </v-container>
 </template>
 
@@ -229,7 +157,7 @@ export default {
         title: 'Fullstack Developer',
         company: 'Tekeze Technologies PLC',
         period: 'July, 2020 - September, 2024',
-        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png', // You'll need to add actual images
+        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png',
         description: 'Working as a full-stack developer focusing on web applications and enterprise solutions.',
         responsibilities: [
           'Developing and maintaining web applications using Vue.js and Node.js',
@@ -255,7 +183,6 @@ export default {
         ],
         skills: ['Teaching', 'Python', 'Java', 'Data Structures', 'Algorithms', 'Project Management'],
         isHovering: false
-
       },
       {
         id: 3,
@@ -272,7 +199,6 @@ export default {
         ],
         skills: ['Network Administration', 'System Maintenance', 'IT Support', 'Troubleshooting'],
         isHovering: false
-
       },
       {
         id: 4,
@@ -289,7 +215,6 @@ export default {
         ],
         skills: ['Teaching', 'Curriculum Development', 'Assessment', 'Mentoring', 'Technical Writing'],
         isHovering: false
-
       }
     ])
 
@@ -300,12 +225,12 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
 .work-experience {
-  /* background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); */
   min-height: 100vh;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
 .title-underline {
@@ -319,13 +244,19 @@ export default {
 .experience-card {
   overflow: hidden;
   transition: all 0.3s ease;
-  /* background: rgba(255, 255, 255, 0.9); */
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .experience-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+.h-100 {
+  height: 100%;
 }
 
 .image-transform {
