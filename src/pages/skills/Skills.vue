@@ -126,7 +126,7 @@ const skillCategories = ref([
       {
         name: 'Vue.js',
         icon: 'mdi-vuejs',
-        level: 95,
+        level: 99,
         years: 5,
         description: 'Expert in Vue 2/3, Vuex, Pinia, and Vue Router',
         technologies: ['Vuetify','Options API', 'Composition API','Javascript', 'TypeScript']
@@ -134,7 +134,7 @@ const skillCategories = ref([
       {
         name: 'React',
         icon: 'mdi-react',
-        level: 85,
+        level: 95,
         years: 3,
         description: 'Proficient in React and its ecosystem',
         technologies: ['Redux', 'Hooks', 'Material-UI']
@@ -142,7 +142,7 @@ const skillCategories = ref([
       {
         name: 'UI/UX',
         icon: 'mdi-palette-outline',
-        level: 88,
+        level: 92,
         years: 4,
         description: 'Creating responsive and accessible interfaces',
         technologies: ['CSS3', 'SASS',  'Bootstrap']
@@ -158,7 +158,7 @@ const skillCategories = ref([
       {
         name: 'Node.js',
         icon: 'mdi-nodejs',
-        level: 92,
+        level: 98,
         years: 5,
         description: 'Building scalable server-side applications',
         technologies: ['Express.js', 'REST APIs', 'WebSocket']
@@ -166,7 +166,7 @@ const skillCategories = ref([
       {
         name: 'Python',
         icon: 'mdi-language-python',
-        level: 90,
+        level: 95,
         years: 3,
         description: 'Backend development and data processing',
         technologies: ['Django',  'Pandas','Numpy','Scipy']
@@ -174,7 +174,7 @@ const skillCategories = ref([
       {
         name: 'Java',
         icon: 'mdi-language-java',
-        level: 80,
+        level: 90,
         years: 3,
         description: 'Enterprise application development',
         technologies: ['Spring Boot', 'Hibernate', 'Maven', 'JUnit']
@@ -190,7 +190,7 @@ const skillCategories = ref([
       {
         name: 'MongoDB',
         icon: 'mdi-database-outline',
-        level: 90,
+        level: 98,
         years: 5,
         description: 'NoSQL database design and optimization',
         technologies: ['Mongoose', 'Aggregation', 'Atlas', 'Indexing']
@@ -198,7 +198,7 @@ const skillCategories = ref([
       {
         name: 'MySQL',
         icon: 'mdi-database-settings',
-        level: 90,
+        level: 98,
         years: 3,
         description: 'Database administration and optimization',
         technologies: ['SQL', 'Stored Procedures', 'Triggers', 'Views']
@@ -207,7 +207,7 @@ const skillCategories = ref([
       {
         name: 'PostgreSQL',
         icon: 'mdi-database-check',
-        level: 85,
+        level: 90,
         years: 3,
         description: 'Relational database management',
         technologies: ['SQL', 'PL/pgSQL', 'Indexing', 'Performance Tuning']
@@ -215,7 +215,7 @@ const skillCategories = ref([
         {
             name: 'Firebase',
             icon: 'mdi-fire',
-            level: 85,
+            level: 90,
             years: 1,
             description: 'Real-time database and authentication',
             technologies: ['Firestore', 'Realtime Database', 'Authentication', 'Storage']
@@ -231,7 +231,7 @@ const skillCategories = ref([
       {
         name: 'Machine Learning',
         icon: 'mdi-chart-scatter-plot',
-        level: 65,
+        level: 80,
         years: 1,
         description: 'Implementing ML algorithms and models',
         technologies: ['scikit-learn', 'TensorFlow', 'Keras', 'NumPy']
@@ -239,7 +239,7 @@ const skillCategories = ref([
       {
         name: 'Deep Learning',
         icon: 'mdi-neural-network',
-        level: 60,
+        level: 80,
         years: 1,
         description: 'Neural network architecture and training',
         technologies: ['PyTorch', 'CNN', 'RNN', 'Transfer Learning','GAN','LSTM','Transformer']
