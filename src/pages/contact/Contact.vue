@@ -1,5 +1,5 @@
 <template>
-    <v-row justify="center" >
+    <v-row justify="center" class="mb-2" >
         
       <v-col cols="12" md="8" lg="6">
         <v-card class="contact-card pa-4" variant="text" rounded="xl" elevation="10">
