@@ -164,7 +164,7 @@ const skillCategories = ref([
         technologies: ['Express.js', 'REST APIs', 'WebSocket']
       },
       {
-        name: 'Python',
+        name: 'Django(FastAPI)',
         icon: 'mdi-language-python',
         level: 95,
         years: 3,
@@ -172,7 +172,7 @@ const skillCategories = ref([
         technologies: ['Django',  'Pandas','Numpy','Scipy']
       },
       {
-        name: 'Java',
+        name: 'Spring',
         icon: 'mdi-language-java',
         level: 90,
         years: 3,
