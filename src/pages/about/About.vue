@@ -13,12 +13,9 @@
                 >
                     <div class="text-center">
                         <div class="hero-content">
-                            <h1 class="greeting-text text-h3 font-weight-bold mb-4">
-                                <!-- {{ currentTimeGreeting }} -->
-                                Hello, I'm Robel!
-                            </h1>
+                           
                             <div class="typing-container">
-                                <span class="typing">{{ typingText }}</span>
+                                <span class="typing"><h1 class="text-h3 font-weight-bold mb-4">{{ typingText }}</h1></span>
                                 <span class="cursor">|</span>
                             </div>
 
@@ -47,10 +44,10 @@
             </v-col>
 
             <!-- Profile Section -->
-            <v-col cols="12" md="6" class="content-section">
+            <v-col cols="12" md="6" class="mt-2 content-section">
                 <v-card 
                     class="content-card" 
-                    elevation="3" 
+                    elevation="0" 
                     rounded="xl" 
                     :style="{ background: 'linear-gradient(135deg, var(--v-primary-base), var(--v-secondary-base))' }"
                 >
@@ -98,18 +95,16 @@
                         </v-col>
 
                         <!-- Bio Section -->
-                        <v-col cols="12" md="12" class="bio-section pa-6">
+                        <v-col cols="12" md="12" class="bio-section pa-6 mb-4">
                             <v-fade-transition>
                                 <div class="bio-content">
                                     <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
                                     <div class="bio-text  text-body-1">
                                         <v-expand-transition>
                                             <div>
-                                                <p v-for="(paragraph, index) in bioParagraphs" 
-                                                   :key="index" 
-                                                   class="mb-0"
+                                                <p :style="{ textAlign: 'justify', textJustify: 'inter-word' }"
                                                 >
-                                                    {{ paragraph }}
+                                                    {{ bioParagraphs }}
                                                 </p>
                                             </div>
                                         </v-expand-transition>
@@ -140,12 +135,18 @@ const currentTimeGreeting = computed(() => {
     return "Good Evening!"
 })
 
-const bioParagraphs = [
-    'Fullstack Developer with 5+ years of expertise in building modern web applications with Vue.js, React, Node.js, and Django.'+
-    'Proven ability to design intuitive, visually engaging interfaces including role-based dashboards, dynamic reports, and high-conversion landing pages paired with scalable backend systems.'+
-    'Skilled in developing secure RESTful APIs, JWT authentication, and optimized databases.'+
-    'Assistant lecturer at Mekelle Institute of Technology, Mekelle University, Tigray, with a strong background in computer science and software engineering.'
-]
+const bioParagraphs = 
+  `Resourceful full-stack engineer and AI enthusiast with over 5 years of experience designing and
+   delivering scalable web applications and machine-learning solutions.
+   Expert in Vue.js, React, Node.js, and Django for building intuitive, high-performance front ends and 
+   RESTful back ends secured with JWT authentication. 
+   Skilled at architecting role-based dashboards, dynamic reporting systems,
+  and high-conversion landing pages, as well as developing multi-agent AI workflows with CrewAI and 
+  implementing deep-learning models using TensorFlow, PyTorch, and scikit-learn.
+   Passionate about collaborating on open-source projects, optimizing cross-platform performance, and 
+   driving innovation at the intersection of web development and artificial intelligence.`
+
+
 
 const skills = [
     'Vue.js',
@@ -170,7 +171,7 @@ const socialLinks = [
 
 
 const typingText = ref('')
-const texts = ['Fullstack Developer', 'Vue.js,React,Node.js and Django Specialist', 'ML/DL Enthusiast']
+const texts = ['Hello, I\'m Robel Gebrehiwot ', 'Senior Software Engineer | Vue.js | React | Node.js | Django Developer', 'GenAI | Agentic AI Enthusiast']
 let textIndex = 0
 let charIndex = 0
 let isDeleting = false
@@ -217,7 +218,7 @@ const downloadCV = () => {
 }
 
 .title-card {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 0px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -225,12 +226,12 @@ const downloadCV = () => {
     transform: translateY(-5px);
 }
 
-.greeting-text {
+/* .greeting-text {
     background: linear-gradient(45deg, #FF6B6B, #187c75);
     -webkit-background-clip: text;
     color: transparent;
     animation: fadeIn 1s ease-in;
-}
+} */
 
 .typing-container {
     display: flex;
@@ -238,6 +239,10 @@ const downloadCV = () => {
     justify-content: center;
     font-size: 1.2rem;
     color: var(--v-primary-lighten-1);
+    background: linear-gradient(45deg, #FF6B6B, #187c75);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fadeIn 1s ease-in;
 }
 
 .cursor {
