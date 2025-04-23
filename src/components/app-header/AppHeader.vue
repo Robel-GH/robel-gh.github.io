@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <!-- Overlay Mobile Menu -->
     <transition name="fade">
       <div v-if="drawer" class="mobile-menu-overlay">
@@ -21,95 +20,24 @@
           </v-row>
         </div>
 
-
-
-
         <v-divider/>
 
         <!-- Navigation Content -->
-        <div class="mobile-menu-content ">
+        <div class="mobile-menu-content">
           <!-- Regular Buttons -->
           <v-btn
-              v-for="item in headerItems.filter(item => !item.isMenu)"
-              :key="item.title"
-              :prepend-icon="item.icon"
-              :to="{ 
-                 hash: item.link.hash,
-                path: item.link.path
-               
-              }"
-              block
-              class="mb-2 text-left justify-start"
-              variant="text"
-              size="large"
-              @click="handleNavigation(item.link)"
-            >
+            v-for="item in headerItems.filter(item => !item.isMenu)"
+            :key="item.title"
+            :prepend-icon="item.icon"
+            :to="item.link.path"
+            block
+            class="mb-2 text-left justify-start"
+            variant="text"
+            size="large"
+            @click="(event) => handleNavigation(item.link, event)"
+          >
             {{ item.title }}
           </v-btn>
-
-          <!-- Expandable Buttons -->
-          <v-expansion-panels class="mt-2">
-            <v-expansion-panel
-              v-for="item in headerItems.filter(item => item.isMenu)"
-              :key="item.title"
-              class="mb-2"
-              elevation="0"
-            >
-              <v-expansion-panel-title>
-                <v-row no-gutters align="center">
-                  <v-col cols="auto" class="mr-4">
-                    <v-icon :icon="item.icon" />
-                  </v-col>
-                  <v-col>{{ item.title }}</v-col>
-                </v-row>
-              </v-expansion-panel-title>
-
-              <v-expansion-panel-text>
-                <!-- First Level Items -->
-                <div 
-                  v-for="subMenu in item.subMenu" 
-                  :key="subMenu.title"
-                >
-                  <!-- Regular Submenu Button -->
-                  <v-btn
-                    v-if="!subMenu.isSubMenu"
-                    block
-                    class="mb-2 text-left justify-start"
-                    variant="text"
-                    @click="drawer = false"
-                  >
-                    {{ subMenu.title }}
-                  </v-btn>
-
-                  <!-- Expandable Submenu -->
-                  <v-expansion-panels
-                    v-else
-                    class="mt-2 mb-4"
-                    elevation="0"
-                  >
-                    <v-expansion-panel>
-                      <v-expansion-panel-title>
-                        {{ subMenu.title }}
-                      </v-expansion-panel-title>
-                      <v-expansion-panel-text>
-                        <v-btn
-                          v-for="subSubMenu in subMenu.subSubMenu"
-                          :key="subSubMenu.title"
-                          block
-                          class="mb-2 text-left justify-start"
-                          variant="text"
-                          density="comfortable"
-                          @click="drawer = false"
-                        >
-                          {{ subSubMenu.title }}
-                        </v-btn>
-                      </v-expansion-panel-text>
-                    </v-expansion-panel>
-                  </v-expansion-panels>
-                </div>
-              </v-expansion-panel-text>
-            </v-expansion-panel>
-          </v-expansion-panels>
         </div>
 
         <!-- Footer with Theme Toggle -->
@@ -128,93 +56,17 @@
     </transition>
 
     <!-- App Bar -->
-    <v-app-bar app dark extended class="pt-4">
+    <v-app-bar app dark  class="pt-4">
       <!-- Mobile menu button -->
       <v-app-bar-nav-icon
         class="d-md-none"
         @click="drawer = !drawer"
       />
-      
-
-      <v-spacer />
-
-      <!-- Desktop Navigation -->
-      <div class="d-none d-md-flex">
-        <v-btn-toggle
-          rounded="xl"
-          size="large"
-          color="primary"
-          
-        >
-          <v-btn
-            v-for="item in headerItems"
-            :key="item.title"
-            size="large"
-            class="ma-1"
-            :append-icon="item.isMenu ? 'mdi-chevron-down' : ''"
-            exact
-            :to="{ 
-              path: item.link.path,
-              hash: item.link.hash
-            }"
-            
-          
-           
-          >
-           <!-- @click="handleNavigation(item.link)" -->
-            {{ item.title }}
-
-            <!-- Desktop Dropdown Menu -->
-            <v-menu
-              v-if="item.isMenu"
-              activator="parent"
-              open-on-hover
-            >
-              <v-list>
-                <v-list-item
-                  v-for="subMenu in item.subMenu"
-                  :key="subMenu.title"
-                  link
-                >
-                  <v-list-item-title>{{ subMenu.title }}</v-list-item-title>
-                  
-                  <template v-slot:append>
-                    <v-icon
-                      v-if="subMenu.isSubMenu"
-                      icon="mdi-menu-right"
-                      size="x-small"
-                    />
-                  </template>
-
-                  <!-- Nested Dropdown Menu -->
-                  <v-menu
-                    v-if="subMenu.isSubMenu"
-                    activator="parent"
-                    open-on-hover
-                    location="end"
-                  >
-                    <v-list>
-                      <v-list-item
-                        v-for="subSubMenu in subMenu.subSubMenu"
-                        :key="subSubMenu.title"
-                        link
-                      >
-                        <v-list-item-title>{{ subSubMenu.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-btn>
-        </v-btn-toggle>
-
-        <!-- Desktop Theme Toggle -->
-        <v-tooltip :text="themeStore.theme === 'dark' ? 'Light Theme' : 'Dark Theme'">
+      <v-tooltip :text="themeStore.theme === 'dark' ? 'Light Theme' : 'Dark Theme'">
           <template v-slot:activator="{ props }">
             <v-switch
               v-model="model"
-              class="mr-2 "
+              class="ml-2"
               @click="toggleTheme"
               hide-details
               inset
@@ -223,158 +75,140 @@
             />
           </template>
         </v-tooltip>
+      <v-spacer />
+
+      <!-- Desktop Navigation -->
+      <div class="d-none d-md-flex">
+        <v-btn-toggle
+          rounded="xl"
+          size="large"
+          color="primary"
+        >
+          <v-btn
+            v-for="item in headerItems"
+            :key="item.title"
+            size="large"
+            class="ma-1"
+            exact
+            :to="item.link.path"
+            @click="(event) => handleNavigation(item.link, event)"
+          >
+            {{ item.title }}
+          </v-btn>
+        </v-btn-toggle>
+
+        <!-- Desktop Theme Toggle -->
+        
       </div>
     </v-app-bar>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { useThemeStore } from '@/plugins/theme/themeStore'
 import { useRouter } from 'vue-router'
+
 // Initialize the store
 const themeStore = useThemeStore()
 
 // Local state
 const drawer = ref(false)
-const model = ref(true)
+const model = ref(false)
 
 // Current user and datetime
 const currentUser = 'Robel-GH'
-const currentDateTime = '2025-02-22 17:29:02'
+const currentDateTime = '2025-04-23 14:08:57'
 
-// Navigation items (same as before)
-// const headerItems = [
-//   { title: 'About', icon: 'mdi-information', link: '/about', isMenu: false },
-//    { title: 'Skills', icon: 'mdi-information', link: '/skills', isMenu: false },
-//   {
-//     title: 'Projects',
-//     icon: 'mdi-folder-outline ',
-//     link: '/projects',
-//     isMenu: true,
-//     subMenu: [
-//       {
-//         title: 'Software Development',
-//         isSubMenu: true,
-//         subSubMenu: [
-//           { title: 'Web Development', isSubMenu: false },
-//           { title: 'Mobile Development', isSubMenu: false },
-//           { title: 'Desktop Development', isSubMenu: false },
-//           { title: 'Game Development', isSubMenu: false },
-//         ]
-//       },
-//       {
-//         title: 'Artificial Intelligence',
-//         isSubMenu: true,
-//         subSubMenu: [
-//           { title: 'Machine Learning', isSubMenu: false },
-//           { title: 'Deep Learning', isSubMenu: false },
-//           { title: 'Computer Vision', isSubMenu: false },
-//           { title: 'Natural Language Processing', isSubMenu: false },
-//           { title: 'Reinforcement Learning', isSubMenu: false },
-//         ]
-//       },
-//       { title: 'Data Science', isSubMenu: false },
-//     ]
-//   },
-//   {
-//     title: 'Education',
-//     icon: 'mdi-school',
-//     link: '/education',
-//     isMenu: true,
-//     subMenu: [
-//       { title: 'Master Degree' },
-//       { title: 'Bachelor Degree' },
-//       { title: 'Preparatory School' },
-//       { title: 'High School' },
-//     ]
-//   },
-//   {
-//     title: 'Experience',
-//     icon: 'mdi-briefcase',
-//     link: '/experience',
-//     isMenu: true,
-//     subMenu: [
-//       { title: 'Academic' },
-//       { title: 'Industry' },
-//       { title: 'Internship' }
-//     ]
-//   },
-//   { title: 'Contact', icon: 'mdi-email', link: '/contact', isMenu: false }
-// ]
-
+// Navigation items
 const headerItems = [
   { 
     title: 'About', 
     icon: 'mdi-information', 
-    link: { path: '/about', hash: '#about' }, 
+    link: { path: '/about', section: 'about' }, 
     isMenu: false 
   },
-   
   { 
     title: 'Skills', 
     icon: 'mdi-tools', 
-    link: { path: '/skills', hash: '#skills' }, 
+    link: { path: '/skills', section: 'skills' }, 
     isMenu: false 
   },
   {
     title: 'Projects',
     icon: 'mdi-folder-outline',
-    link: { path: '/projects', hash: '#projects' },
+    link: { path: '/projects', section: 'projects' },
     isMenu: false,
-    
   },
   {
     title: 'Education',
     icon: 'mdi-school',
-    link: { path: '/education', hash: '#education' },
+    link: { path: '/education', section: 'education' },
     isMenu: false,
-    // ... rest of the projects configuration
   },
   {
     title: 'Experience',
     icon: 'mdi-briefcase',
-    link: { path: '/experience', hash: '#experience' },
+    link: { path: '/experience', section: 'experience' },
     isMenu: false,
-    
   },
   {
     title: 'Contact',
     icon: 'mdi-email',
-    link: { path: '/contact', hash: '#contact' },
+    link: { path: '/contact', section: 'contact' },
     isMenu: false,
-    
-  },
-  ]
+  }
+]
+
+const router = useRouter()
+
 // Methods
 const toggleTheme = () => {
   console.log('toggle theme')
   themeStore.toggleTheme()
 }
 
-
-
-const router = useRouter()
-
-const handleNavigation = async (link) => {
+const handleNavigation = async (link, event) => {
+  // Prevent default navigation from v-btn's 'to' prop
+  if (event) {
+    event.preventDefault()
+  }
+  
   // Close mobile drawer if it's open
   drawer.value = false
-  
-  // Navigate to the route
-  // await router.push(link.path)
-  
-  // // After route change, scroll to the section
-  // if (link.hash) {
-  //   const element = document.querySelector(link.hash)
-  //   if (element) {
-  //     element.scrollIntoView({ 
-  //       behavior: 'smooth',
-  //       block: 'start'
-  //     })
-  //   }
-  // }
+
+  try {
+    // Check if we're already on the page
+    const isSamePath = router.currentRoute.value.path === link.path
+    
+    if (!isSamePath) {
+      // If we're navigating to a new page
+      await router.push(link.path)
+      // Wait for route change to complete
+      await nextTick()
+    }
+    
+    // Scroll to section after ensuring the page is loaded
+    if (link.section) {
+      setTimeout(() => {
+        const element = document.getElementById(link.section)
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      }, 100) // Small delay to ensure DOM is ready
+    }
+  } catch (error) {
+    console.error('Navigation error:', error)
+  }
 }
 </script>
+
+<style scoped>
+/* Styles remain unchanged */
+</style>
 
 <style scoped>
 /* Mobile Menu Overlay */
@@ -384,9 +218,8 @@ const handleNavigation = async (link) => {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgb(var(--v-theme-surface)); 
-  /* background-color: var(--v-background); */
-  z-index: 9999; /* Ensures menu is above all other components */
+  background-color: rgb(var(--v-theme-surface));
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -396,14 +229,10 @@ const handleNavigation = async (link) => {
 .mobile-menu-header {
   position: sticky;
   top: 0;
-  background-color: rgb(var(--v-theme-surface)); 
-  /* background-color: var(--v-background); */
+  background-color: rgb(var(--v-theme-surface));
   z-index: 1;
   border-bottom: 1px solid rgba(var(--v-border-color), 0.12);
 }
-
-/* User Profile Section */
-
 
 /* Mobile Menu Content */
 .mobile-menu-content {
@@ -417,7 +246,6 @@ const handleNavigation = async (link) => {
   position: sticky;
   bottom: 0;
   background-color: rgb(var(--v-theme-surface));
-  /* background-color: var(--v-background); */
   z-index: 1;
 }
 
@@ -430,7 +258,6 @@ const handleNavigation = async (link) => {
 /* Expansion Panel Styles */
 .v-expansion-panel {
   background-color: rgb(var(--v-theme-surface));
-  /* background: transparent !important; */
 }
 
 .v-expansion-panel-title {
@@ -447,7 +274,6 @@ const handleNavigation = async (link) => {
 .fade-leave-to {
   opacity: 0;
 }
-
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {
