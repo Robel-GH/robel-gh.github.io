@@ -1,125 +1,127 @@
 <template>
+   <v-container fluid>
     <v-row justify="center" class="mb-2" >
         
-      <v-col cols="12" md="8" lg="6">
-        <v-card class="contact-card pa-4" variant="text" rounded="xl" elevation="10">
-          <v-card-title class="text-center text-h4 font-weight-bold mb-4"  >          
-            Get In Touch
-          </v-card-title>
-
-          <v-card-subtitle class="text-center mb-6">
-            Have a question or want to work together? Drop me a message!
-          </v-card-subtitle>
-
-          <v-form
-            ref="form"
-            v-model="valid"
-            @submit.prevent="submitForm"
-            class="px-2"
-          >
-            <v-row>
-              <!-- Name Field -->
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="formData.name"
-                  :rules="nameRules"
-                  label="Full Name"
-                  required
-                  variant="outlined"
-                  prepend-inner-icon="mdi-account"
-                  :loading="loading"
-                  :disabled="loading"
-                  rounded
-                ></v-text-field>
-              </v-col>
-
-              <!-- Email Field -->
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="formData.email"
-                  :rules="emailRules"
-                  label="Email"
-                  required
-                  variant="outlined"
-                  prepend-inner-icon="mdi-email"
-                  :loading="loading"
-                  :disabled="loading"
-                  rounded
-                ></v-text-field>
-              </v-col>
-
-              <!-- Subject Field -->
-              <v-col cols="12">
-                <v-text-field
-                  v-model="formData.subject"
-                  :rules="subjectRules"
-                  label="Subject"
-                  required
-                  variant="outlined"
-                  prepend-inner-icon="mdi-text-box-outline"
-                  :loading="loading"
-                  :disabled="loading"
-                  rounded
-                ></v-text-field>
-              </v-col>
-
-              <!-- Message Field -->
-              <v-col cols="12">
-                <v-textarea
-                  v-model="formData.message"
-                  :rules="messageRules"
-                  label="Message"
-                  required
-                  variant="outlined"
-                  prepend-inner-icon="mdi-message-text"
-                  :loading="loading"
-                  :disabled="loading"
-                  rows="4"
-                  rounded
-                ></v-textarea>
-              </v-col>
-
-              <!-- Submit Button -->
-              <v-col cols="12" class="text-center">
-                <v-spacer></v-spacer>
-                <v-btn
-                  type="submit"
-                  :loading="loading"
-                  :disabled="!valid || loading"
-                  color="primary"
-                  size="large"
-                  class="px-8"
-                  rounded
-                >
-                  <v-icon left class="me-2">mdi-send</v-icon>
-                  Send Message
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card>
-
-        <!-- Success/Error Snackbar -->
-        <v-snackbar
-          v-model="snackbar.show"
-          :color="snackbar.color"
-          :timeout="6000"
-          top
-        >
-          {{ snackbar.text }}
-          <template v-slot:actions>
-            <v-btn
-             rounded
-              color="white"
-              variant="text"
-              @click="snackbar.show = false"
+        <v-col cols="12" md="8" lg="6">
+          <v-card class="contact-card pa-4" variant="text" rounded="xl" elevation="10">
+            <v-card-title class="text-center text-h4 font-weight-bold mb-4"  >          
+              Get In Touch
+            </v-card-title>
+  
+            <v-card-subtitle class="text-center mb-6">
+              Have a question or want to work together? Drop me a message!
+            </v-card-subtitle>
+  
+            <v-form
+              ref="form"
+              v-model="valid"
+              @submit.prevent="submitForm"
+              class="px-2"
             >
-              Close
-            </v-btn>
-          </template>
-        </v-snackbar>
-      </v-col>
-    </v-row>
+              <v-row>
+                <!-- Name Field -->
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="formData.name"
+                    :rules="nameRules"
+                    label="Full Name"
+                    required
+                    variant="outlined"
+                    prepend-inner-icon="mdi-account"
+                    :loading="loading"
+                    :disabled="loading"
+                    rounded
+                  ></v-text-field>
+                </v-col>
+  
+                <!-- Email Field -->
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="formData.email"
+                    :rules="emailRules"
+                    label="Email"
+                    required
+                    variant="outlined"
+                    prepend-inner-icon="mdi-email"
+                    :loading="loading"
+                    :disabled="loading"
+                    rounded
+                  ></v-text-field>
+                </v-col>
+  
+                <!-- Subject Field -->
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="formData.subject"
+                    :rules="subjectRules"
+                    label="Subject"
+                    required
+                    variant="outlined"
+                    prepend-inner-icon="mdi-text-box-outline"
+                    :loading="loading"
+                    :disabled="loading"
+                    rounded
+                  ></v-text-field>
+                </v-col>
+  
+                <!-- Message Field -->
+                <v-col cols="12">
+                  <v-textarea
+                    v-model="formData.message"
+                    :rules="messageRules"
+                    label="Message"
+                    required
+                    variant="outlined"
+                    prepend-inner-icon="mdi-message-text"
+                    :loading="loading"
+                    :disabled="loading"
+                    rows="4"
+                    rounded
+                  ></v-textarea>
+                </v-col>
+  
+                <!-- Submit Button -->
+                <v-col cols="12" class="text-center">
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    type="submit"
+                    :loading="loading"
+                    :disabled="!valid || loading"
+                    color="primary"
+                    size="large"
+                    class="px-8"
+                    rounded
+                  >
+                    <v-icon left class="me-2">mdi-send</v-icon>
+                    Send Message
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-card>
+  
+          <!-- Success/Error Snackbar -->
+          <v-snackbar
+            v-model="snackbar.show"
+            :color="snackbar.color"
+            :timeout="6000"
+            top
+          >
+            {{ snackbar.text }}
+            <template v-slot:actions>
+              <v-btn
+               rounded
+                color="white"
+                variant="text"
+                @click="snackbar.show = false"
+              >
+                Close
+              </v-btn>
+            </template>
+          </v-snackbar>
+        </v-col>
+      </v-row>
+   </v-container>
   
 </template>
 

@@ -56,7 +56,7 @@
     </transition>
 
     <!-- App Bar -->
-    <v-app-bar app dark  class="pt-4">
+    <v-app-bar app elevation="0" border bottom elevate-on-scroll scroll-threshold="0" class="px-2">
       <!-- Mobile menu button -->
       <v-app-bar-nav-icon
         class="d-md-none"

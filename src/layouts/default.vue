@@ -1,33 +1,33 @@
 <template>
-  <v-app>
-    <AppHeader />
-    <v-main>
-      <section id="about">
+  <AppHeader />
+  <v-main>
+    <v-container class="py-12">
+      <section id="about" class="section-block">
         <About />
       </section>
       
-      <section id="skills">
+      <section id="skills" class="section-block">
         <Skills />
       </section>
       
-      <section id="projects">
+      <section id="projects" class="section-block">
         <Projects />
       </section>
       
-      <section id="education">
+      <section id="education" class="section-block">
         <Education />
       </section>
       
-      <section id="experience">
+      <section id="experience" class="section-block">
         <Experience />
       </section>
       
-      <section id="contact">
+      <section id="contact" class="section-block">
         <Contact />
       </section>
-    </v-main>
-    <AppFooter />
-  </v-app>
+    </v-container>
+  </v-main>
+  <AppFooter />
 </template>
 
 <script setup>
@@ -42,9 +42,8 @@ import Projects from '@/pages/projects/Projects.vue'
 </script>
 
 <style>
-section {
-  /* min-height: 100vh; */
-  /* padding: 64px 0; Add padding to account for the app bar */
-  /* scroll-margin-top: 64px; This helps with the scroll positioning */
+.section-block {
+  scroll-margin-top: 64px;
+  margin-bottom: 64px;
 }
 </style>

@@ -23,7 +23,7 @@
         
       >
         <v-card
-          class="experience-card animate__animated h-100"
+          class="experience-card animate__animated"
           :class="index % 2 === 0 ? 'animate__slideInLeft' : 'animate__slideInRight'"
           :style="{ animationDelay: `${index * 0.2}s` }"
           elevation="16"
@@ -37,7 +37,7 @@
               <div>
                 <v-expand-transition>
                   <v-card
-                    class="mobile-card h-100"
+                    class="mobile-card"
                     elevation="0"
                   >
                     <v-img
@@ -87,7 +87,7 @@
                         <p class="text-body-2 mb-4">{{ job.description }}</p>
                         
                         <v-expand-transition>
-                          <div v-if="job.isHovering">
+                          <div v-if="expandedId === job.id">
                             <div class="font-weight-medium mb-2">Key Responsibilities:</div>
                             <ul class="responsibilities-list">
                               <li 
@@ -119,13 +119,13 @@
 
                         <v-btn
                           variant="tonal"
-                          @click="job.isHovering = !job.isHovering"
+                          @click="expandedId = expandedId === job.id ? null : job.id"
                           class="mt-2"
                           rounded
                         >
-                          {{ job.isHovering ? 'Show Less' : 'Show More' }}
+                          {{ expandedId === job.id ? 'Show Less' : 'Show More' }}
                           <v-icon
-                            :icon="job.isHovering ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                            :icon="expandedId === job.id ? 'mdi-chevron-up' : 'mdi-chevron-down'"
                             class="ms-2"
                           ></v-icon>
                         </v-btn>
@@ -151,6 +151,7 @@ export default {
   name: 'WorkExperience',
   
   setup() {
+    const expandedId = ref(null)
     const workExperience = ref([
       {
         id: 1,
@@ -219,7 +220,8 @@ export default {
     ])
 
     return {
-      workExperience
+      workExperience,
+      expandedId
     }
   }
 }
@@ -236,7 +238,7 @@ export default {
 .title-underline {
   width: 60px;
   height: 4px;
-  background: var(--v-primary-base);
+  background: rgb(var(--v-theme-primary));
   margin: 1rem auto;
   border-radius: 2px;
 }
@@ -301,7 +303,7 @@ export default {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--v-primary-base);
+  color: rgb(var(--v-theme-primary));
 }
 
 .responsibility-item:hover {
@@ -348,7 +350,7 @@ export default {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--v-primary-base);
+  color: rgb(var(--v-theme-primary));
 }
 
 .skill-chip-mobile {

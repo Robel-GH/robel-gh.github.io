@@ -1,8 +1,8 @@
 <template>
     <v-container class="about-container" fluid>
-        <v-row class="mb-4" justify="center">
+        <v-row class="mb-4" align="stretch">
             <!-- Hero Section -->
-            <v-col cols="12" md="5" mb="6" class="title-section mt-16" justify="center">
+            <v-col cols="12" md="6" class="title-section mt-16 d-flex">
                 <v-card 
                     class="title-card pa-8 mt-md-16 pt-16" 
                     min-height="400" 
@@ -11,7 +11,7 @@
                     variant="text"
                     
                 >
-                    <div class="text-center">
+                    <div class="text-center w-100">
                         <div class="hero-content">
                            
                             <div class="typing-container">
@@ -44,14 +44,14 @@
             </v-col>
 
             <!-- Profile Section -->
-            <v-col cols="12" md="6" class="mt-2 content-section">
+            <v-col cols="12" md="6" class="mt-16 mt-md-8 content-section d-flex">
                 <v-card 
-                    class="content-card" 
+                    class="content-card d-flex flex-column w-100" 
                     elevation="0" 
                     rounded="xl" 
                     :style="{ background: 'linear-gradient(135deg, var(--v-primary-base), var(--v-secondary-base))' }"
                 >
-                    <v-row class="ml-4 mt-4">
+                    <v-row class="ma-0 pa-6" align="center" justify="center">
                         <!-- Profile Image -->
                         <v-col cols="12" md="12" class="profile-section d-flex align-center justify-center">
                             <div class="profile-wrapper">
@@ -93,29 +93,27 @@
                                 </div>
                             </div>
                         </v-col>
-
-                        <!-- Bio Section -->
-                        <v-col cols="12" md="12" class="bio-section pa-6 mb-4">
-                            <v-fade-transition>
-                                <div class="bio-content">
-                                    <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
-                                    <div class="bio-text  text-body-1">
-                                        <v-expand-transition>
-                                            <div>
-                                                <p :style="{ textAlign: 'justify', textJustify: 'inter-word' }"
-                                                >
-                                                    {{ bioParagraphs }}
-                                                </p>
-                                            </div>
-                                        </v-expand-transition>
-                                    </div>
-                                    
-                                   
-                                </div>
-                            </v-fade-transition>
-                        </v-col>
                     </v-row>
                 </v-card>
+            </v-col>
+        </v-row>
+        <!-- Centered Bio Row -->
+        <v-row justify="center" >
+            <v-col cols="12" md="8" class="bio-section  mb-4">
+                <v-fade-transition>
+                    <div class="bio-content">
+                        <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
+                        <div class="bio-text  text-body-1">
+                            <v-expand-transition>
+                                <div>
+                                    <p :style="{ textAlign: 'justify', textJustify: 'inter-word' }">
+                                        {{ bioParagraphs }}
+                                    </p>
+                                </div>
+                            </v-expand-transition>
+                        </div>
+                    </div>
+                </v-fade-transition>
             </v-col>
         </v-row>
     </v-container>
@@ -213,7 +211,7 @@ const downloadCV = () => {
 
 <style scoped>
 .about-container {
-    background: var(--v-background-base);
+    background: rgb(var(--v-theme-background));
     min-height: 100vh;
 }
 

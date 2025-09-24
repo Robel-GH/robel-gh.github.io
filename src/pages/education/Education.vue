@@ -44,7 +44,7 @@
                 </v-card-subtitle>
 
                 <v-card-text>
-                  <p class="mb-4 text-body-1">{{ education.description }}</p>
+                  <p class="mb-4 text-body-1 clamp-3">{{ education.description }}</p>
                   
                   <!-- Skills Section -->
                   <div v-if="education.skills && education.skills.length">
@@ -165,8 +165,32 @@ export default {
 }
 
 .timeline-card {
-  border-left: 4px solid var(--v-primary-base);
+  border-left: 4px solid rgb(var(--v-theme-primary));
   transition: transform 0.3s ease;
+  /* revert fixed height for universal behavior */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make timeline bodies stretch so cards can fill available height */
+:deep(.v-timeline-item__body) {
+  display: flex;
+}
+
+:deep(.v-timeline-item__body) > .timeline-card {
+  height: 100%;
+}
+
+/* Ensure inner sections distribute space evenly and don't overflow */
+:deep(.timeline-card .v-card-item) {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+:deep(.timeline-card .v-card-text) {
+  flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .timeline-card:hover {
@@ -189,7 +213,15 @@ export default {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--v-primary-base);
+  color: rgb(var(--v-theme-primary));
+}
+
+/* Line clamp utility for consistent card heights */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Animation classes */
@@ -221,6 +253,7 @@ export default {
   
   .timeline-card {
     margin-left: 0;
+    height: auto; /* allow cards to grow naturally on small screens */
   }
 }
 </style>

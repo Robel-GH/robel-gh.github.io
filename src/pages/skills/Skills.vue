@@ -7,103 +7,110 @@
         </h2>
 
         <v-card class="skills-card animate__animated animate__fadeInUp" variant="text" rounded="xl">
-          <v-tabs
-            v-model="activeTab"
-            backgroundColor="primary"
-            centered
-            show-arrows
-            slider-color="secondary"
-          >
-            <v-tab
-              v-for="category in skillCategories"
-              :key="category.id"
-              :value="category.id"
-              class="text-subtitle-1"
-            >
-              <v-icon start :icon="category.icon" class="me-2"></v-icon>
-              {{ category.name }}
-            </v-tab>
-          </v-tabs>
-
-          <v-window v-model="activeTab" class="pa-6">
-            <v-window-item
-              v-for="category in skillCategories"
-              :key="category.id"
-              :value="category.id"
-            >
-              <v-row>
-                <v-col 
-                  v-for="skill in category.skills" 
-                  :key="skill.name"
-                  cols="12"
-                  sm="6"
-                  md="4"
-                  class="animate__animated animate__fadeIn"
+          <v-row no-gutters>
+            <v-col cols="12" md="3" class="pr-md-4">
+              <v-tabs
+                v-model="activeTab"
+                direction="vertical"
+                show-arrows
+                slider-color="secondary"
+                
+                density="comfortable"
+              >
+                <v-tab
+                  v-for="category in skillCategories"
+                  :key="category.id"
+                  :value="category.id"
+                  class="text-subtitle-1"
                 >
-                  <v-hover v-slot="{ isHovering, props }">
-                    <v-card
-                      v-bind="props"
-                      :elevation="isHovering ? 8 : 2"
-                      :class="{ 'on-hover': isHovering }"
-                      class="skill-card"
+                  <v-icon start :icon="category.icon" class="me-2"></v-icon>
+                  {{ category.name }}
+                </v-tab>
+              </v-tabs>
+            </v-col>
+
+            <v-col cols="12" md="9">
+              <v-window v-model="activeTab" class="pa-6">
+                <v-window-item
+                  v-for="category in skillCategories"
+                  :key="category.id"
+                  :value="category.id"
+                >
+                  <v-row>
+                    <v-col 
+                      v-for="skill in category.skills" 
+                      :key="skill.name"
+                      cols="12"
+                      sm="6"
+                      md="4"
+                      class="animate__animated animate__fadeIn"
                     >
-                      <v-card-item>
-                        <v-card-title class="d-flex align-center">
-                          <v-icon
-                            :icon="skill.icon"
-                            :color="category.color"
-                            size="large"
-                            class="me-2"
-                          ></v-icon>
-                          {{ skill.name }}
-                        </v-card-title>
+                      <v-hover v-slot="{ isHovering, props }">
+                        <v-card
+                          v-bind="props"
+                          :elevation="isHovering ? 8 : 2"
+                          :class="{ 'on-hover': isHovering }"
+                          class="skill-card"
+                        >
+                          <v-card-item>
+                            <v-card-title class="d-flex align-center">
+                              <v-icon
+                                :icon="skill.icon"
+                                :color="category.color"
+                                size="large"
+                                class="me-2"
+                              ></v-icon>
+                              {{ skill.name }}
+                            </v-card-title>
 
-                        <v-card-subtitle class="pt-2">
-                          Experience: {{ skill.years }} {{ skill.years === 1 ? 'year' : 'years' }}
-                        </v-card-subtitle>
+                            <v-card-subtitle class="pt-2">
+                              Experience: {{ skill.years }} {{ skill.years === 1 ? 'year' : 'years' }}
+                            </v-card-subtitle>
 
-                        <v-card-text>
-                          <div class="d-flex justify-space-between align-center mb-1">
-                            <span class="text-body-2">Proficiency</span>
-                            <span class="text-caption font-weight-bold">{{ skill.level }}%</span>
-                          </div>
-                          <v-progress-linear
-                            :model-value="skill.level"
-                            :color="category.color"
-                            height="8"
-                            rounded
-                            class="skill-progress"
-                          >
-                            <template v-slot:default="{ value }">
-                              <div class="skill-progress-overlay"></div>
-                            </template>
-                          </v-progress-linear>
+                            <v-card-text>
+                              <div class="d-flex justify-space-between align-center mb-1">
+                                <span class="text-body-2">Proficiency</span>
+                                <span class="text-caption font-weight-bold">{{ skill.level }}%</span>
+                              </div>
+                              <v-progress-linear
+                                :model-value="skill.level"
+                                :color="category.color"
+                                height="8"
+                                rounded
+                                class="skill-progress"
+                              >
+                                <template v-slot:default="{ value }">
+                                  <div class="skill-progress-overlay"></div>
+                                </template>
+                              </v-progress-linear>
 
-                          <v-expand-transition>
-                            <div v-if="isHovering" class="mt-4">
-                              <div class="text-caption">{{ skill.description }}</div>
-                              <v-chip-group class="mt-2">
-                                <v-chip
-                                  v-for="tech in skill.technologies"
-                                  :key="tech"
-                                  :color="category.color"
-                                  size="small"
-                                  variant="outlined"
-                                  class="text-caption"
-                                >
-                                  {{ tech }}
-                                </v-chip>
-                              </v-chip-group>
-                            </div>
-                          </v-expand-transition>
-                        </v-card-text>
-                      </v-card-item>
-                    </v-card>
-                  </v-hover>
-                </v-col>
-              </v-row>
-            </v-window-item>
-          </v-window>
+                              <v-expand-transition>
+                                <div v-if="isHovering" class="mt-4">
+                                  <div class="text-caption">{{ skill.description }}</div>
+                                  <v-chip-group class="mt-2">
+                                    <v-chip
+                                      v-for="tech in skill.technologies"
+                                      :key="tech"
+                                      :color="category.color"
+                                      size="small"
+                                      variant="outlined"
+                                      class="text-caption"
+                                    >
+                                      {{ tech }}
+                                    </v-chip>
+                                  </v-chip-group>
+                                </div>
+                              </v-expand-transition>
+                            </v-card-text>
+                          </v-card-item>
+                        </v-card>
+                      </v-hover>
+                    </v-col>
+                  </v-row>
+                </v-window-item>
+              </v-window>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
