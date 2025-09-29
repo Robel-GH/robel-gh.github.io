@@ -178,19 +178,18 @@ export default {
         loading.value = true
         
         try {
-          // Replace with your EmailJS service ID, template ID, and public key
           const result = await emailjs.send(
-            'service_znhy86q',
-            'template_1y6g2hp',
+            '', //service_id
+            '',//template_id
             {
               from_name: formData.name,
               from_email: formData.email,
               subject: formData.subject,
               message: formData.message,
-              to_name: 'Robel-GH', // Your name
+              to_name: 'Robel-GH', 
               reply_to: formData.email,
             },
-            '7Bemp3QiG6owHSXic'
+            ''//
           )
 
           if (result.status === 200) {
