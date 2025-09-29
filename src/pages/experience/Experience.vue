@@ -324,7 +324,7 @@ export default {
         title: 'Fullstack Developer',
         company: 'Tekeze Technologies PLC',
         period: 'July, 2020 - September, 2024',
-        logo: '/images/guna-logo.png',
+        logo: '/images/guna.png',
         image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png',
         description: 'Working as a full-stack developer focusing on web applications and enterprise solutions.',
         responsibilities: [
