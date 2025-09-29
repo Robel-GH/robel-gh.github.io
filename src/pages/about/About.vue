@@ -199,7 +199,7 @@ onMounted(() => {
 
 
 const downloadCV = () => {
-  const pdfUrl = '/resume/resume.pdf'; 
+  const pdfUrl = '/resume/robel-resume.pdf'; 
   const link = document.createElement('a');
   link.href = pdfUrl;
   link.setAttribute('download', 'robel-gh-resume.pdf'); 
