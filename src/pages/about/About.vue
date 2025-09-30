@@ -1,11 +1,11 @@
 <template>
     <v-container class="about-container" fluid>
-        <v-row class="mb-4" align="stretch">
+        <v-row class="mb-2" align="stretch">
             <!-- Hero Section -->
-            <v-col cols="12" md="6" class="title-section mt-16 d-flex">
+            <v-col cols="12" md="6" class="title-section mt-2 ml-16 d-flex">
                 <v-card 
-                    class="title-card pa-8 mt-md-16 pt-16" 
-                    min-height="400" 
+                    class="title-card pa-4 mt-md-16 pt-8" 
+                    min-height="200" 
                     elevation="0"
                     rounded="xl"
                     variant="text"
@@ -44,14 +44,14 @@
             </v-col>
 
             <!-- Profile Section -->
-            <v-col cols="12" md="6" class="mt-16 mt-md-8 content-section d-flex">
+            <v-col cols="12" md="4" class="mt-16 mt-md-8 content-section d-flex">
                 <v-card 
                     class="content-card d-flex flex-column w-100" 
                     elevation="0" 
                     rounded="xl" 
                     :style="{ background: 'linear-gradient(135deg, var(--v-primary-base), var(--v-secondary-base))' }"
                 >
-                    <v-row class="ma-0 pa-6" align="center" justify="center">
+                    <v-row class="ma-0 pa-2" align="center" justify="center">
                         <!-- Profile Image -->
                         <v-col cols="12" md="12" class="profile-section d-flex align-center justify-center">
                             <div class="profile-wrapper">
@@ -79,14 +79,14 @@
                                         </template>
                                     </v-img>
                                 </v-avatar>
-                                <div class="social-links mt-4 ml-6">
+                                <div class="social-links ">
                                     <v-btn
                                         v-for="(social, index) in socialLinks"
                                         :key="index"
                                         :icon="social.icon"
                                         variant="text"
-                                        size="small"
-                                        class="mx-1"
+                                        size="x-large"
+                                        
                                         :href="social.link"
                                         target="_blank"
                                     ></v-btn>
@@ -99,10 +99,10 @@
         </v-row>
         <!-- Centered Bio Row -->
         <v-row justify="center" >
-            <v-col cols="12" md="8" class="bio-section  mb-4">
+            <v-col cols="12" md="10" class="bio-section  mb-2">
                 <v-fade-transition>
                     <div class="bio-content">
-                        <h2 class="text-h4 mb-6 font-weight-bold ">About Me</h2>
+                        <h4 class="text-h5 mb-4 font-weight-bold ">About Me</h4>
                         <div class="bio-text  text-body-1">
                             <v-expand-transition>
                                 <div>
@@ -134,10 +134,7 @@ const currentTimeGreeting = computed(() => {
 })
 
 const bioParagraphs = 
-  `Resourceful full-stack engineer and AI enthusiast with over 5 years of experience designing and
-   delivering scalable web applications and machine-learning solutions.
-   Expert in Vue.js, React, Node.js, and Django for building intuitive, high-performance front ends and 
-   RESTful back ends secured with JWT authentication. 
+  `I’m a Master’s student in Artificial Intelligence and Computer Science with a strong foundation in deep learning, intelligent systems, and software engineering. I build end-to-end AI products and scalable web applications.
    Skilled at architecting role-based dashboards, dynamic reporting systems,
   and high-conversion landing pages, as well as developing multi-agent AI workflows with CrewAI and 
   implementing deep-learning models using TensorFlow, PyTorch, and scikit-learn.
@@ -169,7 +166,7 @@ const socialLinks = [
 
 
 const typingText = ref('')
-const texts = ['Hello, I\'m Robel Gebrehiwot ', 'Senior Software Engineer | Vue.js | React | Node.js | Django Developer', 'GenAI | Agentic AI Enthusiast']
+const texts = ['Hello, I\'m Robel Gebrehiwot ', 'Senior Software Engineer | Vue.js | React | Node.js | Django Developer', 'Master\'s Student in Artificial Intelligence and Computer Science']
 let textIndex = 0
 let charIndex = 0
 let isDeleting = false

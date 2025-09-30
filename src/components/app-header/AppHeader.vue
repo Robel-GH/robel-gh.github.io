@@ -42,7 +42,7 @@
 
         <!-- Footer with Theme Toggle -->
         <div class="mobile-menu-footer pa-4">
-          <v-divider class="mb-4"/>
+          <v-divider class="mb-2"/>
           <v-switch
             v-model="model"
             :label="themeStore.theme === 'dark' ? 'Dark Theme' : 'Light Theme'"
