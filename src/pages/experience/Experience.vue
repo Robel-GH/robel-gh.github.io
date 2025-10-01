@@ -4,7 +4,7 @@
     <v-col cols="12" md="11" >
        <v-row justify="center" class="mt-16" >
       <v-col cols="12" md="11" >
-        <h2 class="text-h4 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
+        <h2 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
           Professional Experience
           <div class="title-underline"></div>
         </h2>

@@ -2,9 +2,9 @@
    <v-container fluid>
     <v-row justify="center" class="mb-2" >
         
-        <v-col cols="12" md="8" lg="6">
+        <v-col cols="12" md="10" lg="10">
           <v-card class="contact-card pa-4" variant="text" rounded="xl" elevation="10">
-            <v-card-title class="text-center text-h4 font-weight-bold mb-4"  >          
+            <v-card-title class="text-center text-h5 font-weight-bold mb-4"  >          
               Get In Touch
             </v-card-title>
   
