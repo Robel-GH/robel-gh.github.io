@@ -102,7 +102,7 @@
             <v-col cols="12" md="10" class="bio-section  mb-2">
                 <v-fade-transition>
                     <div class="bio-content">
-                        <h4 class="text-h5 mb-4 font-weight-bold ">About Me</h4>
+                        <h4 class="text-h5 mb-2 font-weight-bold ">About Me</h4>
                         <div class="bio-text  text-body-1">
                             <v-expand-transition>
                                 <div>
