@@ -1,24 +1,24 @@
 <template>
   <v-container fluid class="projects-container py-8">
-    <h1 class="text-h4 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
+    <h1 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
       Featured Projects
     </h1>
     
-    <v-row justify="center">
-      <v-col cols="12" md="11">
+    <!-- Marquee Container -->
+    <div class="marquee-container" @mouseenter="pauseMarquee" @mouseleave="resumeMarquee">
+      <div class="marquee-track" :class="{ 'paused': isPaused }">
+        <!-- First set of projects -->
         <div 
           v-for="(project, index) in Projects" 
-          :key="project.title"
-          class="animate__animated"
-          :class="index % 2 === 0 ? 'animate__slideInLeft' : 'animate__slideInRight'"
-          :style="{ animationDelay: `${index * 0.2}s` }"
+          :key="`first-${project.title}`"
+          class="marquee-item"
         >
           <v-hover v-slot="{ isHovering, props }">
             <v-card 
               v-bind="props"
               :elevation="isHovering ? 20 : 8"
               :class="{ 'on-hover': isHovering }"
-              class="ma-4 project-card"
+              class="project-card"
               rounded="xl"
               variant="text"
             >
@@ -128,14 +128,146 @@
             </v-card>
           </v-hover>
         </div>
-      </v-col>
-    </v-row>
+
+        <!-- Duplicate set for seamless loop -->
+        <div 
+          v-for="(project, index) in Projects" 
+          :key="`second-${project.title}`"
+          class="marquee-item"
+        >
+          <v-hover v-slot="{ isHovering, props }">
+            <v-card 
+              v-bind="props"
+              :elevation="isHovering ? 20 : 8"
+              :class="{ 'on-hover': isHovering }"
+              class="project-card"
+              rounded="xl"
+              variant="text"
+            >
+              <v-card-title class="text-h5 pa-6 d-flex align-center" variant="text">
+                <v-icon 
+                  :color="project.iconColor || 'primary'"
+                  size="32"
+                  class="me-3"
+                >
+                  {{ project.icon || 'mdi-rocket-launch' }}
+                </v-icon>
+                <strong>{{ project.title }}</strong>
+              </v-card-title>
+
+              <v-card-text class="pa-6">
+                <v-row>
+                  <!-- Video Section -->
+                  <v-col cols="12" md="5" class="video-container">
+                    <v-card
+                      class="video-card"
+                      elevation="4"
+                      :class="{ 'video-card-hover': isHovering }"
+                    >
+                      <iframe
+                        class="video-frame"
+                        width="100%"
+                        height="315"
+                        :src="project.videoUrl"
+                        title="Project Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </v-card>
+                  </v-col>
+
+                  <!-- Description Section -->
+                  <v-col cols="12" md="7">
+                    <v-card 
+                      variant="text" 
+                      class="pa-4 description-card h-100"
+                      :class="{ 'description-card-hover': isHovering }"
+                    >
+                      <v-card-title class="text-h5 mb-3">
+                        Project Overview
+                      </v-card-title>
+                      <v-divider class="mb-4"></v-divider>
+                      
+                      <v-card-text class="text-body-1">
+                        {{ project.description }}
+                      </v-card-text>
+
+                      <!-- Technologies Used -->
+                      <div class="mt-4">
+                        <div class="text-subtitle-1 mb-2">Technologies Used:</div>
+                        <v-chip-group>
+                          <v-chip
+                            v-for="tech in project.technologies"
+                            :key="tech"
+                            color="primary"
+                            variant="outlined"
+                            size="small"
+                            class="ma-1"
+                          >
+                            {{ tech }}
+                          </v-chip>
+                        </v-chip-group>
+                      </div>
+
+                      <v-card-actions class="mt-4">
+                        <v-btn
+                          rounded
+                          color="primary"
+                          variant="tonal"
+                          class="text-none px-6"
+                        >
+                          <v-icon start>mdi-account-tie</v-icon>
+                          {{ project.role }}
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          :href="project.githubLink"
+                          target="_blank"
+                          icon
+                          color="grey-darken-3"
+                          variant="text"
+                          class="github-btn"
+                        >
+                          <v-icon size="32">mdi-github</v-icon>
+                        </v-btn>
+                        <v-btn
+                          v-if="project.liveDemo"
+                          :href="project.liveDemo"
+                          target="_blank"
+                          icon
+                          color="primary"
+                          variant="text"
+                          class="demo-btn"
+                        >
+                          <v-icon size="32">mdi-web</v-icon>
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-hover>
+        </div>
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import 'animate.css';
+
+const isPaused = ref(false);
+
+const pauseMarquee = () => {
+  isPaused.value = true;
+};
+
+const resumeMarquee = () => {
+  isPaused.value = false;
+};
 
 const Projects = ref([
   {
@@ -164,13 +296,46 @@ const Projects = ref([
 </script>
 
 <style scoped>
-.projects-container {
-  /* background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); */
+/* Projects container styles can be added here if needed */
+
+/* Marquee Container */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.marquee-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: calc(200% + 2rem);
+}
+
+.marquee-track.paused {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  flex: 0 0 auto;
+  width: 900px;
+  margin-right: 2rem;
+}
+
+/* Marquee Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .project-card {
   transition: all 0.3s ease;
   overflow: hidden;
+  height: 100%;
   /* background: rgba(255, 255, 255, 0.9); */
 }
 
@@ -204,9 +369,9 @@ const Projects = ref([
   /* background: rgba(255, 255, 255, 0.5); */
 }
 
-.description-card-hover {
-  /* background: rgba(255, 255, 255, 0.8); */
-}
+/* Description card hover styles can be added here if needed */
+
+/* Tech chips styling handled by v-chip-group */
 
 .github-btn, .demo-btn {
   transition: transform 0.3s ease;
@@ -222,13 +387,33 @@ const Projects = ref([
 }
 
 /* Responsive adjustments */
-@media (max-width: 960px) {
-  .video-container {
-    margin-bottom: 2rem;
+@media (max-width: 1200px) {
+  .marquee-item {
+    width: 750px;
   }
+}
 
-  .project-card {
-    margin: 1rem 0;
+@media (max-width: 960px) {
+  .marquee-item {
+    width: 600px;
+  }
+  
+  .marquee-track {
+    animation-duration: 25s;
+  }
+}
+
+@media (max-width: 600px) {
+  .marquee-item {
+    width: 400px;
+  }
+  
+  .marquee-track {
+    animation-duration: 20s;
+  }
+  
+  .video-frame {
+    height: 200px;
   }
 }
 
@@ -251,5 +436,17 @@ const Projects = ref([
 .v-chip:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scrolling for better performance */
+.marquee-track {
+  will-change: transform;
+}
+
+/* Accessibility - Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 </style>
