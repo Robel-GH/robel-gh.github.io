@@ -3,14 +3,9 @@
     <v-row justify="center" class="ma-4">
       <v-col cols="12" md="11">
         <!-- Header -->
-        <div class="text-center mb-8">
-          <h2 class="text-h5 font-weight-bold primary--text">
-            Educational Background
-          </h2>
-          <p class="text-subtitle-1 text-medium-emphasis">
-            My Academic Journey
-          </p>
-        </div>
+        <h2 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
+          Educational Background
+        </h2>
 
         <!-- Timeline -->
         <v-timeline side="end" align="start" :density="timelineDensity">

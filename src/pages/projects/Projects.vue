@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="projects-container py-8">
     <h1 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-      Featured Projects
+      Projects
     </h1>
     
     <!-- Marquee Container -->
@@ -296,7 +296,7 @@ const Projects = ref([
 </script>
 
 <style scoped>
-/* Projects container styles can be added here if needed */
+
 
 /* Marquee Container */
 .marquee-container {
@@ -369,7 +369,7 @@ const Projects = ref([
   /* background: rgba(255, 255, 255, 0.5); */
 }
 
-/* Description card hover styles can be added here if needed */
+
 
 /* Tech chips styling handled by v-chip-group */
 
