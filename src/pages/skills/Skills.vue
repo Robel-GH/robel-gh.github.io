@@ -7,14 +7,114 @@
         </h2>
 
         <v-card class="skills-card animate__animated animate__fadeInUp" variant="text" rounded="xl">
-          <v-row no-gutters>
+          <!-- Mobile Layout (Horizontal Tabs) -->
+          <div v-if="mobile" class="mobile-layout">
+            <v-tabs
+              v-model="activeTab"
+              direction="horizontal"
+              show-arrows
+              slider-color="secondary"
+              density="comfortable"
+              class="mobile-tabs"
+            >
+              <v-tab
+                v-for="category in skillCategories"
+                :key="category.id"
+                :value="category.id"
+                class="text-caption mobile-tab"
+              >
+                <v-icon :icon="category.icon" size="small" class="me-1"></v-icon>
+                <span class="mobile-tab-text">{{ category.name }}</span>
+              </v-tab>
+            </v-tabs>
+
+            <v-window v-model="activeTab" class="pa-4">
+              <v-window-item
+                v-for="category in skillCategories"
+                :key="category.id"
+                :value="category.id"
+              >
+                <v-row>
+                  <v-col 
+                    v-for="skill in category.skills" 
+                    :key="skill.name"
+                    cols="12"
+                    class="animate__animated animate__fadeIn"
+                  >
+                    <v-hover v-slot="{ isHovering, props }">
+                      <v-card
+                        v-bind="props"
+                        :elevation="isHovering ? 8 : 2"
+                        :class="{ 'on-hover': isHovering }"
+                        class="skill-card"
+                      >
+                        <v-card-item>
+                          <v-card-title class="d-flex align-center">
+                            <v-icon
+                              :icon="skill.icon"
+                              :color="category.color"
+                              size="large"
+                              class="me-2"
+                            ></v-icon>
+                            {{ skill.name }}
+                          </v-card-title>
+
+                          <v-card-subtitle class="pt-2">
+                            Experience: {{ skill.years }} {{ skill.years === 1 ? 'year' : 'years' }}
+                          </v-card-subtitle>
+
+                          <v-card-text>
+                            <div class="d-flex justify-space-between align-center mb-1">
+                              <span class="text-body-2">Proficiency</span>
+                              <span class="text-caption font-weight-bold">{{ skill.level }}%</span>
+                            </div>
+                            <v-progress-linear
+                              :model-value="skill.level"
+                              :color="category.color"
+                              height="8"
+                              rounded
+                              class="skill-progress"
+                            >
+                              <template v-slot:default="{ value }">
+                                <div class="skill-progress-overlay"></div>
+                              </template>
+                            </v-progress-linear>
+
+                            <v-expand-transition>
+                              <div v-if="isHovering" class="mt-4">
+                                <div class="text-caption">{{ skill.description }}</div>
+                                <v-chip-group class="mt-2">
+                                  <v-chip
+                                    v-for="tech in skill.technologies"
+                                    :key="tech"
+                                    :color="category.color"
+                                    size="small"
+                                    variant="outlined"
+                                    class="text-caption"
+                                  >
+                                    {{ tech }}
+                                  </v-chip>
+                                </v-chip-group>
+                              </div>
+                            </v-expand-transition>
+                          </v-card-text>
+                        </v-card-item>
+                      </v-card>
+                    </v-hover>
+                  </v-col>
+                </v-row>
+              </v-window-item>
+            </v-window>
+          </div>
+
+          <!-- Desktop Layout (Vertical Tabs) -->
+          <v-row v-else no-gutters>
             <v-col cols="12" md="3" class="pr-md-4">
               <v-tabs
                 v-model="activeTab"
                 direction="vertical"
                 show-arrows
                 slider-color="secondary"
-                
                 density="comfortable"
               >
                 <v-tab
@@ -119,8 +219,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useDisplay } from 'vuetify'
 import 'animate.css'
 
+const { mobile } = useDisplay()
 const activeTab = ref(0)
 
 const skillCategories = ref([
@@ -289,9 +391,7 @@ const skillCategories = ref([
 </script>
 
 <style scoped>
-.skills-container {
-  /* background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); */
-}
+/* Skills container styles can be added here if needed */
 
 .skills-card {
   border-radius: 16px;
@@ -343,14 +443,69 @@ const skillCategories = ref([
   animation-duration: 0.8s;
 }
 
+/* Mobile Layout Styles */
+.mobile-layout {
+  width: 100%;
+}
+
+.mobile-tabs {
+  border-bottom: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+}
+
+.mobile-tab {
+  min-width: auto !important;
+  padding: 8px 12px !important;
+  font-size: 0.75rem !important;
+  text-transform: none !important;
+  letter-spacing: 0.25px !important;
+}
+
+.mobile-tab-text {
+  display: inline-block;
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* Responsive adjustments */
-@media (max-width: 600px) {
+@media (max-width: 960px) {
   .skills-container {
     padding: 1rem;
   }
   
   .skill-card {
     margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-container {
+    padding: 0.5rem;
+  }
+  
+  .skill-card {
+    margin-bottom: 0.75rem;
+  }
+  
+  .mobile-tab {
+    padding: 6px 8px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .mobile-tab-text {
+    max-width: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-tab {
+    padding: 4px 6px !important;
+    font-size: 0.65rem !important;
+  }
+  
+  .mobile-tab-text {
+    max-width: 40px;
   }
 }
 </style>
