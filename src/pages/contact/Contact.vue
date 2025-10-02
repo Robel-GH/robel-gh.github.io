@@ -209,7 +209,7 @@ export default {
         } catch (error) {
           console.error('Error sending email:', error)
           snackbar.color = 'error'
-          snackbar.text = 'Failed to send message. Please try again later.'
+          snackbar.text = 'Email web service is temporarily unavailable. Please reach out via Gmail or LinkedIn. Thank you!'
         } finally {
           loading.value = false
           snackbar.show = true
