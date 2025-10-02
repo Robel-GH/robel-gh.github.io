@@ -2,9 +2,16 @@
   <v-container class="skills-container py-4" fluid>
     <v-row justify="center">
       <v-col cols="12" md="11">
-        <h2 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-          Technical Skills & Expertise
-        </h2>
+        <div class="section-header text-center mb-8">
+          <div class="header-decoration">
+            <v-icon icon="mdi-tools" size="x-large" class="header-icon"></v-icon>
+          </div>
+          <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
+            Technical Skills & Expertise
+          </h2>
+       
+          <div class="title-underline"></div>
+        </div>
 
         <v-card class="skills-card animate__animated animate__fadeInUp" variant="text" rounded="xl">
           <!-- Mobile Layout (Horizontal Tabs) -->
@@ -230,7 +237,7 @@ const skillCategories = ref([
     id: 0,
     name: 'Frontend',
     icon: 'mdi-monitor-dashboard',
-    color: 'indigo',
+    color: 'teal',
     skills: [
       {
         name: 'Vue.js',
@@ -262,7 +269,7 @@ const skillCategories = ref([
     id: 1,
     name: 'Backend',
     icon: 'mdi-server',
-    color: 'deep-purple',
+    color: 'primary',
     skills: [
       {
         name: 'Node.js',
@@ -294,7 +301,7 @@ const skillCategories = ref([
     id: 2,
     name: 'Databases',
     icon: 'mdi-database',
-    color: 'blue',
+    color: 'info',
     skills: [
       {
         name: 'MongoDB',
@@ -335,7 +342,7 @@ const skillCategories = ref([
     id: 3,
     name: 'AI/ML',
     icon: 'mdi-brain',
-    color: 'deep-orange',
+    color: 'cyan',
     skills: [
       {
         name: 'Machine Learning',
@@ -421,9 +428,9 @@ const skillCategories = ref([
   bottom: 0;
   background: linear-gradient(
     90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.3) 50%,
-    rgba(255,255,255,0) 100%
+    rgba(var(--v-theme-primary), 0) 0%,
+    rgba(var(--v-theme-primary), 0.3) 50%,
+    rgba(var(--v-theme-primary), 0) 100%
   );
   animation: shimmer 2s infinite;
 }
@@ -468,6 +475,57 @@ const skillCategories = ref([
   white-space: nowrap;
 }
 
+/* Section Header Styles - Consistent with Awards */
+.section-header {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.header-decoration {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.header-icon {
+  color: rgb(var(--v-theme-primary));
+  filter: drop-shadow(0 0 20px rgba(var(--v-theme-primary), 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.section-title {
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.section-subtitle {
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  font-style: italic;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
+  margin: 1rem auto;
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
 /* Responsive adjustments */
 @media (max-width: 960px) {
   .skills-container {
@@ -499,13 +557,42 @@ const skillCategories = ref([
 }
 
 @media (max-width: 400px) {
+  .skills-container {
+    padding: 0.25rem;
+  }
+  
   .mobile-tab {
     padding: 4px 6px !important;
     font-size: 0.65rem !important;
   }
   
   .mobile-tab-text {
-    max-width: 40px;
+    max-width: 35px;
+  }
+  
+  .skill-card {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem !important;
+  }
+  
+  .skill-card .v-card-title {
+    font-size: 0.9rem !important;
+  }
+  
+  .skill-card .v-card-text {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 960px) and (orientation: landscape) {
+  .skills-container {
+    padding: 0.5rem;
+  }
+  
+  .mobile-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }
 </style>

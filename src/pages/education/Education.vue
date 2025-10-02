@@ -3,9 +3,16 @@
     <v-row justify="center" class="ma-4">
       <v-col cols="12" md="11">
         <!-- Header -->
-        <h2 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-          Educational Background
-        </h2>
+        <div class="section-header text-center mb-8">
+          <div class="header-decoration">
+            <v-icon icon="mdi-school" size="x-large" class="header-icon"></v-icon>
+          </div>
+          <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
+            Educational Background
+          </h2>
+        
+          <div class="title-underline"></div>
+        </div>
 
         <!-- Timeline -->
         <v-timeline side="end" align="start" :density="timelineDensity">
@@ -171,12 +178,12 @@ export default {
   width: 100%;
   max-width: 100%;
   margin: 0.5rem 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.15);
 }
 
 .timeline-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(var(--v-theme-primary), 0.25);
 }
 
 /* Skills container styling */
@@ -211,6 +218,57 @@ export default {
   left: 0;
   color: rgb(var(--v-theme-primary));
   font-weight: bold;
+}
+
+/* Section Header Styles - Consistent with Awards */
+.section-header {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.header-decoration {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.header-icon {
+  color: rgb(var(--v-theme-primary));
+  filter: drop-shadow(0 0 20px rgba(var(--v-theme-primary), 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.section-title {
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.section-subtitle {
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  font-style: italic;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
+  margin: 1rem auto;
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
 }
 
 /* Animation classes */
@@ -309,13 +367,12 @@ export default {
 }
 
 /* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  .timeline-card {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  .timeline-card:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  }
+/* Dark mode adjustments */
+:deep(.v-theme--dark) .timeline-card {
+  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.2);
+}
+
+:deep(.v-theme--dark) .timeline-card:hover {
+  box-shadow: 0 8px 25px rgba(var(--v-theme-primary), 0.3);
 }
 </style>

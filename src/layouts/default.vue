@@ -1,7 +1,7 @@
 <template>
   <AppHeader />
   <v-main>
-    <v-container class="py-12">
+    <v-container class="py-12 px-2 px-md-4">
       <section id="about" class="section-block">
         <About />
       </section>
@@ -45,5 +45,18 @@ import Projects from '@/pages/projects/Projects.vue'
 .section-block {
   scroll-margin-top: 64px;
   margin-bottom: 64px;
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 960px) {
+  .section-block {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-block {
+    margin-bottom: 32px;
+  }
 }
 </style>

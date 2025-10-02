@@ -3,9 +3,16 @@
     <v-row justify="center">
       <v-col cols="12" md="11">
         <!-- Header Section -->
-        <h2 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-          Professional Experience
-        </h2>
+        <div class="section-header text-center mb-8">
+          <div class="header-decoration">
+            <v-icon icon="mdi-briefcase" size="x-large" class="header-icon"></v-icon>
+          </div>
+          <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
+            Professional Experience
+          </h2>
+         
+          <div class="title-underline"></div>
+        </div>
 
         <!-- Experience Cards Grid -->
         <v-row align="start">
@@ -302,9 +309,9 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
   background: 
-    radial-gradient(800px 300px at 20% 10%, rgba(25, 118, 210, 0.08), transparent 50%),
-    radial-gradient(800px 300px at 80% 90%, rgba(38, 166, 154, 0.08), transparent 50%),
-    radial-gradient(600px 200px at 50% 50%, rgba(156, 39, 176, 0.05), transparent 50%);
+    radial-gradient(800px 300px at 20% 10%, rgba(var(--v-theme-primary), 0.08), transparent 50%),
+    radial-gradient(800px 300px at 80% 90%, rgba(var(--v-theme-secondary), 0.08), transparent 50%),
+    radial-gradient(600px 200px at 50% 50%, rgba(var(--v-theme-info), 0.05), transparent 50%);
   position: relative;
   overflow: hidden;
 }
@@ -317,8 +324,8 @@ export default {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 25% 25%, rgba(25, 118, 210, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(38, 166, 154, 0.03) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(var(--v-theme-primary), 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(var(--v-theme-secondary), 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -350,7 +357,7 @@ export default {
   transform: translateY(-5px);
   z-index: 10;
   position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(var(--v-theme-primary), 0.15);
 }
 
 /* Card Header */
@@ -368,8 +375,8 @@ export default {
 }
 
 .logo-avatar {
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(var(--v-theme-primary), 0.2);
+  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.1);
   transition: all 0.3s ease;
 }
 
@@ -380,9 +387,9 @@ export default {
   right: -4px;
   bottom: -4px;
   background: linear-gradient(45deg, 
-    rgba(25, 118, 210, 0.3), 
-    rgba(38, 166, 154, 0.3), 
-    rgba(156, 39, 176, 0.3));
+    rgba(var(--v-theme-primary), 0.3), 
+    rgba(var(--v-theme-secondary), 0.3), 
+    rgba(var(--v-theme-info), 0.3));
   border-radius: 50%;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -395,7 +402,7 @@ export default {
 
 .glass-card:hover .logo-avatar {
   transform: scale(1.1);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(var(--v-theme-primary), 0.4);
 }
 
 .header-content {
@@ -408,7 +415,7 @@ export default {
   font-weight: 700;
   margin-bottom: 0.5rem;
   line-height: 1.3;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(var(--v-theme-on-surface), 0.1);
 }
 
 .company-info {
@@ -422,7 +429,7 @@ export default {
 .period-chip {
   align-self: flex-start;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(var(--v-theme-primary), 0.2);
   font-weight: 500;
 }
 
@@ -498,12 +505,12 @@ export default {
 .skill-chip {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(var(--v-theme-primary), 0.2);
 }
 
 .skill-chip:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.15);
 }
 
 .more-chip {
@@ -540,7 +547,7 @@ export default {
 
 .expand-btn {
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(var(--v-theme-primary), 0.2);
   transition: all 0.3s ease;
   text-transform: none;
   font-weight: 500;
@@ -548,7 +555,7 @@ export default {
 
 .expand-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.15);
 }
 
 /* Decorative Elements */
@@ -570,8 +577,8 @@ export default {
   height: 60px;
   border-radius: 50%;
   background: linear-gradient(45deg, 
-    rgba(25, 118, 210, 0.1), 
-    rgba(38, 166, 154, 0.1));
+    rgba(var(--v-theme-primary), 0.1), 
+    rgba(var(--v-theme-secondary), 0.1));
   opacity: 0.5;
 }
 
@@ -582,8 +589,59 @@ export default {
   width: 2px;
   height: 40px;
   background: linear-gradient(to bottom, 
-    rgba(25, 118, 210, 0.3), 
+    rgba(var(--v-theme-primary), 0.3), 
     transparent);
+}
+
+/* Section Header Styles - Consistent with Awards */
+.section-header {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.header-decoration {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.header-icon {
+  color: rgb(var(--v-theme-primary));
+  filter: drop-shadow(0 0 20px rgba(var(--v-theme-primary), 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.section-title {
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.section-subtitle {
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  font-style: italic;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
+  margin: 1rem auto;
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
 }
 
 /* Animations */
@@ -606,18 +664,18 @@ export default {
 
 /* Dark mode adjustments for better contrast */
 :deep(.v-theme--dark) .experience-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(var(--v-theme-primary), 0.05);
+  border: 1px solid rgba(var(--v-theme-primary), 0.1);
 }
 
 :deep(.v-theme--dark) .experience-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(var(--v-theme-primary), 0.08);
+  border-color: rgba(var(--v-theme-primary), 0.15);
 }
 
 :deep(.v-theme--dark) .expanded-content {
-  background: rgba(255, 255, 255, 0.03);
-  border-top-color: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--v-theme-primary), 0.03);
+  border-top-color: rgba(var(--v-theme-primary), 0.08);
 }
 
 /* Responsive Design - Using Vuetify breakpoints */

@@ -1,8 +1,15 @@
 <template>
   <v-container fluid class="projects-container py-8">
-    <h1 class="text-h5 text-center mb-8 font-weight-bold primary--text animate__animated animate__fadeIn">
-      Projects
-    </h1>
+    <div class="section-header text-center mb-8">
+      <div class="header-decoration">
+        <v-icon icon="mdi-folder-outline" size="x-large" class="header-icon"></v-icon>
+      </div>
+      <h1 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
+        Projects
+      </h1>
+      
+      <div class="title-underline"></div>
+    </div>
     
     <!-- Marquee Container -->
     <div class="marquee-container" @mouseenter="pauseMarquee" @mouseleave="resumeMarquee">
@@ -355,7 +362,7 @@ const Projects = ref([
 
 .video-card-hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(var(--v-theme-primary), 0.15);
 }
 
 .video-frame {
@@ -405,7 +412,7 @@ const Projects = ref([
 
 @media (max-width: 600px) {
   .marquee-item {
-    width: 400px;
+    width: 350px;
   }
   
   .marquee-track {
@@ -413,8 +420,111 @@ const Projects = ref([
   }
   
   .video-frame {
-    height: 200px;
+    height: 180px;
   }
+  
+  .description-card {
+    padding: 0.75rem !important;
+  }
+  
+  .description-card .v-card-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .description-card .v-card-text {
+    font-size: 0.9rem !important;
+  }
+  
+  .v-chip {
+    font-size: 0.75rem !important;
+    height: 24px !important;
+  }
+  
+  .github-btn, .demo-btn {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .marquee-item {
+    width: 300px;
+  }
+  
+  .video-frame {
+    height: 160px;
+  }
+  
+  .description-card {
+    padding: 0.5rem !important;
+  }
+  
+  .description-card .v-card-title {
+    font-size: 1rem !important;
+  }
+  
+  .description-card .v-card-text {
+    font-size: 0.85rem !important;
+  }
+  
+  .v-chip {
+    font-size: 0.7rem !important;
+    height: 22px !important;
+    margin: 0.125rem !important;
+  }
+  
+  .github-btn, .demo-btn {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.8rem !important;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Section Header Styles - Consistent with Awards */
+.section-header {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.header-decoration {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.header-icon {
+  color: rgb(var(--v-theme-primary));
+  filter: drop-shadow(0 0 20px rgba(var(--v-theme-primary), 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.section-title {
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+.section-subtitle {
+  color: rgba(var(--v-theme-on-surface), 0.7);
+  font-style: italic;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
+  margin: 1rem auto;
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
 }
 
 /* Custom animations */
@@ -435,7 +545,7 @@ const Projects = ref([
 
 .v-chip:hover {
   transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(var(--v-theme-primary), 0.2);
 }
 
 /* Smooth scrolling for better performance */
