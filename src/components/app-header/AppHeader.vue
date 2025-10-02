@@ -62,19 +62,7 @@
         class="d-md-none"
         @click="drawer = !drawer"
       />
-      <v-tooltip :text="themeStore.theme === 'dark' ? 'Light Theme' : 'Dark Theme'">
-          <template v-slot:activator="{ props }">
-            <v-switch
-              v-model="model"
-              class="ml-2"
-              @click="toggleTheme"
-              hide-details
-              inset
-              color="primary"
-              v-bind="props"
-            />
-          </template>
-        </v-tooltip>
+     
       <v-spacer />
 
       <!-- Desktop Navigation -->
@@ -83,12 +71,15 @@
           rounded="xl"
           size="large"
           color="primary"
+          variant="outlined"
         >
           <v-btn
             v-for="item in headerItems"
             :key="item.title"
             size="large"
             class="ma-1"
+           
+            color="primary"
             exact
             :to="item.link.path"
             @click="(event) => handleNavigation(item.link, event)"
@@ -100,6 +91,19 @@
         <!-- Desktop Theme Toggle -->
         
       </div>
+      <v-tooltip :text="themeStore.theme === 'dark' ? 'Light Theme' : 'Dark Theme'">
+          <template v-slot:activator="{ props }">
+            <v-switch
+              v-model="model"
+              class="ml-2 d-lg-block d-none"
+              @click="toggleTheme"
+              hide-details
+              inset
+              color="primary"
+              v-bind="props"
+            />
+          </template>
+        </v-tooltip>
     </v-app-bar>
   </div>
 </template>
@@ -276,9 +280,50 @@ const handleNavigation = async (link, event) => {
 }
 
 /* Responsive Adjustments */
+@media (max-width: 960px) {
+  .mobile-menu-content {
+    padding: 1rem;
+  }
+  
+  .mobile-menu-content .v-btn {
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 600px) {
   .v-toolbar-title {
     font-size: 16px;
+  }
+  
+  .mobile-menu-header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .mobile-menu-content {
+    padding: 0.5rem;
+  }
+  
+  .mobile-menu-content .v-btn {
+    margin-bottom: 0.25rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .mobile-menu-footer {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-menu-content .v-btn {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  .mobile-menu-footer {
+    padding: 0.75rem;
   }
 }
 </style>
