@@ -15,7 +15,7 @@
                         <div class="hero-content">
                            
                             <div class="typing-container">
-                                <span class="typing"><h1 class="text-h3 font-weight-bold mb-4">{{ typingText }}</h1></span>
+                                <span class="typing"><h1 class="text-h4 font-weight-bold mb-4">{{ typingText }}</h1></span>
                                 <span class="cursor">|</span>
                             </div>
 
@@ -166,7 +166,9 @@ const socialLinks = [
 
 
 const typingText = ref('')
-const texts = ['Hello, I\'m Robel Gebrehiwot ', 'Senior Software Engineer | Vue.js | React | Node.js | Django Developer', 'Master\'s Student in Artificial Intelligence and Computer Science']
+const texts = ['Hello, I\'m Robel Gebrehiwot ',  'Master\'s Student in Artificial Intelligence and Computer Science',
+                    'Fullstack Developer | Vue.js | Node.js | MongoDB | MySQL | Firebase | Docker | Git | Linux | REST APIs | TypeScript | AWS'
+]
 let textIndex = 0
 let charIndex = 0
 let isDeleting = false
