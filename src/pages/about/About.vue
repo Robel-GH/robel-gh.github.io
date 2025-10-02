@@ -218,12 +218,14 @@ const currentTimeGreeting = computed(() => {
 })
 
 const bioParagraphs = 
-  `I’m a Master’s student in Artificial Intelligence and Computer Science with a strong foundation in deep learning, intelligent systems, and software engineering. I build end-to-end AI products and scalable web applications.
-   Skilled at architecting role-based dashboards, dynamic reporting systems,
-  and high-conversion landing pages, as well as developing multi-agent AI workflows with CrewAI and 
-  implementing deep-learning models using TensorFlow, PyTorch, and scikit-learn.
-   Passionate about collaborating on open-source projects, optimizing cross-platform performance, and 
-   driving innovation at the intersection of web development and artificial intelligence.`
+  `I’m a Master’s student in Artificial Intelligence and Computer Science with
+   a strong foundation in deep learning, intelligent systems, and software engineering.
+   I build end-to-end AI products and scale web applications.
+   I develop multi-agent AI workflows and fine-tune deep-learning models with 
+   TensorFlow, PyTorch, and scikit-learn.  I architect role-based dashboards,
+    design dynamic reporting systems, and create high-conversion landing pages.  
+    I collaborate on open-source projects, optimize cross-platform performance, and
+    drive innovation at the intersection of software development and artificial intelligence.`
 
 
 
@@ -278,7 +280,7 @@ const awards = [
 
 const typingText = ref('')
 const texts = ['Hello, I\'m Robel Gebrehiwot ',  'Master\'s Student in Artificial Intelligence and Computer Science',
-                    'Fullstack Developer | Vue.js | Node.js | MongoDB | MySQL | Firebase | Docker | Git | Linux | REST APIs | TypeScript | AWS'
+                    'Software Engineer (Full-Stack)'
 ]
 let textIndex = 0
 let charIndex = 0

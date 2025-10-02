@@ -69,7 +69,7 @@
       <div class="d-none d-md-flex">
         <v-btn-toggle
           rounded="xl"
-          size="large"
+          size="x-large"
           color="primary"
           variant="outlined"
         >
