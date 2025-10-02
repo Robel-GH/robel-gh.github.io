@@ -60,14 +60,14 @@
 
                 <!-- Card Content -->
                 <v-card-text class="card-content">
-                  <p class="job-description text-body-2">{{ job.description }}</p>
+                  <!-- <p class="job-description text-body-2">{{ job.description }}</p> -->
                   
                   <!-- Key Highlights -->
                   <div v-if="expandedId !== job.id" class="highlights-section">
-                    <h4 class="section-title text-subtitle-2">
+                    <!-- <h4 class="section-title text-subtitle-2">
                       <v-icon icon="mdi-star" size="small" class="me-2"></v-icon>
                       Key Highlights
-                    </h4>
+                    </h4> -->
                     <ul class="highlights-list">
                       <li
                         v-for="(highlight, hIndex) in getResponsibilityPreview(job)"
@@ -83,30 +83,33 @@
                   <div v-if="expandedId !== job.id" class="skills-preview">
                     <h4 class="section-title text-subtitle-2">
                       <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
-                      Technologies
+                      Skills
                     </h4>
                     <div class="skills-container">
                       <v-chip
                         v-for="skill in getSkillPreview(job)"
                         :key="`skill-${job.id}-${skill}`"
                         color="primary"
-                        variant="tonal"
+                        variant="outlined"
                         size="small"
-                        class="skill-chip"
+                        class="more-chip"
                       >
                         {{ skill }}
                       </v-chip>
                       <v-chip
                         v-if="job.skills && job.skills.length > 3"
                         size="small"
-                        variant="text"
+                        variant="outlined"
+                        color="primary"
                         class="more-chip"
                       >
                         +{{ job.skills.length - 3 }} more
                       </v-chip>
                     </div>
                   </div>
+                  
                 </v-card-text>
+                
 
                 <!-- Expandable Content -->
                 <v-expand-transition>
@@ -116,10 +119,10 @@
                     <v-card-text class="expanded-text">
                       <!-- Full Responsibilities -->
                       <div class="full-responsibilities">
-                        <h4 class="section-title text-subtitle-2">
+                        <!-- <h4 class="section-title text-subtitle-2">
                           <v-icon icon="mdi-clipboard-list" size="small" class="me-2"></v-icon>
                           Key Responsibilities
-                        </h4>
+                        </h4> -->
                         <ul class="responsibilities-list">
                           <li
                             v-for="(resp, rIndex) in job.responsibilities"
@@ -135,16 +138,16 @@
                       <div class="all-skills">
                         <h4 class="section-title text-subtitle-2">
                           <v-icon icon="mdi-code-tags" size="small" class="me-2"></v-icon>
-                          All Skills & Technologies
+                          All Skills
                         </h4>
                         <div class="skills-grid">
                           <v-chip
                             v-for="skill in job.skills"
                             :key="`all-skill-${job.id}-${skill}`"
                             color="primary"
-                            variant="tonal"
+                            variant="outlined"
                             size="small"
-                            class="skill-chip"
+                            class="more-chip"
                           >
                             {{ skill }}
                           </v-chip>
@@ -194,25 +197,8 @@ export default {
   setup() {
     const expandedId = ref(null)
     const workExperience = ref([
-      {
+    {
         id: 1,
-        title: 'Fullstack Developer',
-        company: 'Tekeze Technologies PLC',
-        period: 'July, 2020 - September, 2024',
-        logo: '/images/guna.png',
-        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png',
-        description: 'Working as a full-stack developer focusing on web applications and enterprise solutions.',
-        responsibilities: [
-          'Developing and maintaining web applications using Vue.js and Node.js',
-          'Collaborating with cross-functional teams to define and implement new features',
-          'Optimizing application performance and scalability',
-          'Writing clean, maintainable, and efficient code'
-        ],
-        skills: ['Vue.js', 'Node.js', 'JavaScript', 'SQL', 'Git', 'REST APIs', 'Agile'],
-        isHovering: false
-      },
-      {
-        id: 2,
         title: 'Assistant Lecturer',
         company: 'Mekelle Institute of Technology - Mekelle University',
         period: 'June, 2021 - Present',
@@ -220,14 +206,32 @@ export default {
         image: '/images/mit.jpg',
         description: 'Taught computer science courses and supervised student projects.',
         responsibilities: [
-          'Teaching programming fundamentals to undergraduate students',
-          'Developing course materials and assignments',
-          'Conducting laboratory sessions',
-          'Mentoring student projects'
+          'Delivered lectures and tutorials in Computer Science and Engineering courses, communicating complex concepts clearly to undergraduate students.',
+          'Developed and implemented hands-on laboratory exercises and programming assignments',
+          ' Advised students on internship projects and capstones, guiding project scope, technical design, implementation strategies, and professional deliverables.',
+          'Coordinated student project teams and oversaw code repositories, version control workflows, and integration/testing practices.'
         ],
-        skills: ['Teaching', 'Python', 'Java', 'Data Structures', 'Algorithms', 'Project Management'],
+        skills: [ 'Python','PyTorch','Tensorflow', 'Pandas','Numpy','Scipy', 'Java', 'Data Structures', 'Algorithms', 'Computer Graphics','Distributed Systems'],
         isHovering: false
       },
+      {
+        id: 2,
+        title: 'Fullstack Developer',
+        company: 'Tekeze Technologies PLC',
+        period: 'July, 2020 - September, 2024',
+        logo: '/images/guna.jpg',
+        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png',
+        description: 'Working as a full-stack developer focusing on web applications and enterprise solutions.',
+        responsibilities: [
+        'Led end-to-end development of 2 enterprise web apps (Sales Management, Indigent Management), reducing manual workflows by 80% and boosting client revenue.',
+          'Designed and implemented real-time analytics dashboards with dynamic reporting features, enabling stakeholders to make data-driven decisions and respond to market trends 70% faster.',
+          'Drove a 40% improvement in operational efficiency through process automation, workflow optimization, and adoption of agile methodologies, reducing redundancies and accelerating project delivery.',
+          'Improved team code quality by 45% via PR reviews and CI/CD pipeline optimization.'
+        ],
+        skills: ['Vue.js','React', 'Node.js','TypeScript', 'JavaScript', 'MangoDB','MySQL', 'PostgreSQL', 'Firebase', 'Docker', 'AWS', 'Jira', 'CI/CD' ,'Git', 'REST APIs', 'Agile'],
+        isHovering: false
+      },
+     
       {
         id: 3,
         title: 'Junior ICT Officer',
@@ -237,12 +241,12 @@ export default {
         image: '/images/guna-logo.png',
         description: 'Provided technical support and maintained IT infrastructure.',
         responsibilities: [
-          'Managing network infrastructure and security',
-          'Providing technical support to staff',
-          'Maintaining hardware and software systems',
-          'Implementing IT policies and procedures'
+          'Scheduled preventive maintenance of ICT devices in Shire and Humera branches.',
+          'Installed and configured LANs of Shire and Humera branches.',
+          'Undertaken hardware and software maintenance of computers, printers, and etworking devices on a daily and weekly schedule.',
+          'Delivered successful training sessions on the ERP system  to the employees  in Shire and Humera branches.'
         ],
-        skills: ['Network Administration', 'System Maintenance', 'IT Support', 'Troubleshooting'],
+        skills: ['Networking','ERP', 'System Maintenance', 'IT Support', 'Troubleshooting'],
         isHovering: false
       },
       {
@@ -254,12 +258,11 @@ export default {
         image: '/images/oxfo.jpg',
         description: 'Taught computer science and programming courses at college level.',
         responsibilities: [
-          'Developing and delivering lectures on programming and IT subjects',
-          'Creating assessment materials and grading student work',
-          'Providing academic advice to students',
-          'Participating in curriculum development'
+          'Developed and delivered lectures on programming and IT subjects',
+          'Created assessment materials and graded student work',
+          'Provided academic advice to students',
         ],
-        skills: ['Teaching', 'Curriculum Development', 'Assessment', 'Mentoring', 'Technical Writing'],
+        skills: ['Java', 'Data Structure', 'Python', 'C++', 'C', 'HTML', 'CSS', 'JavaScript'],
         isHovering: false
       }
     ])
@@ -335,7 +338,7 @@ export default {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 250px;
   margin-bottom: 1rem;
   align-self: flex-start;
   width: 100%;
