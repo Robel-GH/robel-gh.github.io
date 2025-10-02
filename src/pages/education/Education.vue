@@ -47,7 +47,7 @@
                 </v-card-subtitle>
 
                 <v-card-text class="pt-3">
-                  <p class="mb-4 text-body-1">{{ education.description }}</p>
+                  <!-- <p class="mb-4 text-body-1">{{ education.description }}</p> -->
                   
                   <!-- Skills Section -->
                   <div v-if="education.skills && education.skills.length" class="mb-4">
@@ -62,7 +62,7 @@
                         color="primary"
                         variant="outlined"
                         size="small"
-                        class="ma-1"
+                        
                       >
                         {{ skill }}
                       </v-chip>
@@ -121,8 +121,11 @@ export default {
         description: 'Focusing on advanced software engineering principles and modern web technologies.',
         color: 'primary',
         icon: 'mdi-school',
-        skills: ['Vue.js', 'Node.js', 'Scrum','Agile','Jira','CI/CD','Deep Learning','Cuda','Tensorflow','Data Visualization','Docker','AWS','CI/CD','Docker','Git','Linux','REST APIs','TypeScript','AWS'],
+        skills: [' PyTorch', 'Keras', 'Transformers','Pandas','Numpy','Scikit-learn','Crew AI','Python','TypeScript','R','Vue.js', 'Node.js', 'Scrum','Agile','Jira','CI/CD','Cuda','Tableau','Docker','AWS','Git','REST APIs'],
         achievements: [
+          'Runner up in Keke AI Student Competition(Built an agent using A* & IDA search algorithm)',
+          'Implemented Dyanmic PDDL visualizer',
+          'Developed a multimodal medical-report generator (Fine-tuned ResNet-50 encoder + GPT-2 decoder) for Indiana chest X-rays',
           'Developed for University Project Phonebook and Messaging App',
           
         ]
@@ -135,7 +138,7 @@ export default {
         description: 'Comprehensive study of software development fundamentals and practical applications.',
         color: 'secondary',
         icon: 'mdi-laptop',
-        skills: ['JavaScript', 'Python', 'Database Design', 'API Development'],
+        skills: [ 'Python','JavaScript','Java','C','C++','React','Django','Kotlin', 'Database Design', 'API Development'],
         achievements: [
           'Graduated with Honors (3.93 CGPA)',
           'Developed e-equb web application for final year project',
@@ -146,11 +149,11 @@ export default {
         id: 3,
         period: '2012 - 2014',
         degree: 'Diploma in Natural Sciences',
-        institution: 'Shire Priparatory School',
+        institution: 'Shire Preparatory School',
         description: 'Foundation studies in natural science and computer basics.',
         color: 'info',
         icon: 'mdi-code-tags',
-        skills: ['MS-Excel', 'MS-Powerpoint', 'MS-Word'],
+        skills: ['HTML','Windows','MS-Excel', 'MS-Powerpoint', 'MS-Word','File Management','Typing','Computer Literacy'],
         achievements: [
           "Graduated with Distinction "
         ]
