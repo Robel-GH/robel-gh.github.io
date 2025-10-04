@@ -13,7 +13,8 @@
     
     <!-- Marquee Container -->
     <div class="marquee-container" @mouseenter="pauseMarquee" @mouseleave="resumeMarquee">
-      <div class="marquee-track" :class="{ 'paused': isPaused }">
+      <!-- marquee-track now has a ref so we can measure it -->
+      <div class="marquee-track" :class="{ 'paused': isPaused }" ref="marqueeTrack">
         <!-- First set of projects -->
         <div 
           v-for="(project, index) in Projects" 
@@ -116,7 +117,7 @@
                         >
                           <v-icon size="32">mdi-github</v-icon>
                         </v-btn>
-                        <v-btn
+                        <!-- <v-btn
                           v-if="project.liveDemo"
                           :href="project.liveDemo"
                           target="_blank"
@@ -126,7 +127,7 @@
                           class="demo-btn"
                         >
                           <v-icon size="32">mdi-web</v-icon>
-                        </v-btn>
+                        </v-btn> -->
                       </v-card-actions>
                     </v-card>
                   </v-col>
@@ -263,20 +264,123 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, nextTick, onBeforeUnmount } from "vue";
 import 'animate.css';
 
 const isPaused = ref(false);
+const marqueeTrack = ref(null);
 
+// pause/resume handlers (use container mouseenter/leave)
 const pauseMarquee = () => {
   isPaused.value = true;
 };
-
 const resumeMarquee = () => {
   isPaused.value = false;
 };
 
+// update CSS vars with measured distance and duration
+let rafId = null;
+const updateMarqueeVars = () => {
+  // debounce using rAF
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(() => {
+    rafId = null;
+    const el = marqueeTrack.value;
+    if (!el) return;
+
+    // full width includes both duplicated sets; half = one set width
+    const fullWidth = el.scrollWidth || 0;
+    const half = Math.round(fullWidth / 2) || 0;
+    // set negative pixel distance for transform
+    el.style.setProperty('--marquee-distance', `-${half}px`);
+
+    // compute duration based on pixels; keep minimum seconds
+    const speedPxPerSec = 120; // tweak this to adjust scroll speed
+    const secs = Math.max(8, Math.round(half / speedPxPerSec));
+    el.style.setProperty('--marquee-duration', `${secs}s`);
+  });
+};
+
+let resizeObserver = null;
+
+onMounted(async () => {
+  await nextTick();
+
+  // measure after a small delay too (account for embedded iframes loading)
+  updateMarqueeVars();
+  const afterLoadTimeout = setTimeout(updateMarqueeVars, 600);
+
+  // window resize
+  window.addEventListener('resize', updateMarqueeVars);
+
+  // use ResizeObserver if available
+  if (window.ResizeObserver && marqueeTrack.value) {
+    resizeObserver = new ResizeObserver(() => updateMarqueeVars());
+    // observe the track itself; this will catch children/layout changes
+    resizeObserver.observe(marqueeTrack.value);
+  }
+
+  // cleanup timer on unmount safety
+  onBeforeUnmount(() => {
+    clearTimeout(afterLoadTimeout);
+  });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateMarqueeVars);
+  if (resizeObserver) {
+    resizeObserver.disconnect();
+    resizeObserver = null;
+  }
+  if (rafId) cancelAnimationFrame(rafId);
+});
+
+// Projects array (unchanged, pasted from your original)
 const Projects = ref([
+  {
+    title: "Dynamic PDDL Visualizer",
+    description: "Dynamic PDDL Visualizer is an interactive web-based tool that brings AI planning to life through real-time visualization of Planning Domain Definition Language (PDDL) domains and problems. This powerful application transforms abstract AI planning concepts into intuitive, dynamic visual representations, making it easier to understand, debug, and demonstrate automated planning systems.",
+    videoUrl: "https://youtube.com/embed/liRcm6X0jfA",
+    githubLink: "https://github.com/Robel-GH/Dynamic-PDDL-Visualizer",
+    role: "Vibe Coder",
+    icon: "mdi-rotate-3d",
+    iconColor: "indigo",
+    technologies: ["Vue.js", "Three.js", "TypeScript","Replit"],
+    liveDemo: "https://demo-link.com"
+  },
+  {
+    title: "Keke AI Competition- Baba Is You Puzzle",
+    description: " A lightweight framework for developing and testing AI agents on rule-based puzzle games. Inspired by Baba Is You, it provides Dynamic rule mechanics and level parsing (ASCII/JSON),  Pluggable agents (BFS, DFS, A* with IDA*) with evaluation system, Flask-based visualization for live execution and solution replay. Ideal for prototyping search algorithms, comparing heuristics, and demonstrating real-time symbolic rule changes in gameplay.",
+    videoUrl: "https://youtube.com/embed/ZgNq7sK0s1o",
+    githubLink: "https://github.com/Robel-GH/Keke",
+    role: "Agent Developer",
+    icon: "mdi-robot",
+    iconColor: "indigo",
+    technologies: ["Python","Flask"],
+    liveDemo: "https://demo-link.com"
+  },
+  {
+    title: "Eartquake Data warehousing & Visualization",
+    description: "This comprehensive data warehousing project processes earthquake data from the USGS (United States Geological Survey) API, transforming raw seismic data into a structured data warehouse optimized for analysis and visualization. The pipeline covers the complete ETL (Extract, Transform, Load) process with additional AI-powered analysis capabilities.",
+    videoUrl: "https://youtube.com/embed/0jHXsxmyLCg",
+    githubLink: "https://github.com/Robel-GH/Earthquake-Data-Warehouse-Project",
+    role: "Data Engineer",
+    icon: "mdi-earth",
+    iconColor: "indigo",
+    technologies: ["Python", "Pandas", "PostgreSQL","Tableau"],
+    liveDemo: "https://demo-link.com"
+  },
+  {
+    title: "Automatic Medical Report Generator",
+    description: "A multi-modal approach combining computer vision for image analysis and natural language processing for report generation,which could significantly assist radiologists in clinical workflows by reducing manual reporting time and improving efficiency.",
+    videoUrl: "https://youtube.com/embed/xAKx-E_sgjw",
+    githubLink: "https://github.com/Robel-GH/",
+    role: "Deep Learning Engineer",
+    icon: "mdi-medical-bag",
+    iconColor: "indigo",
+    technologies: ["PyTorch", "Pandas","Scikit-learn","Transformers","TorchVision","Python"],
+    liveDemo: "https://demo-link.com"
+  },
   {
     title: "Unical Phonebook and Messaging App",
     description: "A centralized platform for managing university contacts, featuring real-time messaging to enhance communication among faculty, staff, and students. It includes role-based access, searchable profiles, and privacy controls within a user-friendly, mobile-responsive interface.",
@@ -303,8 +407,6 @@ const Projects = ref([
 </script>
 
 <style scoped>
-
-
 /* Marquee Container */
 .marquee-container {
   overflow: hidden;
@@ -313,10 +415,15 @@ const Projects = ref([
   padding: 1rem 0;
 }
 
+/* marquee-track uses CSS vars populated by JS:
+   --marquee-distance: negative pixel distance to scroll one set
+   --marquee-duration: animation duration (s)
+*/
 .marquee-track {
   display: flex;
-  animation: scroll 30s linear infinite;
-  width: calc(200% + 2rem);
+  animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+  width: auto;
+  will-change: transform;
 }
 
 .marquee-track.paused {
@@ -329,13 +436,13 @@ const Projects = ref([
   margin-right: 2rem;
 }
 
-/* Marquee Animation */
-@keyframes scroll {
-  0% {
+/* Marquee Animation (uses CSS var for distance) */
+@keyframes marquee-scroll {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(var(--marquee-distance, -50%));
   }
 }
 
@@ -376,8 +483,6 @@ const Projects = ref([
   /* background: rgba(255, 255, 255, 0.5); */
 }
 
-
-
 /* Tech chips styling handled by v-chip-group */
 
 .github-btn, .demo-btn {
@@ -406,7 +511,8 @@ const Projects = ref([
   }
   
   .marquee-track {
-    animation-duration: 25s;
+    /* when item widths change, JS recalculates distance/duration */
+    animation-duration: var(--marquee-duration, 25s);
   }
 }
 
@@ -416,7 +522,7 @@ const Projects = ref([
   }
   
   .marquee-track {
-    animation-duration: 20s;
+    animation-duration: var(--marquee-duration, 20s);
   }
   
   .video-frame {
@@ -546,11 +652,6 @@ const Projects = ref([
 .v-chip:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(var(--v-theme-primary), 0.2);
-}
-
-/* Smooth scrolling for better performance */
-.marquee-track {
-  will-change: transform;
 }
 
 /* Accessibility - Respect user's motion preferences */
