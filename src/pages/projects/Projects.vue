@@ -345,7 +345,7 @@ const Projects = ref([
     role: "Vibe Coder",
     icon: "mdi-rotate-3d",
     iconColor: "indigo",
-    technologies: ["Vue.js", "Three.js", "TypeScript","Replit"],
+    technologies: ["React", "Three.js", "TypeScript","Tailwind CSS","Zustand","Replit"],
     liveDemo: "https://demo-link.com"
   },
   {
