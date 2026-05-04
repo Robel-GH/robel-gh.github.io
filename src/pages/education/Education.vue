@@ -1,8 +1,8 @@
 <template>
-  <v-container class="education-timeline" >
+  <v-container class="education-timeline">
     <v-row justify="center" class="ma-4">
       <v-col cols="12" md="11">
-        <!-- Header -->
+        <!-- Section Header -->
         <div class="section-header text-center mb-8">
           <div class="header-decoration">
             <v-icon icon="mdi-school" size="x-large" class="header-icon"></v-icon>
@@ -10,7 +10,6 @@
           <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
             Educational Background
           </h2>
-        
           <div class="title-underline"></div>
         </div>
 
@@ -25,33 +24,31 @@
           >
             <!-- Timeline Date -->
             <template v-slot:opposite>
-              <div class="text-h6 font-weight-bold">{{ education.period }}</div>
+              <div class="timeline-date text-h6 font-weight-bold">{{ education.period }}</div>
             </template>
 
             <!-- Education Card -->
             <v-card class="elevation-16 timeline-card" variant="text" rounded="lg">
               <v-card-item class="pa-4">
-                <v-card-title class="text-h6 font-weight-bold d-flex align-center">
-                  <v-icon 
-                    :icon="education.icon" 
+                <v-card-title class="text-h6 font-weight-bold d-flex align-center edu-card-title">
+                  <v-icon
+                    :icon="education.icon"
                     class="me-3"
                     :color="education.color"
                     size="24"
                   ></v-icon>
                   {{ education.degree }}
                 </v-card-title>
-                
+
                 <v-card-subtitle class="pt-2 text-subtitle-1 d-flex align-center">
                   <v-icon icon="mdi-school" class="me-2" size="small"></v-icon>
                   {{ education.institution }}
                 </v-card-subtitle>
 
                 <v-card-text class="pt-3">
-                  <!-- <p class="mb-4 text-body-1">{{ education.description }}</p> -->
-                  
                   <!-- Skills Section -->
                   <div v-if="education.skills && education.skills.length" class="mb-4">
-                    <div class="font-weight-medium mb-3 text-subtitle-2">
+                    <div class="font-weight-medium mb-3 text-subtitle-2 edu-sub-label">
                       <v-icon icon="mdi-tools" class="me-2" size="small"></v-icon>
                       Key Skills & Technologies
                     </div>
@@ -62,10 +59,7 @@
                         color="primary"
                         variant="outlined"
                         size="small"
-                        
-                      >
-                        {{ skill }}
-                      </v-chip>
+                      >{{ skill }}</v-chip>
                     </div>
                   </div>
 
@@ -73,7 +67,7 @@
                   <div v-if="education.achievements && education.achievements.length">
                     <v-expansion-panels variant="accordion" class="achievement-panel">
                       <v-expansion-panel>
-                        <v-expansion-panel-title class="text-subtitle-2">
+                        <v-expansion-panel-title class="text-subtitle-2 edu-sub-label">
                           <v-icon icon="mdi-trophy" class="me-2" size="small"></v-icon>
                           View Achievements & Accomplishments
                         </v-expansion-panel-title>
@@ -82,9 +76,7 @@
                             <li
                               v-for="(achievement, index) in education.achievements"
                               :key="index"
-                            >
-                              {{ achievement }}
-                            </li>
+                            >{{ achievement }}</li>
                           </ul>
                         </v-expansion-panel-text>
                       </v-expansion-panel>
@@ -106,10 +98,9 @@ import { useDisplay } from 'vuetify'
 
 export default {
   name: 'EducationTimeline',
-  
+
   setup() {
     const { mobile } = useDisplay()
-
     const timelineDensity = computed(() => mobile.value ? 'compact' : 'default')
 
     const educationList = ref([
@@ -127,7 +118,6 @@ export default {
           'Implemented Dyanmic PDDL visualizer',
           'Developed a multimodal medical-report generator (Fine-tuned ResNet-50 encoder + GPT-2 decoder) for Indiana chest X-rays',
           'Developed for University Project Phonebook and Messaging App',
-          
         ]
       },
       {
@@ -160,87 +150,13 @@ export default {
       }
     ])
 
-    return {
-      timelineDensity,
-      educationList
-    }
+    return { timelineDensity, educationList }
   }
 }
 </script>
 
 <style scoped>
-.education-timeline {
-  padding: 4rem 0;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.timeline-card {
-  border-left: 4px solid rgb(var(--v-theme-primary));
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 100%;
-  margin: 0.5rem 0;
-  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.15);
-}
-
-.timeline-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(var(--v-theme-primary), 0.25);
-}
-
-/* Skills container styling */
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* Achievement panel styling */
-.achievement-panel {
-  margin-top: 1rem;
-}
-
-.achievement-list {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.achievement-list li {
-  position: relative;
-  padding-left: 1.5em;
-  margin-bottom: 0.75em;
-  line-height: 1.5;
-  color: rgb(var(--v-theme-on-surface));
-}
-
-.achievement-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: rgb(var(--v-theme-primary));
-  font-weight: bold;
-}
-
-/* Section Header Styles - Consistent with Awards */
-.section-header {
-  position: relative;
-  margin-bottom: 4rem;
-}
-
-.header-decoration {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.header-icon {
-  color: rgb(var(--v-theme-primary));
-  filter: drop-shadow(0 0 20px rgba(var(--v-theme-primary), 0.5));
-  animation: float 3s ease-in-out infinite;
-}
-
+/* ─── Section Header — gradient here, font/size from global ────────────────── */
 .section-title {
   background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
   -webkit-background-clip: text;
@@ -250,132 +166,120 @@ export default {
   display: inline-block;
 }
 
-.section-subtitle {
-  color: rgba(var(--v-theme-on-surface), 0.7);
-  font-style: italic;
+/* ─── Layout ─────────────────────────────────────────────────────────────────── */
+.education-timeline {
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.title-underline {
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));
-  margin: 1rem auto;
-  border-radius: 2px;
-  animation: expandWidth 1s ease-out 0.5s both;
+/* ─── Timeline Date ──────────────────────────────────────────────────────────── */
+.timeline-date {
+  font-family: 'Cormorant Garant', Georgia, serif !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.02em;
+  color: rgb(var(--v-theme-primary));
+  opacity: 0.9;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+/* ─── Education Card ─────────────────────────────────────────────────────────── */
+.timeline-card {
+  border-left: 4px solid rgb(var(--v-theme-primary));
+  transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1),
+              box-shadow 0.35s ease;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.5rem 0;
+  box-shadow: 0 4px 16px rgba(var(--v-theme-primary), 0.12);
+}
+.timeline-card:hover {
+  transform: translateY(-5px) translateX(3px);
+  box-shadow: 0 12px 32px rgba(var(--v-theme-primary), 0.22);
 }
 
-@keyframes expandWidth {
-  from { width: 0; }
-  to { width: 80px; }
+/* Degree title — cinematic serif */
+.edu-card-title {
+  font-family: 'Cormorant Garant', Georgia, serif !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
 }
 
-/* Animation classes */
+/* Sub-labels inside card — body font */
+.edu-sub-label {
+  font-family: 'Jost', sans-serif !important;
+}
+
+/* ─── Skills ─────────────────────────────────────────────────────────────────── */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ─── Achievements ───────────────────────────────────────────────────────────── */
+.achievement-panel { margin-top: 1rem; }
+
+.achievement-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+.achievement-list li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.75em;
+  line-height: 1.55;
+  color: rgb(var(--v-theme-on-surface));
+  font-family: 'Jost', sans-serif;
+}
+.achievement-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: rgb(var(--v-theme-primary));
+  font-weight: bold;
+}
+
+/* ─── Timeline Item Animations ───────────────────────────────────────────────── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
-
 .v-timeline-item {
   opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.65s ease forwards;
 }
+.v-timeline-item:nth-child(1) { animation-delay: 0.15s; }
+.v-timeline-item:nth-child(2) { animation-delay: 0.35s; }
+.v-timeline-item:nth-child(3) { animation-delay: 0.55s; }
 
-.v-timeline-item:nth-child(1) { animation-delay: 0.2s; }
-.v-timeline-item:nth-child(2) { animation-delay: 0.4s; }
-.v-timeline-item:nth-child(3) { animation-delay: 0.6s; }
+:deep(.v-timeline) { padding: 0 1rem; }
+:deep(.v-timeline-item__opposite) { flex: 0 0 auto; min-width: 120px; }
 
-/* Timeline responsive adjustments */
-:deep(.v-timeline) {
-  padding: 0 1rem;
-}
-
-:deep(.v-timeline-item__opposite) {
-  flex: 0 0 auto;
-  min-width: 120px;
-}
-
-/* Responsive Styles */
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .education-timeline {
-    padding: 2rem 0;
-  }
-  
-  :deep(.v-timeline) {
-    padding: 0 0.5rem;
-  }
-  
-  :deep(.v-timeline-item__opposite) {
-    min-width: 100px;
-  }
-  
-  .timeline-card {
-    margin: 0.25rem 0;
-  }
+  .education-timeline                        { padding: 2rem 0; }
+  :deep(.v-timeline)                         { padding: 0 0.5rem; }
+  :deep(.v-timeline-item__opposite)          { min-width: 100px; }
+  .timeline-card                             { margin: 0.25rem 0; }
 }
-
 @media (max-width: 600px) {
-  .education-timeline {
-    padding: 1.5rem 0;
-  }
-  
-  :deep(.v-timeline) {
-    padding: 0;
-  }
-  
-  :deep(.v-timeline-item__opposite) {
-    min-width: 80px;
-    font-size: 0.875rem;
-  }
-  
-  .timeline-card {
-    margin: 0.25rem 0;
-    border-left-width: 3px;
-  }
-  
-  .skills-container {
-    gap: 0.25rem;
-  }
-  
-  .skills-container .v-chip {
-    font-size: 0.75rem;
-    height: 24px;
-  }
+  .education-timeline                        { padding: 1.5rem 0; }
+  :deep(.v-timeline)                         { padding: 0; }
+  :deep(.v-timeline-item__opposite)          { min-width: 80px; font-size: 0.875rem; }
+  .timeline-card                             { margin: 0.25rem 0; border-left-width: 3px; }
+  .skills-container                          { gap: 0.25rem; }
+  .skills-container .v-chip                  { font-size: 0.75rem; height: 24px; }
 }
-
 @media (max-width: 400px) {
-  :deep(.v-timeline-item__opposite) {
-    min-width: 70px;
-    font-size: 0.75rem;
-  }
-  
-  .timeline-card {
-    border-left-width: 2px;
-  }
-  
-  .skills-container .v-chip {
-    font-size: 0.7rem;
-    height: 22px;
-  }
+  :deep(.v-timeline-item__opposite)          { min-width: 70px; font-size: 0.75rem; }
+  .timeline-card                             { border-left-width: 2px; }
+  .skills-container .v-chip                  { font-size: 0.7rem; height: 22px; }
 }
 
-/* Dark mode adjustments */
-/* Dark mode adjustments */
-:deep(.v-theme--dark) .timeline-card {
-  box-shadow: 0 4px 12px rgba(var(--v-theme-primary), 0.2);
-}
-
-:deep(.v-theme--dark) .timeline-card:hover {
-  box-shadow: 0 8px 25px rgba(var(--v-theme-primary), 0.3);
-}
+/* Dark mode */
+:deep(.v-theme--dark) .timeline-card        { box-shadow: 0 4px 16px rgba(var(--v-theme-primary), 0.2); }
+:deep(.v-theme--dark) .timeline-card:hover  { box-shadow: 0 12px 32px rgba(var(--v-theme-primary), 0.3); }
 </style>
