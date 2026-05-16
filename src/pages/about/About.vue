@@ -13,29 +13,37 @@
                     <div class="text-center w-100">
                         <div class="hero-content">
                             <div class="typing-container">
-                                <span class="typing"><h1 class="hero-heading font-weight-bold mb-4">{{ typingText }}</h1></span>
+                                <span class="typing">
+                                    <h1 class="hero-heading font-weight-bold mb-4">{{ typingText }}</h1>
+                                </span>
                                 <span class="cursor">|</span>
                             </div>
 
-                           <v-btn
+                            <v-btn
                                 class="mt-6"
-                                color="info"
+                                color="secondary"
                                 elevation="10"
                                 rounded
                                 size="x-large"
                                 variant="outlined"
                                 href="https://www.upwork.com/freelancers/~013621e670994629ad"
-                                target="_blank">Hire Me</v-btn>
-                             <v-btn
+                                target="_blank"
+                            >
+                                Hire Me
+                            </v-btn>
+
+                            <v-btn
                                 class="mt-6 ml-2"
-                                color="info"
+                                color="secondary"
                                 elevation="10"
                                 rounded
                                 prepend-icon="mdi-download"
                                 size="x-large"
                                 variant="outlined"
-                               @click="downloadCV"
-                                target="_blank">Resume</v-btn>
+                                @click="downloadCV"
+                            >
+                                Resume
+                            </v-btn>
                         </div>
                     </div>
                 </v-card>
@@ -76,6 +84,7 @@
                                         </template>
                                     </v-img>
                                 </v-avatar>
+
                                 <div class="social-links">
                                     <v-btn
                                         v-for="(social, index) in socialLinks"
@@ -103,8 +112,13 @@
                         <div class="bio-text text-body-1">
                             <v-expand-transition>
                                 <div>
-                                    <p class="bio-description" :style="{ textAlign: 'justify', textJustify: 'inter-word' }">
-                                        {{ bioParagraphs }}
+                                    <p
+                                        v-for="(paragraph, index) in bioParagraphs"
+                                        :key="index"
+                                        class="bio-description mb-4"
+                                        :style="{ textAlign: 'justify', textJustify: 'inter-word' }"
+                                    >
+                                        {{ paragraph }}
                                     </p>
                                 </div>
                             </v-expand-transition>
@@ -124,7 +138,7 @@
                             <div class="header-decoration">
                                 <v-icon icon="mdi-trophy-award" size="x-large" class="header-icon"></v-icon>
                             </div>
-                            <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2">
+                            <h2 class="section-award-title mb-2">
                                 Awards & Scholarships
                             </h2>
                             <div class="title-underline"></div>
@@ -134,21 +148,23 @@
                         <div class="awards-grid">
                             <div 
                                 v-for="(award, index) in awards" 
-                                :key="index"
+                                :key="award.title"
                                 class="award-item"
                                 :style="{ animationDelay: `${index * 0.2}s` }"
                             >
                                 <div class="award-card-wrapper">
                                     <div 
                                         class="award-card"
-                                        :class="`award-card-${index + 1}`"
+                                        :class="`award-card-${(index % 4) + 1}`"
                                     >
                                         <div class="card-pattern"></div>
+
                                         <div class="floating-elements">
                                             <div class="float-circle circle-1"></div>
                                             <div class="float-circle circle-2"></div>
                                             <div class="float-circle circle-3"></div>
                                         </div>
+
                                         <div class="card-content">
                                             <div class="card-header">
                                                 <div class="icon-wrapper">
@@ -159,18 +175,39 @@
                                                     ></v-icon>
                                                     <div class="icon-glow"></div>
                                                 </div>
+
                                                 <div class="year-badge">
                                                     <span class="year-text">{{ award.year }}</span>
                                                 </div>
                                             </div>
-                                            <h3 class="award-title font-weight-bold mb-3">
+
+                                            <h3 class="award-title font-weight-bold mb-2">
                                                 {{ award.title }}
                                             </h3>
-                                            <p class="award-description text-body-2 mb-4">
+
+                                            <div
+                                                v-if="award.badges?.length"
+                                                class="winner-chip-list mb-3"
+                                            >
+                                                <v-chip
+                                                    v-for="badge in award.badges"
+                                                    :key="badge"
+                                                    class="winner-chip"
+                                                    size="small"
+                                                    variant="flat"
+                                                    prepend-icon="mdi-check-decagram"
+                                                >
+                                                    {{ badge }}
+                                                </v-chip>
+                                            </div>
+
+                                            <p class="award-description text-body-2 mb-3">
                                                 {{ award.description }}
                                             </p>
+
                                             <div class="card-accent"></div>
                                         </div>
+
                                         <div class="card-overlay"></div>
                                         <div class="shine-effect"></div>
                                     </div>
@@ -193,20 +230,18 @@ const userLogin = ref('Robel-GH')
 
 const currentTimeGreeting = computed(() => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Good Morning!"
-    if (hour < 18) return "Good Afternoon!"
-    return "Good Evening!"
+    if (hour < 12) return 'Good Morning!'
+    if (hour < 18) return 'Good Afternoon!'
+    return 'Good Evening!'
 })
 
-const bioParagraphs = 
-  `I'm a Master's student in Artificial Intelligence and Computer Science with
-   a strong foundation in deep learning, intelligent systems, and software engineering.
-   I build end-to-end AI products and scale web applications.
-   I develop multi-agent AI workflows and fine-tune deep-learning models with 
-   TensorFlow, PyTorch, and scikit-learn.  I architect role-based dashboards,
-    design dynamic reporting systems, and create high-conversion landing pages.  
-    I collaborate on open-source projects, optimize cross-platform performance, and
-    drive innovation at the intersection of software development and artificial intelligence.`
+const bioParagraphs = [
+    `I'm a research trainee. My work sits across generative AI, medical imaging, and trustworthy ML. Right now, I'm focused on controlled counterfactual editing of chest X-rays using diffusion models. I work with real images from MIMIC-CXR and study how thoracic findings can be added, removed, or modified without disturbing patient anatomy, the acquisition style of the image, or other structure that isn't disease-related.`,
+
+    `I'm doing this work at York University as part of my MSc in AI and Computer Science at the University of Calabria. The point isn't just to generate realistic X-rays. It's to create clinically meaningful counterfactual pairs: two images where one pathology changes and the rest stays as fixed as possible. That opens up evaluation work the field cannot currently do well: testing classifiers on specific diseases, checking robustness under perturbation, investigating shortcut learning, and building explanations that actually explain.`,
+
+    `I also build evidence-grounded LLM systems on the side. One is a fully local clinical RAG assistant that uses hybrid retrieval, an agentic critique step, and answer verification against retrieved evidence before returning responses. The other is a set of CrewAI-based multi-agent pipelines for applied decision workflows. What ties these projects together is that I care about whether the systems actually work: whether they are reliable, interpretable, and able to hold up when something is at stake.`
+]
 
 const skills = [
     'Vue.js', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'Firebase',
@@ -216,32 +251,34 @@ const skills = [
 const socialLinks = [
     { icon: 'mdi-github',   link: 'https://github.com/Robel-GH' },
     { icon: 'mdi-linkedin', link: 'https://linkedin.com/in/robel-gh' },
-    { icon: 'mdi-email',    link: 'mailto:robelgh103@gmail.com' }
+    { icon: 'mdi-email',    link: 'mailto:robelghb@gmail.com' }
 ]
 
 const awards = [
     {
         title: 'Erasmus+ International Mobility Scholarships (MOST)',
-        year: '2025/2026',
-        description: 'International mobility scholarship for academic excellence and cross-cultural exchange in higher education.',
+        year: '2× Winner',
+        badges: ['2025/2026 Winner', '2026/2027 Winner'],
+        description: 'Awarded twice for international academic mobility, academic excellence, and cross-cultural exchange in higher education.',
         icon: 'mdi-school'
     },
     {
         title: 'Erasmus+ Traineeship Scholarships (G.R.E.A.T.)',
-        year: '2024/2025',
-        description: 'Professional traineeship scholarship supporting international work experience and skill development.',
+        year: '2× Winner',
+        badges: ['2024/2025 Winner', '2025/2026 Winner'],
+        description: 'Awarded twice for international traineeship, research exposure, and professional skill development.',
         icon: 'mdi-briefcase'
     },
     {
         title: 'Unical Admission - Masters Degree Extra EU with Scholarship',
         year: '2024/2025',
-        description: 'Merit-based scholarship for international students pursuing Masters degree in Computer Science and AI.',
+        description: 'Merit-based scholarship for international students pursuing a Masters degree in Computer Science and Artificial Intelligence.',
         icon: 'mdi-trophy'
     },
     {
         title: 'Undergraduate Excellence Scholarship',
         year: '2014',
-        description: 'Academic excellence scholarship awarded by Mekelle Institute of Technology for outstanding performance.',
+        description: 'Academic excellence scholarship awarded by Mekelle Institute of Technology for outstanding undergraduate performance.',
         icon: 'mdi-medal'
     }
 ]
@@ -249,8 +286,9 @@ const awards = [
 const typingText = ref('')
 const texts = [
     'Hello, I\'m Robel Gebrehiwot ',
-    'Master\'s Student in Artificial Intelligence and Computer Science',
-    'Software Engineer (Full-Stack)'
+    'Research Trainee in Generative Models',
+    'MSc. Candidate in AI & CS',
+    'Senior Software Engineer'
 ]
 let textIndex = 0
 let charIndex = 0
@@ -264,12 +302,14 @@ const typeEffect = () => {
         typingText.value = typingText.value.slice(0, -1)
         charIndex--
     }
+
     if (!isDeleting && charIndex === texts[textIndex].length) {
         setTimeout(() => (isDeleting = true), 2000)
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false
         textIndex = (textIndex + 1) % texts.length
     }
+
     setTimeout(typeEffect, isDeleting ? 100 : 150)
 }
 
@@ -303,9 +343,8 @@ const downloadCV = () => {
     transform: translateY(-6px);
 }
 
-/* Cinematic hero heading — Cormorant Garant from global font */
 .hero-heading {
-    font-family: 'Cormorant Garant', Georgia, serif !important;
+    font-family: 'Jost', sans-serif;
     font-size: clamp(1.8rem, 4.5vw, 3.4rem) !important;
     letter-spacing: 0.02em !important;
     line-height: 1.2 !important;
@@ -359,9 +398,8 @@ const downloadCV = () => {
     animation: fadeIn 1s ease-in;
 }
 
-/* The inline "About Me" label — smaller, not a section header */
 .bio-content .section-title {
-    font-family: 'Cormorant Garant', Georgia, serif !important;
+    font-family: 'Jost', sans-serif;
     font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
@@ -386,9 +424,11 @@ const downloadCV = () => {
 }
 
 /* ─── Awards Section Header ─────────────────────────────────────────────────── */
-/* Global default.vue styles handle .section-header .section-title font/size.   */
-/* We only need the gradient + colour here (scoped to this component).           */
-.section-header .section-title {
+.section-header .section-award-title {
+    font-family: 'Jost', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
     background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -408,9 +448,9 @@ const downloadCV = () => {
 
 .awards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    max-width: 980px;
     margin: 0 auto;
 }
 
@@ -424,7 +464,7 @@ const downloadCV = () => {
 
 .award-card {
     position: relative;
-    height: 290px;
+    height: 250px;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
@@ -471,13 +511,13 @@ const downloadCV = () => {
     animation: ci-float 6s ease-in-out infinite;
 }
 .circle-1 { width: 60px; height: 60px; top: 10%;  right: 10%; animation-delay: 0s; }
-.circle-2 { width: 40px; height: 40px; bottom: 20%; left: 15%; animation-delay: 2s; }
+.circle-2 { width: 34px; height: 34px; bottom: 20%; left: 15%; animation-delay: 2s; }
 .circle-3 { width: 30px; height: 30px; top: 60%;  right: 20%; animation-delay: 4s; }
 
 .card-content {
     position: relative;
     z-index: 2;
-    padding: 1.5rem;
+    padding: 1.15rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -486,6 +526,7 @@ const downloadCV = () => {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -494,12 +535,13 @@ const downloadCV = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
+    flex: 0 0 auto;
 }
 .award-icon { color: white; z-index: 2; position: relative; }
 .icon-glow {
@@ -516,20 +558,23 @@ const downloadCV = () => {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 0.4rem 0.9rem;
+    padding: 0.3rem 0.7rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 145px;
+    text-align: center;
 }
 .year-text {
     color: white;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-family: 'Jost', sans-serif;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    line-height: 1.25;
 }
 
 .award-title {
-    font-family: 'Cormorant Garant', Georgia, serif !important;
-    font-size: 1.15rem !important;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.02rem !important;
     font-weight: 600 !important;
     color: white;
     line-height: 1.3;
@@ -538,9 +583,27 @@ const downloadCV = () => {
 }
 .award-description {
     color: rgba(255, 255, 255, 0.88);
-    line-height: 1.5;
+    line-height: 1.42;
     font-family: 'Jost', sans-serif;
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.winner-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: flex-start;
+}
+
+.winner-chip {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(10px);
+    font-family: 'Jost', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
 .card-accent {
@@ -578,8 +641,6 @@ const downloadCV = () => {
 .award-card:hover .icon-wrapper  { transform: scale(1.1); }
 
 /* ─── Animations ──────────────────────────────────────────────────────────────── */
-/* NOTE: ci-float is defined globally in default.vue; these local aliases work   */
-/* because Vue scoped @keyframes are actually global in the bundled CSS.         */
 @keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 @keyframes slideInUp { from { opacity:0; transform:translateY(50px); } to { opacity:1; transform:translateY(0); } }
@@ -596,19 +657,20 @@ const downloadCV = () => {
     .content-card       { margin: 1rem !important; }
     .about-container    { padding: 1rem !important; }
     .awards-grid        { grid-template-columns: 1fr; gap: 1.5rem; }
-    .award-card         { height: 270px; }
+    .award-card         { height: 245px; }
 }
 
 @media (max-width: 600px) {
     .about-container    { padding: 0.5rem !important; }
     .hero-heading       { font-size: 1.6rem !important; }
     .typing-container   { font-size: 1rem !important; }
-    .profile-avatar     { size: 120px !important; }
     .bio-section        { padding: 0 1rem; }
     .title-card         { padding: 1rem !important; margin-top: 0.5rem !important; }
     .awards-grid        { grid-template-columns: 1fr; gap: 1rem; }
     .award-card         { height: 230px; }
     .card-content       { padding: 1rem; }
+    .year-badge         { max-width: 130px; }
+    .year-text          { font-size: 0.74rem; }
 }
 
 @media (max-width: 400px) {
@@ -616,11 +678,12 @@ const downloadCV = () => {
     .hero-heading       { font-size: 1.35rem !important; }
     .title-card         { padding: 0.75rem !important; }
     .bio-section        { padding: 0 0.5rem; }
-    .award-card         { height: 210px; }
+    .award-card         { height: 220px; }
     .card-content       { padding: 0.75rem; }
     .icon-wrapper       { width: 44px; height: 44px; }
     .award-title        { font-size: 1rem !important; }
     .award-description  { font-size: 0.82rem !important; }
-    .year-badge         { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+    .year-badge         { max-width: 115px; padding: 0.25rem 0.5rem; }
+    .year-text          { font-size: 0.7rem; }
 }
 </style>

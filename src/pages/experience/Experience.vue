@@ -1,263 +1,211 @@
 <template>
-  <v-container class="portfolio-section py-8" fluid>
-    <v-row justify="center">
+  <v-container class="experience-timeline">
+    <v-row justify="center" class="ma-4">
       <v-col cols="12" md="11">
         <!-- Section Header -->
         <div class="section-header text-center mb-8">
           <div class="header-decoration">
-            <v-icon icon="mdi-briefcase" size="x-large" class="header-icon"></v-icon>
+            <v-icon icon="mdi-briefcase" size="x-large" class="header-icon" color="secondary"></v-icon>
           </div>
-          <h2 class="section-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
+          <h2 class="section-exp-title  ml-2 mb-2 animate__animated animate__fadeIn">
             Professional Experience
           </h2>
           <div class="title-underline"></div>
         </div>
 
-        <!-- Experience Cards Grid -->
-        <v-row align="start">
-          <v-col
-            v-for="(job, index) in workExperience"
+        <!-- Timeline -->
+        <v-timeline side="end" align="start" :density="timelineDensity">
+          <v-timeline-item
+            v-for="job in workExperience"
             :key="job.id"
-            cols="12" sm="6" lg="6"
-            class="animate__animated"
-            :class="index % 2 === 0 ? 'animate__fadeInLeft' : 'animate__fadeInRight'"
-            :style="{ animationDelay: `${index * 0.15}s` }"
-            align-self="start"
+            :dot-color="job.color"
+            size="small"
+            fill-dot
           >
-            <v-hover v-slot="{ isHovering, props }">
-              <v-card
-                v-bind="props"
-                class="experience-card"
-                :class="{ 'card-hover': isHovering }"
-                :elevation="isHovering ? 8 : 2"
-                rounded="xl"
-                variant="text"
-                @click="toggleExpanded(job.id)"
-              >
-                <!-- Card Header with Logo -->
-                <div class="card-header">
-                  <div class="company-logo">
-                    <v-avatar size="70" class="logo-avatar">
-                      <v-img :src="job.logo || job.image" :alt="job.company" cover></v-img>
-                    </v-avatar>
-                    <div class="logo-glow"></div>
-                  </div>
+            <!-- Timeline Date -->
+            <template v-slot:opposite>
+              <div class="timeline-date text-h6 font-weight-bold">{{ job.period }}</div>
+            </template>
 
-                  <div class="header-content">
-                    <h3 class="job-title text-h6">{{ job.title }}</h3>
-                    <div class="company-info text-body-2">
-                      <v-icon icon="mdi-office-building" size="small" class="me-2"></v-icon>
-                      <span>{{ job.company }}</span>
+            <!-- Experience Card -->
+            <v-card class="timeline-card" variant="text" rounded="lg">
+              <v-card-item class="pa-4">
+                <v-card-title class="text-h6 font-weight-bold d-flex align-center exp-card-title">
+                  <v-icon
+                    :icon="job.icon"
+                    class="me-3"
+                    :color="job.color"
+                    size="24"
+                  ></v-icon>
+                  {{ job.title }}
+                </v-card-title>
+
+                <v-card-subtitle class="pt-2 text-subtitle-1 d-flex align-center">
+                  <v-icon icon="mdi-office-building" class="me-2" size="small"></v-icon>
+                  {{ job.company }}
+                </v-card-subtitle>
+
+                <v-card-text class="pt-3">
+                  <!-- Responsibilities Section -->
+                  <div v-if="job.responsibilities && job.responsibilities.length" class="mb-4">
+                    <div class="font-weight-medium mb-3 text-subtitle-2 exp-sub-label">
+                      <v-icon icon="mdi-format-list-bulleted" class="me-2" size="small"></v-icon>
+                      Responsibilities
                     </div>
-                    <v-chip size="small" variant="tonal" color="primary" class="period-chip">
-                      <v-icon icon="mdi-calendar" size="small" class="me-1"></v-icon>
-                      {{ job.period }}
-                    </v-chip>
-                  </div>
-                </div>
-
-                <!-- Card Content (collapsed view) -->
-                <v-card-text class="card-content">
-                  <div v-if="expandedId !== job.id" class="highlights-section">
-                    <ul class="highlights-list">
+                    <ul class="responsibility-list">
                       <li
-                        v-for="(highlight, hIndex) in getResponsibilityPreview(job)"
-                        :key="`highlight-${job.id}-${hIndex}`"
-                        class="highlight-item"
-                      >{{ highlight }}</li>
+                        v-for="(resp, index) in job.responsibilities"
+                        :key="index"
+                      >{{ resp }}</li>
                     </ul>
                   </div>
 
-                  <!-- Skills preview — NOTE: class is now "card-label", not "section-title" -->
-                  <div v-if="expandedId !== job.id" class="skills-preview">
-                    <h4 class="card-label text-subtitle-2">
-                      <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
-                      Skills
-                    </h4>
-                    <div class="skills-container">
-                      <v-chip
-                        v-for="skill in getSkillPreview(job)"
-                        :key="`skill-${job.id}-${skill}`"
-                        color="primary" variant="outlined" size="small" class="more-chip"
-                      >{{ skill }}</v-chip>
-                      <v-chip
-                        v-if="job.skills && job.skills.length > 3"
-                        size="small" variant="outlined" color="primary" class="more-chip"
-                      >+{{ job.skills.length - 3 }} more</v-chip>
-                    </div>
+                  <!-- Skills Section -->
+                  <div v-if="job.skills && job.skills.length">
+                    <v-expansion-panels variant="accordion" class="skills-panel">
+                      <v-expansion-panel>
+                        <v-expansion-panel-title class="text-subtitle-2 exp-sub-label">
+                          <v-icon icon="mdi-tools" class="me-2" size="small"></v-icon>
+                          View Skills & Technologies
+                        </v-expansion-panel-title>
+                        <v-expansion-panel-text>
+                          <div class="skills-container">
+                            <v-chip
+                              v-for="skill in job.skills"
+                              :key="skill"
+                              color="primary"
+                              variant="outlined"
+                              size="small"
+                            >{{ skill }}</v-chip>
+                          </div>
+                        </v-expansion-panel-text>
+                      </v-expansion-panel>
+                    </v-expansion-panels>
                   </div>
                 </v-card-text>
-
-                <!-- Expandable Content -->
-                <v-expand-transition>
-                  <div v-if="expandedId === job.id" class="expanded-content">
-                    <v-divider class="content-divider"></v-divider>
-
-                    <v-card-text class="expanded-text">
-                      <div class="full-responsibilities">
-                        <ul class="responsibilities-list">
-                          <li
-                            v-for="(resp, rIndex) in job.responsibilities"
-                            :key="`resp-${job.id}-${rIndex}`"
-                            class="responsibility-item"
-                          >{{ resp }}</li>
-                        </ul>
-                      </div>
-
-                      <!-- All Skills — NOTE: class is now "card-label", not "section-title" -->
-                      <div class="all-skills">
-                        <h4 class="card-label text-subtitle-2">
-                          <v-icon icon="mdi-code-tags" size="small" class="me-2"></v-icon>
-                          All Skills
-                        </h4>
-                        <div class="skills-grid">
-                          <v-chip
-                            v-for="skill in job.skills"
-                            :key="`all-skill-${job.id}-${skill}`"
-                            color="primary" variant="outlined" size="small" class="more-chip"
-                          >{{ skill }}</v-chip>
-                        </div>
-                      </div>
-                    </v-card-text>
-                  </div>
-                </v-expand-transition>
-
-                <!-- Action Button -->
-                <v-card-actions class="card-actions">
-                  <v-btn
-                    variant="tonal"
-                    color="primary"
-                    rounded="xl"
-                    class="expand-btn"
-                    :aria-expanded="expandedId === job.id ? 'true' : 'false'"
-                  >
-                    <span>{{ expandedId === job.id ? 'Show Less' : 'Show More' }}</span>
-                    <v-icon :icon="expandedId === job.id ? 'mdi-chevron-up' : 'mdi-chevron-down'" class="ms-2"></v-icon>
-                  </v-btn>
-                </v-card-actions>
-
-                <!-- Decorative Elements -->
-                <div class="card-decoration">
-                  <div class="decoration-circle"></div>
-                  <div class="decoration-line"></div>
-                </div>
-              </v-card>
-            </v-hover>
-          </v-col>
-        </v-row>
+              </v-card-item>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useDisplay } from 'vuetify'
 
 export default {
   name: 'WorkExperience',
 
   setup() {
-    const expandedId = ref(null)
+    const { mobile } = useDisplay()
+    const timelineDensity = computed(() => mobile.value ? 'compact' : 'default')
+
     const workExperience = ref([
       {
         id: 1,
-        title: 'Assistant Lecturer',
-        company: 'Mekelle Institute of Technology - Mekelle University',
-        period: 'June, 2021 - Present',
-        logo: '/images/mit.jpg',
-        image: '/images/mit.jpg',
-        description: 'Taught computer science courses and supervised student projects.',
+        title: 'Vue.js Front-End Developer',
+        company: 'Upwork Freelance Contract',
+        period: 'Nov, 2025 - Present',
+        color: 'primary',
+        icon: 'mdi-laptop',
         responsibilities: [
-          'Delivered lectures and tutorials in Computer Science and Engineering courses, communicating complex concepts clearly to undergraduate students.',
-          'Developed and implemented hands-on laboratory exercises and programming assignments',
-          ' Advised students on internship projects and capstones, guiding project scope, technical design, implementation strategies, and professional deliverables.',
-          'Coordinated student project teams and oversaw code repositories, version control workflows, and integration/testing practices.'
+          'Built 10+ production-ready Vue.js 3 components for a live travel booking platform, reducing redundant render cycles by approximately 30% through Pinia-optimized state and computed-property restructuring.',
+          'Delivered 4 feature iterations end to end  requirements, implementation, unit testing, and release support  using Vue.js 3, TypeScript, Vuetify 3, Vite, Vue Router, HTML5, and CSS3.',
+          'Designed reusable component APIs from stakeholder requirements, improving maintainability through Composition API patterns, single-responsibility boundaries, and documented props/events.'
         ],
-        skills: [ 'Python','PyTorch','Tensorflow', 'Pandas','Numpy','Scipy', 'Java', 'Data Structures', 'Algorithms', 'Computer Graphics','Distributed Systems'],
-        isHovering: false
+        skills: ['Vue.js 3', 'TypeScript', 'Vuetify 3', 'Pinia', 'Vite', 'Vue Router', 'HTML5', 'CSS3']
       },
       {
         id: 2,
+        title: 'Working Student, Frontend Software Developer',
+        company: 'Farming Revolution GmbH',
+        period: 'Oct, 2025 - Jan, 2026',
+        color: 'secondary',
+        icon: 'mdi-robot',
+        responsibilities: [
+          'Developed React/Ionic internal tools supporting Farming GT, an AI-powered autonomous weeding robot used in field operations across 10+ countries.',
+          'Integrated Apollo GraphQL/Hasura queries, mutations, and subscriptions for real-time bag, tag, crop, ground-truth, file-path, and evaluation workflows in an AI vision pipeline.',
+          'Implemented bulk operations for tagging, crop assignment, archiving, evaluation creation, annotation command generation, and file-copy/download workflows to standardize high-volume data operations.',
+          'Improved ML evaluation dashboards with expandable cards, score views, status indicators, evaluator configuration displays, and modal TagPicker interactions for technical and field-operations users.'
+        ],
+        skills: ['React', 'Ionic', 'Apollo GraphQL', 'Hasura', 'TypeScript', 'JavaScript', 'GraphQL']
+      },
+      {
+        id: 3,
+        title: 'Assistant Lecturer',
+        company: 'Mekelle Institute of Technology - Mekelle University',
+        period: 'Jun, 2021 - Present',
+        color: 'info',
+        icon: 'mdi-school',
+        responsibilities: [
+          'Delivered lectures and tutorials in Computer Science and Engineering courses, communicating complex concepts clearly to undergraduate students.',
+          'Developed and implemented hands-on laboratory exercises and programming assignments.',
+          'Advised students on internship projects and capstones, guiding project scope, technical design, implementation strategies, and professional deliverables.',
+          'Coordinated student project teams and oversaw code repositories, version control workflows, and integration/testing practices.'
+        ],
+        skills: ['Python', 'PyTorch', 'TensorFlow', 'Pandas', 'NumPy', 'SciPy', 'Java', 'Data Structures', 'Algorithms', 'Computer Graphics', 'Distributed Systems']
+      },
+      {
+        id: 4,
         title: 'Fullstack Developer',
         company: 'Tekeze Technologies PLC',
-        period: 'July, 2020 - September, 2024',
-        logo: '/images/guna.jpg',
-        image: 'https://cdn.vuetifyjs.com/docs/images/components/v-empty-state/teamwork.png',
-        description: 'Working as a full-stack developer focusing on web applications and enterprise solutions.',
+        period: 'Jul, 2020 - Sep, 2024',
+        color: 'success',
+        icon: 'mdi-code-braces',
         responsibilities: [
           'Led end-to-end development of 2 enterprise web apps (Sales Management, Indigent Management), reducing manual workflows by 80% and boosting client revenue.',
           'Designed and implemented real-time analytics dashboards with dynamic reporting features, enabling stakeholders to make data-driven decisions and respond to market trends 70% faster.',
           'Drove a 40% improvement in operational efficiency through process automation, workflow optimization, and adoption of agile methodologies, reducing redundancies and accelerating project delivery.',
           'Improved team code quality by 45% via PR reviews and CI/CD pipeline optimization.'
         ],
-        skills: ['Vue.js','React', 'Node.js','TypeScript', 'JavaScript', 'MangoDB','MySQL', 'PostgreSQL', 'Firebase', 'Docker', 'AWS', 'Jira', 'CI/CD' ,'Git', 'REST APIs', 'Agile'],
-        isHovering: false
+        skills: ['Vue.js', 'React', 'Node.js', 'TypeScript', 'JavaScript', 'MongoDB', 'MySQL', 'PostgreSQL', 'Firebase', 'Docker', 'AWS', 'Jira', 'CI/CD', 'Git', 'REST APIs', 'Agile']
       },
       {
-        id: 3,
+        id: 5,
         title: 'Junior ICT Officer',
         company: 'Guna Trading House PLC',
-        period: 'December 2019 - July 2020',
-        logo: '/images/guna-logo.png',
-        image: '/images/guna-logo.png',
-        description: 'Provided technical support and maintained IT infrastructure.',
+        period: 'Dec, 2019 - Jul, 2020',
+        color: 'warning',
+        icon: 'mdi-lan',
         responsibilities: [
           'Scheduled preventive maintenance of ICT devices in Shire and Humera branches.',
           'Installed and configured LANs of Shire and Humera branches.',
           'Undertaken hardware and software maintenance of computers, printers, and networking devices on a daily and weekly schedule.',
           'Delivered successful training sessions on the ERP system to the employees in Shire and Humera branches.'
         ],
-        skills: ['Networking','ERP', 'System Maintenance', 'IT Support', 'Troubleshooting'],
-        isHovering: false
+        skills: ['Networking', 'ERP', 'System Maintenance', 'IT Support', 'Troubleshooting']
       },
       {
-        id: 4,
+        id: 6,
         title: 'College Lecturer',
         company: 'Oxfo-Business and Technology College',
-        period: 'October, 2019 - December, 2019',
-        logo: '/images/oxfo.jpg',
-        image: '/images/oxfo.jpg',
-        description: 'Taught computer science and programming courses at college level.',
+        period: 'Oct, 2019 - Dec, 2019',
+        color: 'error',
+        icon: 'mdi-teach',
         responsibilities: [
-          'Developed and delivered lectures on programming and IT subjects',
-          'Created assessment materials and graded student work',
-          'Provided academic advice to students',
+          'Developed and delivered lectures on programming and IT subjects.',
+          'Created assessment materials and graded student work.',
+          'Provided academic advice to students.'
         ],
-        skills: ['Java', 'Data Structure', 'Python', 'C++', 'C', 'HTML', 'CSS', 'JavaScript'],
-        isHovering: false
+        skills: ['Java', 'Data Structures', 'Python', 'C++', 'C', 'HTML', 'CSS', 'JavaScript']
       }
     ])
 
-    const getResponsibilityPreview = (job) => {
-      if (!job || !job.responsibilities) return []
-      return job.responsibilities.slice(0, 2)
-    }
-    const getSkillPreview = (job) => {
-      if (!job || !job.skills) return []
-      return job.skills.slice(0, 3)
-    }
-    const toggleExpanded = (jobId) => {
-      expandedId.value = expandedId.value === jobId ? null : jobId
-    }
-
-    return { workExperience, expandedId, getResponsibilityPreview, getSkillPreview, toggleExpanded }
+    return { timelineDensity, workExperience }
   }
 }
 </script>
 
 <style scoped>
-@import 'animate.css';
-
-/* ─── Section Header — gradient here, font/size from global default.vue ──── */
-/*
-  IMPORTANT: This component had TWO conflicting .section-title rules:
-    1. The gradient/display rule (for the "Professional Experience" heading)
-    2. A small label rule (font-size: 0.95rem, display: flex) for card sub-headings
-  The second rule overwrote the heading size, making it too small.
-  FIX: Card sub-headings now use .card-label — see template & .card-label below.
-*/
-.section-title {
-  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
+/* ─── Section Header ─────────────────────────────────────────────────────────── */
+.section-exp-title {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-secondary)) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -265,252 +213,131 @@ export default {
   display: inline-block;
 }
 
-/* ─── Card Sub-Label (was .section-title — renamed to avoid conflict) ───────── */
-.card-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  font-family: 'Jost', sans-serif !important;
+/* ─── Layout ─────────────────────────────────────────────────────────────────── */
+.experience-timeline {
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── Timeline Date ──────────────────────────────────────────────────────────── */
+.timeline-date {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.02em;
+  color: rgb(var(--v-theme-secondary));
+  opacity: 0.9;
 }
 
 /* ─── Experience Card ────────────────────────────────────────────────────────── */
-.experience-card {
+.timeline-card {
+  border-left: 4px solid rgb(var(--v-theme-secondary));
   transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1),
               box-shadow 0.35s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  min-height: 250px;
-  margin-bottom: 1rem;
-  align-self: flex-start;
   width: 100%;
+  max-width: 100%;
+  margin: 0.5rem 0;
+  box-shadow: 0 4px 16px rgba(var(--v-theme-secondary), 0.12);
 }
-.card-hover {
-  transform: translateY(-5px);
-  z-index: 10;
-  position: relative;
-  box-shadow: 0 10px 28px rgba(var(--v-theme-primary), 0.18) !important;
+.timeline-card:hover {
+  transform: translateY(-5px) translateX(3px);
+  box-shadow: 0 12px 32px rgba(var(--v-theme-secondary), 0.22);
 }
-
-/* ─── Card Header ────────────────────────────────────────────────────────────── */
-.card-header {
-  padding: 2rem 2rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  position: relative;
-}
-.company-logo { position: relative; flex-shrink: 0; }
-.logo-avatar {
-  border: 3px solid rgba(var(--v-theme-primary), 0.22);
-  box-shadow: 0 4px 14px rgba(var(--v-theme-primary), 0.1);
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-.logo-glow {
-  position: absolute;
-  top: -4px; left: -4px; right: -4px; bottom: -4px;
-  background: linear-gradient(45deg,
-    rgba(var(--v-theme-primary), 0.3),
-    rgba(var(--v-theme-secondary), 0.3),
-    rgba(var(--v-theme-info), 0.3));
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-.card-hover .logo-glow  { opacity: 1; }
-.card-hover .logo-avatar {
-  transform: scale(1.08);
-  border-color: rgba(var(--v-theme-primary), 0.4);
-}
-
-.header-content { flex: 1; min-width: 0; }
 
 /* Job title — cinematic serif */
-.job-title {
-  font-family: 'Cormorant Garant', Georgia, serif !important;
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-}
-.company-info {
-  display: flex;
-  align-items: center;
-  font-size: 0.95rem;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
+.exp-card-title {
   font-family: 'Jost', sans-serif;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
 }
-.period-chip {
-  align-self: flex-start;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(var(--v-theme-primary), 0.2);
-  font-weight: 500;
+
+/* Sub-labels inside card */
+.exp-sub-label {
   font-family: 'Jost', sans-serif !important;
 }
 
-/* ─── Card Content ───────────────────────────────────────────────────────────── */
-.card-content { padding: 0 2rem 1rem; flex: 1; }
-
-/* ─── Lists ──────────────────────────────────────────────────────────────────── */
-.highlights-list,
-.responsibilities-list {
-  list-style: none;
-  padding: 0; margin: 0;
+/* ─── Responsibilities ───────────────────────────────────────────────────────── */
+.responsibility-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
 }
-.highlight-item,
-.responsibility-item {
+.responsibility-list li {
   position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.55rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.75em;
   line-height: 1.55;
-  transition: transform 0.25s ease, color 0.25s ease;
+  color: rgb(var(--v-theme-on-surface));
   font-family: 'Jost', sans-serif;
   font-size: 0.95rem;
 }
-.highlight-item::before,
-.responsibility-item::before {
-  content: '✦';
+.responsibility-list li::before {
+  content: "✦";
   position: absolute;
   left: 0;
-  color: rgb(var(--v-theme-primary));
+  color: rgb(var(--v-theme-secondary));
   font-size: 0.75rem;
-}
-.highlight-item:hover,
-.responsibility-item:hover {
-  transform: translateX(4px);
+  top: 0.2em;
 }
 
 /* ─── Skills ─────────────────────────────────────────────────────────────────── */
-.highlights-section,
-.skills-preview { margin-bottom: 1.5rem; }
-
-.skills-container,
-.skills-grid {
+.skills-panel { margin-top: 0.5rem; }
+.skills-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
-.more-chip {
-  opacity: 0.75;
-  font-family: 'Jost', sans-serif !important;
+  padding-top: 0.25rem;
 }
 
-/* ─── Expanded Content ───────────────────────────────────────────────────────── */
-.expanded-content {
-  position: relative;
-  z-index: 5;
-  background: rgba(var(--v-theme-surface-variant), 0.05);
-  border-top: 1px solid rgba(var(--v-theme-outline), 0.12);
+/* ─── Timeline Item Animations ───────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
-.content-divider  { border-color: rgba(255, 255, 255, 0.1); }
-.expanded-text    { padding: 1.5rem 2rem; }
-.full-responsibilities,
-.all-skills       { margin-bottom: 1.5rem; }
+.v-timeline-item {
+  opacity: 0;
+  animation: fadeInUp 0.65s ease forwards;
+}
+.v-timeline-item:nth-child(1) { animation-delay: 0.10s; }
+.v-timeline-item:nth-child(2) { animation-delay: 0.25s; }
+.v-timeline-item:nth-child(3) { animation-delay: 0.40s; }
+.v-timeline-item:nth-child(4) { animation-delay: 0.55s; }
+.v-timeline-item:nth-child(5) { animation-delay: 0.70s; }
+.v-timeline-item:nth-child(6) { animation-delay: 0.85s; }
 
-/* ─── Card Actions ───────────────────────────────────────────────────────────── */
-.card-actions { padding: 1rem 2rem 2rem; justify-content: center; }
-.expand-btn {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(var(--v-theme-primary), 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-transform: none;
-  font-weight: 500;
-  font-family: 'Jost', sans-serif !important;
-}
-.expand-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(var(--v-theme-primary), 0.18);
-}
+:deep(.v-timeline) { padding: 0 1rem; }
+:deep(.v-timeline-item__opposite) { flex: 0 0 auto; min-width: 120px; }
 
-/* ─── Decorative Corner ──────────────────────────────────────────────────────── */
-.card-decoration {
-  position: absolute;
-  top: 0; right: 0;
-  width: 100px; height: 100px;
-  pointer-events: none;
-  overflow: hidden;
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .experience-timeline               { padding: 2rem 0; }
+  :deep(.v-timeline)                 { padding: 0 0.5rem; }
+  :deep(.v-timeline-item__opposite)  { min-width: 100px; }
+  .timeline-card                     { margin: 0.25rem 0; }
 }
-.decoration-circle {
-  position: absolute;
-  top: -20px; right: -20px;
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(45deg,
-    rgba(var(--v-theme-primary), 0.1),
-    rgba(var(--v-theme-secondary), 0.1));
-  opacity: 0.5;
+@media (max-width: 600px) {
+  .experience-timeline               { padding: 1.5rem 0; }
+  :deep(.v-timeline)                 { padding: 0; }
+  :deep(.v-timeline-item__opposite)  { min-width: 80px; font-size: 0.875rem; }
+  .timeline-card                     { margin: 0.25rem 0; border-left-width: 3px; }
+  .skills-container                  { gap: 0.25rem; }
+  .skills-container .v-chip          { font-size: 0.75rem; height: 24px; }
 }
-.decoration-line {
-  position: absolute;
-  top: 20px; right: 20px;
-  width: 2px; height: 40px;
-  background: linear-gradient(to bottom, rgba(var(--v-theme-primary), 0.3), transparent);
+@media (max-width: 400px) {
+  :deep(.v-timeline-item__opposite)  { min-width: 70px; font-size: 0.75rem; }
+  .timeline-card                     { border-left-width: 2px; }
+  .skills-container .v-chip          { font-size: 0.7rem; height: 22px; }
 }
 
 /* ─── Dark Mode ──────────────────────────────────────────────────────────────── */
-:deep(.v-theme--dark) .experience-card {
-  background: rgba(var(--v-theme-primary), 0.05);
-  border: 1px solid rgba(var(--v-theme-primary), 0.1);
-}
-:deep(.v-theme--dark) .experience-card:hover {
-  background: rgba(var(--v-theme-primary), 0.08);
-  border-color: rgba(var(--v-theme-primary), 0.15);
-}
-:deep(.v-theme--dark) .expanded-content {
-  background: rgba(var(--v-theme-primary), 0.03);
-  border-top-color: rgba(var(--v-theme-primary), 0.08);
-}
-
-/* ─── Animations ──────────────────────────────────────────────────────────────── */
-.animate__animated { animation-duration: 0.8s; }
-.animate__fadeInLeft,
-.animate__fadeInRight { animation-duration: 0.6s; }
-
-/* ─── Responsive ──────────────────────────────────────────────────────────────── */
-@media (max-width: 960px) {
-  .card-header   { padding: 1.5rem 1.5rem 1rem; gap: 1rem; }
-  .card-content  { padding: 0 1.5rem 1rem; }
-  .expanded-text { padding: 1rem 1.5rem; }
-  .card-actions  { padding: 1rem 1.5rem 1.5rem; }
-}
-@media (max-width: 600px) {
-  .card-header   {
-    padding: 1.5rem 1.5rem 1rem;
-    flex-direction: row;
-    align-items: flex-start;
-    text-align: left;
-    gap: 1rem;
-  }
-  .header-content { width: 100%; }
-  .card-content   { padding: 0 1.5rem 1rem; }
-  .expanded-text  { padding: 1rem 1.5rem; }
-  .card-actions   { padding: 1rem 1.5rem 1.5rem; }
-  .job-title      { font-size: 1.1rem !important; }
-  .skills-container,
-  .skills-grid    { gap: 0.375rem; }
-  .logo-avatar    { width: 60px !important; height: 60px !important; }
-}
-@media (max-width: 400px) {
-  .card-header   { padding: 1rem 1rem 0.5rem; }
-  .card-content  { padding: 0 1rem 0.5rem; }
-  .expanded-text { padding: 0.5rem 1rem; }
-  .card-actions  { padding: 0.5rem 1rem 1rem; }
-}
+:deep(.v-theme--dark) .timeline-card       { box-shadow: 0 4px 16px rgba(var(--v-theme-secondary), 0.2); }
+:deep(.v-theme--dark) .timeline-card:hover { box-shadow: 0 12px 32px rgba(var(--v-theme-secondary), 0.3); }
 
 /* ─── Accessibility ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .experience-card,
-  .logo-avatar,
-  .expand-btn,
-  .highlight-item,
-  .responsibility-item { transition: none; }
-  .animate__animated   { animation: none; }
+  .timeline-card       { transition: none; }
+  .v-timeline-item     { animation: none; opacity: 1; }
 }
 </style>

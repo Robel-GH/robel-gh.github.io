@@ -1,6 +1,6 @@
 <template>
    <v-container fluid>
-    <v-row justify="center" class="mb-2" >
+    <v-row justify="center" class="mb-2 mt-2" >
         
         <v-col cols="12" md="10" lg="10">
           <v-card class="contact-card pa-4" variant="text" rounded="xl" elevation="10">
@@ -8,7 +8,7 @@
               <div class="header-decoration">
                 <v-icon icon="mdi-email" size="x-large" class="header-icon mb-12"></v-icon>
               </div>
-              <v-card-title class="section-title text-h5  font-weight-bold mb-2">          
+              <v-card-title class="section-contact-title mb-2">          
                 Get In Touch
               </v-card-title>
     
@@ -284,7 +284,10 @@ export default {
   animation: float 3s ease-in-out infinite;
 }
 
-.section-title {
+.section-contact-title {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem) !important;
+  font-weight: 600 !important;
   background: linear-gradient(135deg, rgb(var(--v-theme-primary)) 0%, rgb(var(--v-theme-secondary)) 50%, rgb(var(--v-theme-info)) 100%);
   -webkit-background-clip: text;
   background-clip: text;
