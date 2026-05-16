@@ -136,16 +136,14 @@
                       :class="{ 'content-card-hover': isHovering }"
                     >
                       <v-card-title class="text-h5 mb-3 content-title">
-                        Overview
+                         <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
+                          Skills
                       </v-card-title>
                       <v-divider class="mb-4"></v-divider>
 
                       <!-- Skills -->
                       <div v-if="edu.skills && edu.skills.length" class="mb-4">
-                        <div class="text-subtitle-1 mb-2 tech-label">
-                          <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
-                          Key Skills & Technologies:
-                        </div>
+                        
                         <v-chip-group>
                           <v-chip
                             v-for="skill in edu.skills"
