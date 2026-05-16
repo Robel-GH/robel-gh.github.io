@@ -9,7 +9,7 @@
           </div>
 
           <h2 class="section-skills-title text-h5 ml-2 font-weight-bold mb-2 animate__animated animate__fadeIn">
-            Technical Skills & Expertise
+            Technical Skills
           </h2>
 
           <div class="title-underline"></div>
@@ -123,7 +123,7 @@
                                 </v-progress-linear>
 
                                 <div v-if="item.technologies?.length" class="mb-4">
-                                  <div class="panel-label mb-2">Related technologies</div>
+                                  <!-- <div class="panel-label mb-2">Related technologies</div> -->
                                   <div class="chip-list">
                                     <v-chip
                                       v-for="tech in item.technologies"
@@ -321,7 +321,7 @@
                                       </v-progress-linear>
 
                                       <div v-if="item.technologies?.length" class="mb-4">
-                                        <div class="panel-label mb-2">Related technologies</div>
+                                        <!-- <div class="panel-label mb-2">Related technologies</div> -->
                                         <div class="chip-list">
                                           <v-chip
                                             v-for="tech in item.technologies"
@@ -389,119 +389,401 @@ const getCardGridClass = (count) => {
 
 const skillCategories = ref([
   {
-    id: 'ai-ml',
-    name: 'AI/ML',
-    icon: 'mdi-brain',
-    color: 'secondary',
-    activeGroup: 'generative-ai',
-    groups: [
-      {
-        id: 'generative-ai',
-        name: 'Generative AI',
-        icon: 'mdi-chart-scatter-plot',
-        items: [
-          {
-            id: 'diffusion-models',
-            name: 'Diffusion Models',
-            level: 88,
-            technologies: ['Latent Diffusion', 'DDPM', 'Stable Diffusion', 'ControlNet', 'Hugging Face Diffusers'],
-            projects: ['Generative Medical Imaging Research', 'Chest X-ray Editing Thesis Direction']
-          },
-          {
-            id: 'medical-generation',
-            name: 'Medical Image Generation',
-            level: 87,
-            technologies: ['MIMIC-CXR', 'Medical Image Editing', 'GANs', 'VAEs', 'Anatomy-Preserving Editing'],
-            projects: ['Chest X-ray Editing Thesis Direction']
-          }
-        ]
-      },
-      {
-        id: 'rag-llms',
-        name: 'RAG & LLMs',
-        icon: 'mdi-file-document',
-        items: [
-          {
-            id: 'clinical-rag',
-            name: 'Clinical RAG',
-            level: 90,
-            technologies: ['RAG', 'Hybrid Search', 'PDF Parsing', 'Citation Grounding', 'Answer Verification'],
-            projects: ['Clinical RAG Medical Assistant', 'LLM-LAB Course Project']
-          },
-          {
-            id: 'local-llms',
-            name: 'Local LLMs',
-            level: 88,
-            technologies: ['LLMs', 'Ollama', 'Agentic Workflow', 'Prompt Engineering', 'Medical Web Fallback'],
-            projects: ['Clinical RAG Medical Assistant']
-          },
-          {
-            id: 'retrieval',
-            name: 'Retrieval',
-            level: 87,
-            technologies: ['BM25', 'Dense Retrieval', 'Embeddings', 'Vector Stores', 'Semantic Search'],
-            projects: ['Clinical RAG Medical Assistant', 'Neo4j Hybrid Paper Search']
-          }
-        ]
-      },
-      {
-        id: 'medical-ai',
-        name: 'Deep Learning & Medical AI',
-        icon: 'mdi-medical-bag',
-        items: [
-          {
-            id: 'deep-learning',
-            name: 'Deep Learning',
-            level: 90,
-            technologies: ['PyTorch', 'TorchVision', 'CNNs', 'Transfer Learning', 'scikit-learn'],
-            projects: ['Automatic Medical Report Generator']
-          },
-          {
-            id: 'vision-language',
-            name: 'Vision-Language AI',
-            level: 86,
-            technologies: ['Transformers', 'Computer Vision', 'NLP', 'Medical Report Generation'],
-            projects: ['Automatic Medical Report Generator']
-          }
-        ]
-      },
-      {
-        id: 'planning-agents',
-        name: 'AI Planning & Agents',
-        icon: 'mdi-robot',
-        items: [
-          {
-            id: 'planning',
-            name: 'AI Planning',
-            level: 86,
-            technologies: ['PDDL', 'Automated Planning', 'Planning Visualization', 'Domain Modeling'],
-            projects: ['Dynamic PDDL Visualizer']
-          },
-          {
-            id: 'search-agents',
-            name: 'Search Agents',
-            level: 85,
-            technologies: ['Search Algorithms', 'Rule-Based AI', 'Agent Design', 'Puzzle Solving'],
-            projects: ['Keke AI Competition']
-          }
-        ]
-      },
-      {
-        id: 'gpu-computing',
-        name: 'GPU Computing',
-        icon: 'mdi-chip',
-        items: [
-          {
-            id: 'cuda',
-            name: 'CUDA',
-            level: 85,
-            technologies: ['GPU Kernels', 'Parallel Computing', 'NVIDIA GPUs', 'Memory Optimization'],
-            projects: ['GPU Computing Coursework']
-          }
-        ]
-      }
-    ]
-  },
+  id: 'ai-ml',
+  name: 'AI/ML',
+  icon: 'mdi-brain',
+  color: 'secondary',
+  activeGroup: 'ai-frameworks-compute',
+  groups: [
+    {
+      id: 'ai-frameworks-compute',
+      name: 'Frameworks & Compute',
+      icon: 'mdi-cube-outline',
+      items: [
+        {
+          id: 'pytorch',
+          name: 'PyTorch',
+          level: 90,
+          technologies: [
+            'Tensor Operations',
+            'Autograd',
+            'nn.Module',
+            'Training Loops',
+            'GPU Training'
+          ],
+          projects: [
+            'Generative Medical Imaging Research',
+            'Automatic Medical Report Generator'
+          ]
+        },
+        {
+          id: 'pytorch-lightning',
+          name: 'PyTorch Lightning',
+          level: 90,
+          technologies: [
+            'LightningModule',
+            'Trainer API',
+            'Checkpointing',
+            'Logging',
+            'Reproducible Training'
+          ],
+          projects: [
+            'Generative Medical Imaging Research',
+            'Chest X-ray Editing Thesis Direction'
+          ]
+        },
+        {
+          id: 'tensorflow-keras',
+          name: 'TensorFlow / Keras',
+          level: 85,
+          technologies: [
+            'Model API',
+            'Training Pipelines',
+            'Neural Network Prototyping'
+          ],
+          projects: [
+            'Deep Learning Coursework',
+            'Medical AI Experiments'
+          ]
+        },
+        {
+          id: 'cuda',
+          name: 'CUDA',
+          level: 85,
+          technologies: [
+            'GPU Kernels',
+            'Parallel Computing',
+            'NVIDIA GPUs',
+            'Memory Optimization'
+          ],
+          projects: [
+            'GPU Computing Coursework'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'ai-libraries-tooling',
+      name: 'Libraries & Tooling',
+      icon: 'mdi-tools',
+      items: [
+        {
+          id: 'diffusers',
+          name: 'Hugging Face Diffusers',
+          level: 86,
+          technologies: [
+            'Pipelines',
+            'Schedulers',
+            'Stable Diffusion',
+            'ControlNet',
+            'Inference Workflows'
+          ],
+          projects: [
+            'Chest X-ray Editing Thesis Direction'
+          ]
+        },
+        {
+          id: 'transformers',
+          name: 'Transformers',
+          level: 88,
+          technologies: [
+            'Tokenizers',
+            'Model Loading',
+            'Vision-Language Models',
+            'Embeddings'
+          ],
+          projects: [
+            'Automatic Medical Report Generator',
+            'Clinical RAG Medical Assistant'
+          ]
+        },
+        {
+          id: 'vision-tooling',
+          name: 'Vision Tooling',
+          level: 86,
+          technologies: [
+            'TorchVision',
+            'OpenCV',
+            'Image Preprocessing',
+            'Augmentation',
+            'Medical Image Pipelines'
+          ],
+          projects: [
+            'Automatic Medical Report Generator',
+            'Generative Medical Imaging Research'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'genai-models-architectures',
+      name: 'Models & Architectures',
+      icon: 'mdi-graph-outline',
+      items: [
+        {
+          id: 'diffusion-architectures',
+          name: 'Diffusion Architectures',
+          level: 88,
+          technologies: [
+            'Latent Diffusion Models',
+            'DDPM',
+            'Stable Diffusion',
+            'U-Net',
+            'Score-Based Models'
+          ],
+          projects: [
+            'Chest X-ray Editing Thesis Direction',
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'generative-architectures',
+          name: 'Generative Architectures',
+          level: 82,
+          technologies: [
+            'GANs',
+            'VAEs',
+            'Autoencoders',
+            'Latent Space Learning'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'genai-training-sampling-control',
+      name: 'Training, Sampling & Control',
+      icon: 'mdi-tune-variant',
+      items: [
+        {
+          id: 'score-matching',
+          name: 'Score Matching',
+          level: 82,
+          technologies: [
+            'Score Matching',
+            'Denoising Score Matching',
+            'Noise Prediction',
+            'Score-Based Learning'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'flow-matching',
+          name: 'Flow Matching',
+          level: 78,
+          technologies: [
+            'Flow Matching',
+            'Rectified Flow',
+            'Velocity Prediction',
+            'Continuous Normalizing Flow Concepts'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'variational-objectives',
+          name: 'Variational Objectives',
+          level: 80,
+          technologies: [
+            'ELBO',
+            'Reconstruction Loss',
+            'KL Divergence',
+            'Latent Space Learning'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'diffusion-sampling',
+          name: 'Diffusion Sampling',
+          level: 84,
+          technologies: [
+            'DDIM',
+            'DDPM Sampling',
+            'Reverse Diffusion',
+            'Denoising Schedulers',
+            'DPM-Solver'
+          ],
+          projects: [
+            'Chest X-ray Editing Thesis Direction'
+          ]
+        },
+        {
+          id: 'conditioned-sampling',
+          name: 'Conditioned Sampling',
+          level: 84,
+          technologies: [
+            'Classifier-Free Guidance',
+            'Prompt Conditioning',
+            'Image Conditioning',
+            'Control-Guided Generation'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'medical-genai-evaluation',
+      name: 'Medical GenAI & Evaluation',
+      icon: 'mdi-medical-bag',
+      items: [
+        {
+          id: 'medical-image-editing',
+          name: 'Medical Image Editing',
+          level: 87,
+          technologies: [
+            'Image-to-Image Translation',
+            'Inpainting',
+            'Counterfactual Editing',
+            'Anatomy-Preserving Editing'
+          ],
+          projects: [
+            'Chest X-ray Editing Thesis Direction'
+          ]
+        },
+        {
+          id: 'pathology-aware-generation',
+          name: 'Pathology-Aware Generation',
+          level: 86,
+          technologies: [
+            'Pathology Editing',
+            'Thoracic Findings',
+            'Clinical Plausibility',
+            'Counterfactual Image Pairs'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'image-quality-evaluation',
+          name: 'Image Quality Evaluation',
+          level: 82,
+          technologies: [
+            'SSIM',
+            'LPIPS',
+            'FID',
+            'Visual Consistency'
+          ],
+          projects: [
+            'Generative Medical Imaging Research'
+          ]
+        },
+        {
+          id: 'clinical-evaluation',
+          name: 'Clinical Evaluation',
+          level: 84,
+          technologies: [
+            'Clinical Consistency',
+            'Anatomy Preservation Evaluation',
+            'Classifier Robustness Testing',
+            'Shortcut Learning Analysis'
+          ],
+          projects: [
+            'Chest X-ray Editing Thesis Direction'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'rag-llm-systems',
+      name: 'RAG & LLM Systems',
+      icon: 'mdi-file-document',
+      items: [
+        {
+          id: 'clinical-rag',
+          name: 'Clinical RAG',
+          level: 90,
+          technologies: [
+            'RAG',
+            'Hybrid Search',
+            'PDF Parsing',
+            'Citation Grounding',
+            'Answer Verification'
+          ],
+          projects: [
+            'Clinical RAG Medical Assistant',
+            'LLM-LAB Course Project'
+          ]
+        },
+        {
+          id: 'local-llms',
+          name: 'Local LLMs',
+          level: 88,
+          technologies: [
+            'LLMs',
+            'Ollama',
+            'Agentic Workflow',
+            'Prompt Engineering',
+            'Medical Web Fallback'
+          ],
+          projects: [
+            'Clinical RAG Medical Assistant'
+          ]
+        },
+        {
+          id: 'retrieval',
+          name: 'Retrieval',
+          level: 87,
+          technologies: [
+            'BM25',
+            'Dense Retrieval',
+            'Embeddings',
+            'Vector Stores',
+            'Semantic Search'
+          ],
+          projects: [
+            'Clinical RAG Medical Assistant',
+            'Neo4j Hybrid Paper Search'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'ai-planning-agents',
+      name: 'Planning & Agents',
+      icon: 'mdi-robot',
+      items: [
+        {
+          id: 'planning',
+          name: 'AI Planning',
+          level: 86,
+          technologies: [
+            'PDDL',
+            'Automated Planning',
+            'Planning Visualization',
+            'Domain Modeling'
+          ],
+          projects: [
+            'Dynamic PDDL Visualizer'
+          ]
+        },
+        {
+          id: 'search-agents',
+          name: 'Search Agents',
+          level: 85,
+          technologies: [
+            'Search Algorithms',
+            'Rule-Based AI',
+            'Agent Design',
+            'Puzzle Solving'
+          ],
+          projects: [
+            'Keke AI Competition'
+          ]
+        }
+      ]
+    }
+  ]
+},
   {
     id: 'programming-language',
     name: 'Programming Language',
@@ -517,7 +799,7 @@ const skillCategories = ref([
           {
             id: 'python',
             name: 'Python',
-            level: 92,
+            level: 97,
             technologies: ['Data Science Scripting', 'AI Prototyping', 'Backend Services', 'Automation'],
             projects: ['Clinical RAG Medical Assistant', 'Spark Lab Assignment', 'Earthquake Data Warehouse']
           },
@@ -531,21 +813,21 @@ const skillCategories = ref([
           {
             id: 'typescript',
             name: 'TypeScript',
-            level: 88,
+            level: 90,
             technologies: ['Typed Frontend Development', 'Component Safety', 'State Management'],
             projects: ['Dynamic PDDL Visualizer']
           },
           {
             id: 'java',
             name: 'Java',
-            level: 85,
+            level: 90,
             technologies: ['Backend Development', 'Custom Procedures', 'Object-Oriented Programming'],
             projects: ['Neo4j Custom Procedure', 'Spring Boot Integration']
           },
           {
             id: 'cpp',
             name: 'C/C++',
-            level: 85,
+            level: 90,
             technologies: ['Systems Programming', 'GPU-Oriented Programming', 'Performance-Aware Code'],
             projects: ['CUDA Coursework']
           },
@@ -559,7 +841,7 @@ const skillCategories = ref([
           {
             id: 'bash',
             name: 'Bash/Shell',
-            level: 80,
+            level: 90,
             technologies: ['Experiment Automation', 'Docker Scripts', 'Environment Setup'],
             projects: ['Memcached vs Riak KV Benchmark', 'Spark Docker Lab']
           }
