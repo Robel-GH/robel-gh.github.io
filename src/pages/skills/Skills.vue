@@ -1168,4 +1168,244 @@ const skillCategories = ref([
     white-space: nowrap;
   }
 }
+
+/* ─── Mobile Wrapping / No-Ellipsis Fixes ──────────────────────────────────── */
+@media (max-width: 960px) {
+  .mobile-tabs,
+  .inner-mobile-tabs {
+    overflow-x: auto;
+    white-space: normal !important;
+  }
+
+  .mobile-tabs :deep(.v-slide-group__content),
+  .inner-mobile-tabs :deep(.v-slide-group__content) {
+    align-items: stretch;
+  }
+
+  .mobile-tab,
+  .inner-mobile-tab {
+    flex: 0 0 auto !important;
+    width: 118px !important;
+    min-width: 118px !important;
+    max-width: 118px !important;
+    min-height: 60px !important;
+    height: auto !important;
+    padding: 8px 10px !important;
+    font-size: 0.75rem !important;
+    text-transform: none !important;
+    letter-spacing: 0.25px !important;
+    white-space: normal !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .mobile-tab :deep(.v-btn__content),
+  .inner-mobile-tab :deep(.v-btn__content) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    width: 100%;
+    min-width: 0;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    line-height: 1.15;
+  }
+
+  .mobile-tab :deep(.v-icon),
+  .inner-mobile-tab :deep(.v-icon) {
+    margin: 0 0 0.1rem 0 !important;
+    flex: 0 0 auto;
+  }
+
+  .mobile-tab-text {
+    display: block;
+    max-width: 100% !important;
+    min-width: 0;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .category-title,
+  .group-heading h3,
+  .technology-card-title {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .technology-card .v-card-title,
+  .technology-card-title {
+    height: auto !important;
+    min-height: unset !important;
+    line-height: 1.3 !important;
+  }
+
+  .chip-list :deep(.v-chip),
+  .project-chip {
+    height: auto !important;
+    min-height: 26px;
+    white-space: normal !important;
+  }
+
+  .chip-list :deep(.v-chip__content),
+  .project-chip :deep(.v-chip__content) {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    overflow-wrap: anywhere;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-tab,
+  .inner-mobile-tab {
+    width: 104px !important;
+    min-width: 104px !important;
+    max-width: 104px !important;
+    min-height: 58px !important;
+    padding: 6px 8px !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-tab,
+  .inner-mobile-tab {
+    width: 92px !important;
+    min-width: 92px !important;
+    max-width: 92px !important;
+    min-height: 56px !important;
+    padding: 4px 6px !important;
+    font-size: 0.65rem !important;
+  }
+}
+
+
+/* ─── Final Mobile Tab Height Fix ─────────────────────────────────────────────
+   Vuetify gives v-tabs/v-tab a fixed tab height through --v-tabs-height.
+   These overrides increase that height and allow the slide-group container,
+   button content, icons, and text to expand without clipping wrapped labels. */
+@media (max-width: 960px) {
+  .mobile-tabs,
+  .inner-mobile-tabs {
+    --v-tabs-height: 88px !important;
+    min-height: 88px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    white-space: normal !important;
+  }
+
+  .mobile-tabs :deep(.v-slide-group__container),
+  .inner-mobile-tabs :deep(.v-slide-group__container),
+  .mobile-tabs :deep(.v-slide-group__content),
+  .inner-mobile-tabs :deep(.v-slide-group__content) {
+    min-height: 88px !important;
+    height: auto !important;
+    max-height: none !important;
+    align-items: stretch !important;
+  }
+
+  .mobile-tab,
+  .inner-mobile-tab {
+    height: auto !important;
+    min-height: 88px !important;
+    max-height: none !important;
+    width: 124px !important;
+    min-width: 124px !important;
+    max-width: 124px !important;
+    padding: 8px 10px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  .mobile-tab :deep(.v-btn__content),
+  .inner-mobile-tab :deep(.v-btn__content) {
+    min-height: 72px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    line-height: 1.12 !important;
+  }
+
+  .mobile-tab-text {
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.12 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-tabs,
+  .inner-mobile-tabs {
+    --v-tabs-height: 86px !important;
+    min-height: 86px !important;
+  }
+
+  .mobile-tabs :deep(.v-slide-group__container),
+  .inner-mobile-tabs :deep(.v-slide-group__container),
+  .mobile-tabs :deep(.v-slide-group__content),
+  .inner-mobile-tabs :deep(.v-slide-group__content) {
+    min-height: 86px !important;
+  }
+
+  .mobile-tab,
+  .inner-mobile-tab {
+    min-height: 86px !important;
+    width: 112px !important;
+    min-width: 112px !important;
+    max-width: 112px !important;
+  }
+
+  .mobile-tab :deep(.v-btn__content),
+  .inner-mobile-tab :deep(.v-btn__content) {
+    min-height: 70px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-tabs,
+  .inner-mobile-tabs {
+    --v-tabs-height: 82px !important;
+    min-height: 82px !important;
+  }
+
+  .mobile-tabs :deep(.v-slide-group__container),
+  .inner-mobile-tabs :deep(.v-slide-group__container),
+  .mobile-tabs :deep(.v-slide-group__content),
+  .inner-mobile-tabs :deep(.v-slide-group__content) {
+    min-height: 82px !important;
+  }
+
+  .mobile-tab,
+  .inner-mobile-tab {
+    min-height: 82px !important;
+    width: 102px !important;
+    min-width: 102px !important;
+    max-width: 102px !important;
+  }
+
+  .mobile-tab :deep(.v-btn__content),
+  .inner-mobile-tab :deep(.v-btn__content) {
+    min-height: 66px !important;
+  }
+}
+
 </style>

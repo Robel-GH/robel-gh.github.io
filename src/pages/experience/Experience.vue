@@ -7,7 +7,7 @@
           <div class="header-decoration">
             <v-icon icon="mdi-briefcase" size="x-large" class="header-icon" color="secondary"></v-icon>
           </div>
-          <h2 class="section-exp-title  ml-2 mb-2 animate__animated animate__fadeIn">
+          <h2 class="section-exp-title ml-2 mb-2 animate__animated animate__fadeIn">
             Professional Experience
           </h2>
           <div class="title-underline"></div>
@@ -24,39 +24,43 @@
           >
             <!-- Timeline Date -->
             <template v-slot:opposite>
-              <div class="timeline-date text-h6 font-weight-bold">{{ job.period }}</div>
+              <div class="timeline-date text-h6 font-weight-bold">
+                {{ job.period }}
+              </div>
             </template>
 
             <!-- Experience Card -->
             <v-card class="timeline-card" variant="text" rounded="lg">
               <v-card-item class="pa-4">
-                <v-card-title class="text-h6 font-weight-bold d-flex align-center exp-card-title">
+                <v-card-title class="text-h6 font-weight-bold d-flex align-start exp-card-title">
                   <v-icon
                     :icon="job.icon"
-                    class="me-3"
+                    class="exp-title-icon me-3"
                     :color="job.color"
                     size="24"
                   ></v-icon>
-                  {{ job.title }}
+                  <span class="exp-title-text">{{ job.title }}</span>
                 </v-card-title>
 
-                <v-card-subtitle class="pt-2 text-subtitle-1 d-flex align-center">
-                  <v-icon icon="mdi-office-building" class="me-2" size="small"></v-icon>
-                  {{ job.company }}
+                <v-card-subtitle class="pt-2 text-subtitle-1 d-flex align-start exp-card-subtitle">
+                  <v-icon icon="mdi-office-building" class="exp-subtitle-icon me-2" size="small"></v-icon>
+                  <span class="exp-company-text">{{ job.company }}</span>
                 </v-card-subtitle>
 
                 <v-card-text class="pt-3">
                   <!-- Responsibilities Section -->
                   <div v-if="job.responsibilities && job.responsibilities.length" class="mb-4">
-                    <div class="font-weight-medium mb-3 text-subtitle-2 exp-sub-label">
+                    <div class="font-weight-medium mb-3 text-subtitle-2 exp-sub-label responsibility-heading">
                       <v-icon icon="mdi-format-list-bulleted" class="me-2" size="small"></v-icon>
-                      Responsibilities
+                      <span>Responsibilities</span>
                     </div>
                     <ul class="responsibility-list">
                       <li
                         v-for="(resp, index) in job.responsibilities"
                         :key="index"
-                      >{{ resp }}</li>
+                      >
+                        {{ resp }}
+                      </li>
                     </ul>
                   </div>
 
@@ -64,9 +68,9 @@
                   <div v-if="job.skills && job.skills.length">
                     <v-expansion-panels variant="accordion" class="skills-panel">
                       <v-expansion-panel>
-                        <v-expansion-panel-title class="text-subtitle-2 exp-sub-label">
+                        <v-expansion-panel-title class="text-subtitle-2 exp-sub-label skills-panel-title">
                           <v-icon icon="mdi-tools" class="me-2" size="small"></v-icon>
-                          View Skills & Technologies
+                          <span class="skills-panel-title-text">View Skills & Technologies</span>
                         </v-expansion-panel-title>
                         <v-expansion-panel-text>
                           <div class="skills-container">
@@ -76,7 +80,10 @@
                               color="primary"
                               variant="outlined"
                               size="small"
-                            >{{ skill }}</v-chip>
+                              class="skill-chip"
+                            >
+                              {{ skill }}
+                            </v-chip>
                           </div>
                         </v-expansion-panel-text>
                       </v-expansion-panel>
@@ -227,6 +234,9 @@ export default {
   letter-spacing: 0.02em;
   color: rgb(var(--v-theme-secondary));
   opacity: 0.9;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 /* ─── Experience Card ────────────────────────────────────────────────────────── */
@@ -244,18 +254,87 @@ export default {
   box-shadow: 0 12px 32px rgba(var(--v-theme-secondary), 0.22);
 }
 
-/* Job title — cinematic serif */
+/* Job title — no truncation, multi-line safe */
 .exp-card-title {
   font-family: 'Jost', sans-serif;
   font-weight: 600 !important;
   font-size: 1.15rem !important;
   letter-spacing: 0.02em;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  align-items: flex-start !important;
+  min-width: 0;
+}
+
+.exp-title-icon {
+  flex: 0 0 auto;
+  margin-top: 0.12rem;
+}
+
+.exp-title-text {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
   line-height: 1.35;
+}
+
+/* Company subtitle — no truncation, multi-line safe */
+.exp-card-subtitle {
+  font-family: 'Jost', sans-serif !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  align-items: flex-start !important;
+  min-width: 0;
+}
+
+.exp-subtitle-icon {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+}
+
+.exp-company-text {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.4;
 }
 
 /* Sub-labels inside card */
 .exp-sub-label {
   font-family: 'Jost', sans-serif !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.35;
+}
+
+.responsibility-heading,
+.skills-panel-title {
+  display: flex;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.skills-panel-title-text {
+  display: inline-block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal !important;
+  line-height: 1.35;
 }
 
 /* ─── Responsibilities ───────────────────────────────────────────────────────── */
@@ -272,6 +351,7 @@ export default {
   color: rgb(var(--v-theme-on-surface));
   font-family: 'Jost', sans-serif;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 .responsibility-list li::before {
   content: "✦";
@@ -291,10 +371,40 @@ export default {
   padding-top: 0.25rem;
 }
 
+.skill-chip {
+  height: auto !important;
+  min-height: 26px;
+  white-space: normal !important;
+}
+
+.skill-chip :deep(.v-chip__content),
+.skills-container :deep(.v-chip__content) {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  overflow-wrap: anywhere;
+  line-height: 1.2;
+}
+
+.skills-panel :deep(.v-expansion-panel-title) {
+  min-height: auto !important;
+  height: auto !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.35;
+  align-items: flex-start;
+}
+
+.skills-panel :deep(.v-expansion-panel-title__icon) {
+  align-self: flex-start;
+  margin-top: 0.1rem;
+}
+
 /* ─── Timeline Item Animations ───────────────────────────────────────────────── */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0);    }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .v-timeline-item {
   opacity: 0;
@@ -312,32 +422,100 @@ export default {
 
 /* ─── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .experience-timeline               { padding: 2rem 0; }
-  :deep(.v-timeline)                 { padding: 0 0.5rem; }
-  :deep(.v-timeline-item__opposite)  { min-width: 100px; }
-  .timeline-card                     { margin: 0.25rem 0; }
+  .experience-timeline { padding: 2rem 0; }
+  :deep(.v-timeline) { padding: 0 0.5rem; }
+  :deep(.v-timeline-item__opposite) { min-width: 100px; }
+  .timeline-card { margin: 0.25rem 0; }
 }
+
 @media (max-width: 600px) {
-  .experience-timeline               { padding: 1.5rem 0; }
-  :deep(.v-timeline)                 { padding: 0; }
-  :deep(.v-timeline-item__opposite)  { min-width: 80px; font-size: 0.875rem; }
-  .timeline-card                     { margin: 0.25rem 0; border-left-width: 3px; }
-  .skills-container                  { gap: 0.25rem; }
-  .skills-container .v-chip          { font-size: 0.75rem; height: 24px; }
+  .experience-timeline { padding: 1.5rem 0; }
+  :deep(.v-timeline) { padding: 0; }
+  :deep(.v-timeline-item__opposite) {
+    min-width: 80px;
+    max-width: 92px;
+    white-space: normal;
+  }
+
+  .timeline-date {
+    font-size: 0.78rem !important;
+    line-height: 1.25;
+  }
+
+  .timeline-card {
+    margin: 0.25rem 0;
+    border-left-width: 3px;
+  }
+
+  .exp-card-title {
+    font-size: 0.98rem !important;
+    line-height: 1.3 !important;
+    padding-right: 0 !important;
+  }
+
+  .exp-title-icon {
+    margin-top: 0.08rem;
+  }
+
+  .exp-card-subtitle {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .responsibility-list li {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .skills-container {
+    gap: 0.25rem;
+  }
+
+  .skills-container .v-chip,
+  .skill-chip {
+    font-size: 0.75rem;
+    min-height: 24px;
+    height: auto !important;
+  }
 }
+
 @media (max-width: 400px) {
-  :deep(.v-timeline-item__opposite)  { min-width: 70px; font-size: 0.75rem; }
-  .timeline-card                     { border-left-width: 2px; }
-  .skills-container .v-chip          { font-size: 0.7rem; height: 22px; }
+  :deep(.v-timeline-item__opposite) {
+    min-width: 70px;
+    max-width: 78px;
+  }
+
+  .timeline-date {
+    font-size: 0.68rem !important;
+  }
+
+  .timeline-card {
+    border-left-width: 2px;
+  }
+
+  .exp-card-title {
+    font-size: 0.92rem !important;
+  }
+
+  .exp-card-subtitle {
+    font-size: 0.78rem !important;
+  }
+
+  .skills-container .v-chip,
+  .skill-chip {
+    font-size: 0.7rem;
+    min-height: 22px;
+    height: auto !important;
+  }
 }
 
 /* ─── Dark Mode ──────────────────────────────────────────────────────────────── */
-:deep(.v-theme--dark) .timeline-card       { box-shadow: 0 4px 16px rgba(var(--v-theme-secondary), 0.2); }
+:deep(.v-theme--dark) .timeline-card { box-shadow: 0 4px 16px rgba(var(--v-theme-secondary), 0.2); }
 :deep(.v-theme--dark) .timeline-card:hover { box-shadow: 0 12px 32px rgba(var(--v-theme-secondary), 0.3); }
 
 /* ─── Accessibility ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .timeline-card       { transition: none; }
-  .v-timeline-item     { animation: none; opacity: 1; }
+  .timeline-card { transition: none; }
+  .v-timeline-item { animation: none; opacity: 1; }
 }
 </style>

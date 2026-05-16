@@ -136,17 +136,16 @@
                       :class="{ 'content-card-hover': isHovering }"
                     >
                       <v-card-title class="text-h5 mb-3 content-title">
-                      
-                        <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
-                         Skills
-                       
-                       
+                        Overview
                       </v-card-title>
                       <v-divider class="mb-4"></v-divider>
 
                       <!-- Skills -->
                       <div v-if="edu.skills && edu.skills.length" class="mb-4">
-                        
+                        <div class="text-subtitle-1 mb-2 tech-label">
+                          <v-icon icon="mdi-tools" size="small" class="me-2"></v-icon>
+                          Key Skills & Technologies:
+                        </div>
                         <v-chip-group>
                           <v-chip
                             v-for="skill in edu.skills"
@@ -197,7 +196,7 @@
 <script setup>
 import { ref, computed, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import 'animate.css'
-import mitLogo from '@/assets/mit.png'
+
 const isPaused = ref(false)
 const marqueeTrack = ref(null)
 
@@ -284,7 +283,7 @@ const educationList = ref([
     institution: 'Mekelle Institute of Technology - Mekelle University',
     color: 'secondary',
     icon: 'mdi-laptop',
-    logo: mitLogo,
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Mekelle_Institute_of_Technology.png/250px-Mekelle_Institute_of_Technology.png',
     skills: ['Python', 'JavaScript', 'Java', 'C', 'C++', 'React', 'Django', 'Kotlin', 'Database Design', 'API Development'],
     achievements: [
       'Graduated with Honors (3.93 CGPA)',
@@ -298,7 +297,7 @@ const educationList = ref([
     degree: 'Diploma in Natural Sciences',
     institution: 'Shire Preparatory School',
     color: 'info',
-    icon: 'mdi-school',
+    icon: 'mdi-flask',
     skills: ['HTML', 'Windows', 'MS Excel', 'MS PowerPoint', 'MS Word', 'File Management', 'Typing', 'Computer Literacy'],
     achievements: [
       'Graduated with Distinction'
@@ -367,6 +366,23 @@ const loopedEducationList = computed(() => [
   font-size: clamp(1.1rem, 1.8vw, 1.4rem) !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  align-items: flex-start !important;
+  line-height: 1.35 !important;
+}
+
+.edu-card-title strong {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-height: 1.35;
 }
 
 .title-logo-avatar {
@@ -374,6 +390,7 @@ const loopedEducationList = computed(() => [
   border: 1px solid rgba(var(--v-theme-primary), 0.22);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   padding: 0.25rem;
+  flex: 0 0 auto;
 }
 
 .title-logo-img {
@@ -502,6 +519,21 @@ const loopedEducationList = computed(() => [
 }
 @media (max-width: 600px) {
   .marquee-item { width: 350px; }
+  .edu-card-title {
+    padding: 1rem !important;
+    font-size: 1rem !important;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+  .edu-card-title strong {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .title-logo-avatar {
+    width: 34px !important;
+    height: 34px !important;
+    margin-top: 0.1rem;
+  }
   .panel-body { min-height: 160px; padding: 1rem !important; }
   .icon-bubble { width: 72px; height: 72px; }
   .institution-logo { width: 54px; height: 54px; }
