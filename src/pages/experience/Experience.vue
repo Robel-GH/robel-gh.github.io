@@ -115,11 +115,11 @@ export default {
         id: 1,
         title: 'Vue.js Front-End Developer',
         company: 'Upwork Freelance Contract',
-        period: 'Nov, 2025 - Present',
+        period: 'Nov, 2025 - April, 2026',
         color: 'primary',
         icon: 'mdi-laptop',
         responsibilities: [
-          'Built 10+ production-ready Vue.js 3 components for a live travel booking platform, reducing redundant render cycles by approximately 30% through Pinia-optimized state and computed-property restructuring.',
+          'Built production-ready Vue.js 3 components for a live travel booking platform, reducing redundant render cycles by approximately 30% through Pinia-optimized state and computed-property restructuring.',
           'Delivered 4 feature iterations end to end  requirements, implementation, unit testing, and release support  using Vue.js 3, TypeScript, Vuetify 3, Vite, Vue Router, HTML5, and CSS3.',
           'Designed reusable component APIs from stakeholder requirements, improving maintainability through Composition API patterns, single-responsibility boundaries, and documented props/events.'
         ],
