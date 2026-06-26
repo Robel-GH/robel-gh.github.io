@@ -135,7 +135,7 @@ const projects = [
     title: 'Automatic Medical Report Generator',
     description: 'A multi-modal approach combining computer vision for image analysis and natural language processing for report generation, designed to assist radiologists by reducing manual reporting time and improving clinical workflow efficiency.',
     videoUrl: 'https://youtube.com/embed/xAKx-E_sgjw',
-    githubLink: 'https://github.com/Robel-GH/',
+    githubLink: 'https://github.com/Robel-GH/medical-report-generation/',
     role: 'Deep Learning Engineer',
     icon: 'mdi-medical-bag',
     iconColor: 'indigo',
@@ -143,7 +143,7 @@ const projects = [
     liveDemo: null,
   },
   {
-    title: 'Keke AI Competition - Baba Is You Puzzle',
+    title: 'Keke AI Competition - Designing a Heuristic Search Agent for a Dynamic Rule-Based Puzzle',
     description: 'A lightweight framework for developing and testing AI agents on rule-based puzzle games. Inspired by Baba Is You, it provides dynamic rule mechanics and level parsing, pluggable agents, a Flask visualization layer, and solution replay for comparing search strategies in real time.',
     videoUrl: 'https://youtube.com/embed/ZgNq7sK0s1o',
     githubLink: 'https://github.com/Robel-GH/Keke',
