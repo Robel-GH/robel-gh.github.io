@@ -1,0 +1,57 @@
+/*
+ * Vuetify bridge: lets Vuetify's components (app shell, dialog, snackbar, form fields) sit inside the
+ * site's own design, and holds the few values that used to be inline styles.
+ */
+
+/* Vuetify's reset makes every background no-repeat; the grids and textures here rely on the browser
+   default. :where() keeps this at zero specificity so any rule that sets no-repeat still wins. */
+:where(.portfolio-app) *, :where(.portfolio-app) *::before, :where(.portfolio-app) *::after { background-repeat: repeat; }
+
+/* App shell: the page paints its own backgrounds and type. */
+.v-application.portfolio-app { background: var(--ink); color: inherit; font-family: var(--body); }
+.v-application.portfolio-app .v-application__wrap { min-height: 100svh; }
+.portfolio-app .v-main { padding: 0; }
+html { overflow-y: auto; }
+
+/* Former inline styles */
+.hero .eyebrow span { color: #93AFA3; }
+.marquee-group { display: flex; align-items: center; gap: 64px; padding-right: 64px; }
+.light-section .subhead { margin-top: 35px !important; }
+.awards-head .awards-title { margin-top: 15px !important; }
+.awards-head .awards-note { color: #707D70; }
+.education .section-title { margin-top: 35px !important; }
+.contact .contact-intro { color: #A3B1A6; max-width: 320px; }
+.contact-form .form-note { color: #8F9C91; font-size: 12px; margin: 0; }
+.contact-form .form-note.is-error { color: #FF9B85 !important; }
+
+/* Project dialog (v-dialog): dark scrim with blur; the panel keeps its own look. */
+.project-dialog .v-overlay__scrim { background: #000; opacity: .8; backdrop-filter: blur(12px); }
+.project-dialog > .v-overlay__content { margin: 16px; max-height: 92svh; }
+.project-dialog .modal-panel { width: 100%; }
+
+/* Toast (v-snackbar) styled like the original pill toast. */
+.app-toast .v-snackbar__wrapper { min-width: 0; min-height: 0; border-radius: 40px; background: #7E8E74; color: #182518; box-shadow: none; }
+.app-toast .v-snackbar__content { padding: 13px 20px; font: 13px var(--body); letter-spacing: 0; }
+html[data-theme="dark"] .app-toast .v-snackbar__wrapper { background: #8FA28A; color: #211713; }
+html[data-theme="light"] .app-toast .v-snackbar__wrapper { background: #6B4435; color: #FFFFFF; }
+
+/* Contact form fields (v-text-field / v-textarea) */
+.contact-form .field { display: flex; flex-direction: column; gap: 9px; }
+.contact-form .field > label { font: 11px var(--mono); color: #ABB8AC; text-transform: uppercase; letter-spacing: .08em; }
+html[data-theme="dark"] .contact-form .field > label { color: #D5BEAA; }
+html[data-theme="light"] .contact-form .field > label { color: #746053; }
+.contact-form .v-input { font: inherit; }
+.contact-form .v-field { border-radius: 13px; background: #39271F; color: #F9F2EA; --v-field-padding-start: 16px; --v-field-padding-end: 16px; --v-field-input-padding-top: 13px; --v-field-input-padding-bottom: 13px; font-size: 16px; }
+.contact-form .v-field__input { min-height: 50px; font-family: var(--body); }
+.contact-form .v-field__outline { color: #715546; --v-field-border-opacity: 1; --v-field-border-width: 1px; }
+.contact-form .v-field--focused .v-field__outline { color: var(--lime); --v-field-border-width: 1px; }
+.contact-form textarea.v-field__input { min-height: 130px; }
+.contact-form .v-messages__message { font: 12px/1.4 var(--body); }
+html[data-theme="light"] .contact-form .v-field { background: #FBF7F1; color: #30221C; }
+html[data-theme="light"] .contact-form .v-field__outline { color: #DCCABB; }
+html[data-theme="light"] .contact-form .v-field--focused .v-field__outline { color: #6B4435; }
+/* The original stylesheet styled bare inputs; inside a Vuetify field the field draws the box instead. */
+html .contact-form .v-field input.v-field__input,
+html .contact-form .v-field textarea.v-field__input { border: 0; border-radius: 0; background: transparent; color: inherit; min-height: 50px; padding: 13px 16px; box-shadow: none; }
+html .contact-form .v-field textarea.v-field__input { min-height: 130px; }
+.app-toast .v-snackbar__wrapper { margin-bottom: 20px; }

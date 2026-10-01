@@ -1,0 +1,22 @@
+/*
+ * Justified body text across the site.
+ * Only multi-line prose is justified; short labels, headings and buttons keep their own alignment.
+ * Phones stay left-aligned, because a narrow line leaves wide gaps between words.
+ */
+@media (min-width: 761px) {
+  .hero-desc,
+  .about-copy p,
+  .section-heading p,
+  .project-body p,
+  .modal-description,
+  .modal-highlights li,
+  .exp-bullets li,
+  .edu-list p,
+  .education p,
+  .contact-intro {
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+}

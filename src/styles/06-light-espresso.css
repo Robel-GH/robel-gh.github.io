@@ -1,0 +1,32 @@
+/* Light theme: espresso replaces sage everywhere; dark-theme sage buttons keep dark text. */
+/* ═══ LIGHT THEME — espresso replaces sage everywhere (accents, marquee, hero card, project art) ═══ */
+html[data-theme="light"]{--coral:#6B4435;--blue:#C9A78E}
+html[data-theme="light"] ::selection{background:#6B4435;color:#FFFFFF}
+html[data-theme="light"] .eyebrow i{box-shadow:0 0 12px rgba(107,68,53,.35)}
+html[data-theme="light"] .video-play:hover{background:#6B4435;color:#FFFFFF}
+html[data-theme="light"] .medical-frame{box-shadow:0 0 70px #9C735E55,inset 0 0 40px #9C735E44;border-color:rgba(240,222,205,.28)}
+html[data-theme="light"] .medical-frame:before,html[data-theme="light"] .medical-frame:after{border-color:#C9A78E66;box-shadow:0 0 35px #C9A78E33}
+html[data-theme="light"] .medical-readout{border-color:#C9A78E7C;color:#F6E7D8}
+html[data-theme="light"] .medical-badge{color:#EAD6C4}
+html[data-theme="light"] .art-planning svg g[fill="none"]{stroke:#C9A78E99}
+html[data-theme="light"] .art-planning svg g[stroke]:not([fill="none"]){stroke:#E3C9B2}
+html[data-theme="light"] .art-planning svg circle{fill:#E3C9B2}
+html[data-theme="light"] .art-keke{background:linear-gradient(135deg,#8A6450,#4B3227)}
+html[data-theme="light"] .keke-grid b{border-color:#E3C9B277;box-shadow:inset 0 1px 8px #E3C9B222}
+html[data-theme="light"] .keke-grid b:nth-child(6n){background:#E9D8C4;color:#4B3227}
+html[data-theme="light"] .art-data{background:radial-gradient(ellipse at 70% 30%,#8A6450,#4B3B31 55%,#3B2E27)}
+html[data-theme="light"] .data-globe{border-color:#E3C9B255;box-shadow:0 0 100px #C9A78E33,inset 0 0 85px #C9A78E20;background:repeating-linear-gradient(0deg,transparent 0 22px,#C9A78E17 23px 24px),repeating-linear-gradient(90deg,transparent 0 34px,#C9A78E17 35px 36px)}
+html[data-theme="light"] .data-globe:before{border-color:#C9A78E52}
+html[data-theme="light"] .data-ping{background:#E3C9B2;box-shadow:0 0 0 8px #E3C9B226,0 0 26px #E3C9B2}
+html[data-theme="light"] .art-messaging{background:linear-gradient(130deg,#F1E4D6,#C9A78E)}
+html[data-theme="light"] .mock-phone{background:#FFFAF4;box-shadow:25px 26px 45px #6B443555}
+html[data-theme="light"] .mock-phone .mock-top{border-color:#E3CDB9}
+html[data-theme="light"] .bubble{background:#EFE1D3}
+html[data-theme="light"] .bubble.out{background:#D9BCA4}
+html[data-theme="light"] .sales-bars span{background:#D9BCA4}
+html[data-theme="light"] .sales-bars span:nth-child(3n+2){background:#6B4435}
+
+html[data-theme="light"] .hero-group:after{border-color:rgba(107,68,53,.14);box-shadow:0 0 0 58px rgba(107,68,53,.02),0 0 0 120px rgba(107,68,53,.012)}
+html[data-theme="light"] .contact-form p.full{color:#8A776A!important}
+/* Dark theme: sage buttons always carry dark espresso text (6.4:1). Cream on sage is only 1.9:1. */
+html[data-theme="dark"] .filter:hover,html[data-theme="dark"] .filter.active{background:#8FA28A;border-color:#8FA28A;color:#211713}

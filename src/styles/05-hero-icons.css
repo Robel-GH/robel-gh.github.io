@@ -1,0 +1,6 @@
+/* Hero card nodes: standard Idea / Build / Prove icons. */
+/* ═══ HERO CARD — standard icons in place of the decorative dots (Idea → Build → Prove) ═══ */
+.diagram-point{display:grid;place-items:center;width:34px;height:34px;margin:-10.5px;border:0;background:#8FA28A;color:#211713;box-shadow:0 0 0 6px rgba(143,162,138,.14),0 8px 18px -8px rgba(0,0,0,.55)}
+.diagram-point svg{width:17px;height:17px}
+html[data-theme="light"] .diagram-point{background:#6B4435;color:#FAF6F0;border:0;box-shadow:0 0 0 6px rgba(107,68,53,.10),0 8px 18px -10px rgba(107,68,53,.45)}
+@media(max-width:760px){.diagram-point{width:28px;height:28px;margin:-7.5px}.diagram-point svg{width:14px;height:14px}}

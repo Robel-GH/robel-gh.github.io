@@ -1,0 +1,26 @@
+/*
+ * Experience on phones: the same cinematic chapter as on desktop. The chapter counter and progress
+ * line become a compact sticky bar under the toolbar, and each card blurs, tilts and fades into focus
+ * as it reaches the middle of the screen, exactly like the desktop cards.
+ */
+@media (max-width: 760px) {
+  .exp-layout { grid-template-columns: 1fr; gap: 0; margin-top: 34px; }
+
+  .exp-aside {
+    position: sticky; top: 74px; z-index: 2; height: auto; align-self: auto;
+    display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 6px 18px;
+    margin: 0 -6px 8px; padding: 12px 16px;
+    border-radius: 18px; border: 1px solid transparent;
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  }
+  .exp-number { grid-row: span 2; font-size: 64px; line-height: .84; }
+  .exp-progress-line { display: block; align-self: end; }
+  .exp-count { align-self: start; justify-content: space-between; font-size: 11px; }
+
+  html[data-theme="light"] .exp-aside { background: rgba(246, 238, 229, .86); border-color: rgba(213, 195, 178, .7); }
+  html[data-theme="dark"] .exp-aside { background: rgba(44, 30, 25, .86); border-color: rgba(112, 84, 69, .6); }
+
+  /* Same focus motion as desktop; slightly shorter stage so each chapter fits a phone screen. */
+  .exp-list { gap: 18px; padding-bottom: 30svh; }
+  .experience-entry { min-height: 62svh; margin: 0; }
+}

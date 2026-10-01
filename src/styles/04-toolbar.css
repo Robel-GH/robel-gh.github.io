@@ -1,0 +1,28 @@
+/* Toolbar: separated outlined segments matched to the original Vuetify button group (40px, 8px gaps, 24px ends). */
+/* ═══ TOOLBAR — separated segments, matched to the source portfolio's Vuetify button group ═══
+   Source (robel-gh.github.io, measured at 1440px): six outlined buttons, each 40px tall with 20px side
+   padding and a 4px margin (8px between neighbours); a hairline top and bottom on every button; a left
+   edge and 24px left corners on the first only; a right edge and 24px right corners on the last only.
+   The theme control sits on its own 8px to the right. */
+@media(min-width:761px){
+  .nav{gap:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav a{box-sizing:border-box;height:40px;min-height:40px;margin:4px;padding:0 20px;border:1px solid var(--nav-border);border-inline-width:0;border-radius:0;background:transparent;color:var(--nav-text);font:500 16px/1 var(--body);letter-spacing:0;white-space:nowrap}
+  .nav a:first-child{border-left-width:1px;border-radius:24px 0 0 24px}
+  .nav a:last-child{border-right-width:1px;border-radius:0 24px 24px 0}
+  .nav a:hover{background:color-mix(in srgb,var(--nav-text) 9%,transparent);color:var(--page-text)}
+  .nav a.active{background:color-mix(in srgb,var(--nav-active) 20%,transparent);color:var(--page-text)}
+  .nav a.active:hover{background:color-mix(in srgb,var(--nav-active) 28%,transparent)}
+  .header-actions{gap:8px;margin-left:8px;padding:0;background:none;border:0;border-radius:0;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .theme-btn{width:40px;height:40px;border:1px solid var(--nav-border);background:transparent}
+  html[data-theme="light"] .theme-btn,html[data-theme="dark"] .theme-btn{background:transparent}
+  .theme-btn:hover{background:color-mix(in srgb,var(--nav-text) 9%,transparent)}
+  .nav-cta{min-height:40px;font-size:14px}
+}
+@media(min-width:761px) and (max-width:1180px){
+  .nav a{padding:0 13px;margin:4px 3px;font-size:14px}
+  .nav a:first-child{margin-left:0}
+}
+@media(min-width:761px) and (max-width:980px){
+  .nav-cta{display:none}
+  .nav a{padding:0 11px;margin:4px 2px;font-size:13px}
+}
