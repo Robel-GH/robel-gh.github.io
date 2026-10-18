@@ -1,63 +1,52 @@
 <template>
-  <v-app>
-    <router-view />
+  <v-app class="portfolio-app">
+    <a
+      class="skip"
+      href="#main"
+    >Skip to main content</a>
+    <ScrollProgress />
+    <AppHeader />
+
+    <v-main
+      id="main"
+      tag="main"
+    >
+      <HeroSection />
+      <MarqueeBand />
+      <AboutSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <EducationSection />
+      <ContactSection />
+    </v-main>
+
+    <ProjectDialog />
+    <AppToast />
   </v-app>
 </template>
 
 <script setup>
-  //
+import { onMounted } from 'vue'
+import { useColorTheme, readStoredTheme } from '@/composables/useColorTheme'
+import { installSectionRouting } from '@/composables/useSectionRoute'
+
+import AppHeader from '@/components/layout/AppHeader.vue'
+import ScrollProgress from '@/components/layout/ScrollProgress.vue'
+import AppToast from '@/components/layout/AppToast.vue'
+import HeroSection from '@/components/hero/HeroSection.vue'
+import MarqueeBand from '@/components/sections/MarqueeBand.vue'
+import AboutSection from '@/components/sections/AboutSection.vue'
+import ProjectsSection from '@/components/projects/ProjectsSection.vue'
+import ProjectDialog from '@/components/projects/ProjectDialog.vue'
+import ExperienceSection from '@/components/sections/ExperienceSection.vue'
+import SkillsSection from '@/components/sections/SkillsSection.vue'
+import EducationSection from '@/components/sections/EducationSection.vue'
+import ContactSection from '@/components/sections/ContactSection.vue'
+
+const { setMode } = useColorTheme()
+onMounted(() => {
+  setMode(readStoredTheme())
+  installSectionRouting()
+})
 </script>
-
-<style>
-/* Global mobile optimizations */
-html {
-  overflow-x: hidden;
-}
-
-body {
-  overflow-x: hidden;
-}
-
-/* Prevent horizontal scroll on mobile */
-* {
-  box-sizing: border-box;
-}
-
-/* Touch-friendly button sizes */
-@media (max-width: 600px) {
-  .v-btn {
-    min-height: 44px !important;
-    min-width: 44px !important;
-  }
-  
-  .v-icon {
-    touch-action: manipulation;
-  }
-}
-
-/* Improve text readability on mobile */
-@media (max-width: 600px) {
-  body {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-  }
-  
-  /* Ensure proper font scaling */
-  .v-application {
-    font-size: 14px !important;
-    line-height: 1.5 !important;
-  }
-}
-
-/* Optimize scrolling performance */
-.v-main {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Prevent zoom on input focus (iOS) */
-@media (max-width: 600px) {
-  input, textarea, select {
-    font-size: 16px !important;
-  }
-}
-</style>

@@ -1,28 +1,15 @@
 /**
  * main.js
  *
- * Bootstraps Vuetify and other plugins then mounts the App`
+ * Mounts the one-page portfolio with Vuetify and the v-reveal directive.
  */
-
-// Plugins
-import { registerPlugins } from '@/plugins/index'
-
-// Components
-import App from './App.vue'
-import vuetify from './plugins/vuetify' 
-// Composables
 import { createApp } from 'vue'
-import { useThemeStore } from '@/plugins/theme/themeStore'
-const app = createApp(App)
+import App from './App.vue'
+import vuetify from '@/plugins/vuetify'
+import reveal from '@/directives/reveal'
+import '@/styles/index.css'
 
-registerPlugins(app)
-
-
-const themeStore = useThemeStore()
-watch(
-  () => themeStore.theme,
-  (newTheme) => {
-    vuetify.theme.global.name.value = newTheme
-  }
-)
-app.mount('#app')
+createApp(App)
+  .use(vuetify)
+  .directive('reveal', reveal)
+  .mount('#app')

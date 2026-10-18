@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robel's Portfolio </title>
+    <meta name="description" content="Robel Gebrehiwot, software and AI engineer in Toronto: production web apps with Vue, Node and Python, plus RAG and deep learning. Authorized to work in Canada, available now.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Robel Gebrehiwot — Software & AI Engineer">
+    <meta property="og:description" content="Software, AI and mobile projects. Based in Toronto, Canada, and available now.">
+    <meta property="og:url" content="https://robel-gh.github.io/">
+    <meta property="og:image" content="https://robel-gh.github.io/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Robel Gebrehiwot, Software & AI Engineer in Toronto">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Robel Gebrehiwot — Software & AI Engineer">
+    <meta name="twitter:description" content="Software, AI and mobile projects. Based in Toronto, Canada, and available now.">
+    <meta name="twitter:image" content="https://robel-gh.github.io/og-image.jpg">
+    <link rel="canonical" href="https://robel-gh.github.io/">
     <link rel="icon" href="/letter-r2.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robel Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <script>
+      // Apply the saved theme before the app loads, so the page never flashes the wrong palette.
+      try { document.documentElement.dataset.theme = localStorage.getItem('robel-portfolio-theme') === 'dark' ? 'dark' : 'light' } catch (e) {}
+      // Arriving from public/404.html (GitHub Pages): restore the section path, e.g. /?p=/skills → /skills.
+      (function () {
+        var p = new URLSearchParams(location.search).get('p')
+        if (p && p.charAt(0) === '/') history.replaceState(null, '', p)
+      })()
+    </script>
   </head>
   <body>
     <div id="app"></div>
