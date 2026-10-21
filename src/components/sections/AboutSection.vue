@@ -34,32 +34,30 @@
             </li>
           </ul>
           <p>
-            I build software for people who can’t afford for it to fail. Most of my work is in healthcare or for
-            communities that bigger products tend to skip, so I work the same way every time: agree on what it
-            should do, prove that it does it, then ship.
+            I build software that people can rely on. My work includes healthcare systems and tools for communities
+            that larger technology companies often overlook. Every project starts with understanding the problem. I
+            define what the software needs to do and test whether it works before releasing it.
           </p>
           <p>
-            I hold my AI work to the same standard. My Clinical RAG Assistant answers medical questions only from
-            sources it can cite. At York University my research uses diffusion models to change one finding in a
-            chest X-ray and leave the rest of the image untouched, so you can see exactly what changed. I’m
-            finishing an MSc in AI and Computer Science at the University of Calabria.
+            My Clinical RAG Assistant answers medical questions using WHO guidelines. It cites the sources behind its
+            answers and makes clear when it cannot find enough evidence. My research at York University uses
+            diffusion models to change one medical finding in a chest X-ray while keeping the rest of the image
+            unchanged. This helps determine whether AI models recognize actual medical findings or rely on misleading
+            patterns. I am completing an MSc in AI and Computer Science at the University of Calabria.
           </p>
           <p id="meal-checker">
-            I also offer Meal Checker, free of charge, to any organization that serves meals to its community.
-            It’s a secure mobile and web app that replaces paper meal lists. Every resident and family member gets
-            their own daily meals. At mealtime they show a QR code that refreshes automatically, staff scan it, and
-            the meal is recorded instantly. No meal can be served twice, even when someone collects it for another
-            person. Administrators get a live dashboard and reports in PDF, CSV and Excel. I built it with Flutter
-            for Android, iOS and the web, on Supabase and PostgreSQL, hosted on Cloudflare Pages. If your
-            organization could use it, <a
-              class="about-link"
-              href="#contact"
-            >let’s talk</a>.
+            Meal Checker replaces paper meal records with a mobile and web application. Staff scan automatically
+            refreshing QR codes to record meals and prevent duplicate collection. Administrators can track meals in
+            real time and export reports. I built it with Flutter, Supabase and PostgreSQL. I am willing to make it
+            available free of charge to organizations that serve meals to their communities.
           </p>
           <p>
-            The project closest to me is the Tigrigna Keyboard, a native keyboard for Android and iOS. Besides
-            typing, people can write Tigrigna by hand, and Google’s ML Kit recognizes each character they draw.
-            Eleven people are testing it now.
+            Tigrigna Keyboard is a native Android and iOS keyboard that supports Tigrigna and English typing. It also
+            uses Google’s ML Kit to recognize handwritten Tigrigna characters. Eleven people are currently testing
+            it. I built it to make typing in Tigrigna easier and more accessible.
+          </p>
+          <p>
+            I want my work to solve real problems for people who depend on it.
           </p>
           <div class="about-signature">
             <strong>Open to work</strong>
@@ -84,12 +82,6 @@ import { aboutChips } from '@/data/site'
   margin: 0 0 26px;
   padding: 0;
   list-style: none;
-}
-.about-link {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  font-weight: 600;
 }
 #meal-checker {
   scroll-margin-top: 110px;
