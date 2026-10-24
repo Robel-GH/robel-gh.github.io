@@ -1,7 +1,7 @@
 /*
  * Justified body text across the site.
  * Only multi-line prose is justified; short labels, headings and buttons keep their own alignment.
- * Phones stay left-aligned, because a narrow line leaves wide gaps between words.
+ * Words are never split with a hyphen. Phones stay left-aligned, because a narrow line leaves wide gaps between words.
  */
 @media (min-width: 761px) {
   .hero-desc,
@@ -16,7 +16,7 @@
   .contact-intro {
     text-align: justify;
     text-align-last: left;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+    hyphens: manual;
+    -webkit-hyphens: manual;
   }
 }
