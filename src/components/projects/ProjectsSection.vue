@@ -48,7 +48,7 @@
           v-for="project in visibleProjects"
           :key="project.id"
           :project="project"
-          :featured="project.featured && filter === 'all'"
+          :featured="wideCards.has(project.id)"
           @play="openProject(project.id, true)"
           @details="openProject(project.id)"
         />
@@ -89,6 +89,25 @@ const filter = ref(profile.filter)
 const visibleProjects = computed(() =>
   filter.value === 'all' ? projects : projects.filter((p) => p.categories.includes(filter.value)),
 )
+
+// Cards that span both columns: featured projects (in the "All" view), plus any card that would
+// otherwise sit alone in its row, so the two-column grid never leaves an empty cell.
+const wideCards = computed(() => {
+  const list = visibleProjects.value
+  const wide = new Set()
+  let column = 0
+  list.forEach((project, i) => {
+    if (project.featured && filter.value === 'all') {
+      if (column === 1) wide.add(list[i - 1].id)
+      wide.add(project.id)
+      column = 0
+    } else {
+      column = 1 - column
+    }
+  })
+  if (column === 1 && list.length) wide.add(list[list.length - 1].id)
+  return wide
+})
 
 const { openProject } = useProjectDialog()
 </script>
