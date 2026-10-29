@@ -1,22 +1,19 @@
 /*
- * Justified body text across the site.
+ * Justified body text across the site, on every screen size.
  * Only multi-line prose is justified; short labels, headings and buttons keep their own alignment.
- * Words are never split with a hyphen. Phones stay left-aligned, because a narrow line leaves wide gaps between words.
+ * Words are never split with a hyphen.
  */
-@media (min-width: 761px) {
-  .hero-desc,
-  .about-copy p,
-  .section-heading p,
-  .project-body p,
-  .modal-description,
-  .modal-highlights li,
-  .exp-bullets li,
-  .edu-list p,
-  .education p,
-  .contact-intro {
-    text-align: justify;
-    text-align-last: left;
-    hyphens: manual;
-    -webkit-hyphens: manual;
-  }
+.hero-desc,
+.about-copy p,
+.section-heading p,
+.project-body p,
+.modal-description,
+.modal-highlights li,
+.exp-bullets li,
+.edu-list p,
+.contact-intro {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: manual;
+  -webkit-hyphens: manual;
 }
