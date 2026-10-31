@@ -126,6 +126,18 @@ async function copyEmail () {
 @media (prefers-reduced-motion: reduce) {
   .back-top:hover { transform: none; }
 }
+/* Smaller on phones, so it sits in line with the footer text. */
+@media (max-width: 760px) {
+  .back-top {
+    width: 40px;
+    height: 40px;
+  }
+  .back-top :deep(svg) {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.5;
+  }
+}
 
 .contact-actions {
   display: flex;
