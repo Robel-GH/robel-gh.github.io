@@ -23,6 +23,7 @@
 
     <ProjectDialog />
     <AppToast />
+    <BackToTop />
   </v-app>
 </template>
 
@@ -34,6 +35,7 @@ import { installSectionRouting } from '@/composables/useSectionRoute'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import ScrollProgress from '@/components/layout/ScrollProgress.vue'
 import AppToast from '@/components/layout/AppToast.vue'
+import BackToTop from '@/components/layout/BackToTop.vue'
 import HeroSection from '@/components/hero/HeroSection.vue'
 import MarqueeBand from '@/components/sections/MarqueeBand.vue'
 import AboutSection from '@/components/sections/AboutSection.vue'
