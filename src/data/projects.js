@@ -30,7 +30,7 @@ export const projects = [
     tech: ['Vue 3', 'Spring Boot', 'PostgreSQL', 'Keycloak', 'FastAPI', 'Docker', 'Playwright'],
     visibility: 'private',
     status: 'Built with AI coding agents, local pilot',
-    art: 'generic',
+    art: 'hospital',
     artLabel: 'PATIENT → RECORD',
   },
   {
@@ -51,8 +51,8 @@ export const projects = [
     tech: ['Kotlin', 'Android IME', 'Swift', 'ML Kit'],
     visibility: 'private',
     status: 'Internal testing on Google Play, 11 testers',
-    art: 'generic',
-    artLabel: 'ትግርኛ ⌨',
+    art: 'keyboard',
+    artLabel: 'ትግርኛ, ENGLISH',
   },
   {
     id: 'meal-checker',
@@ -73,8 +73,8 @@ export const projects = [
     tech: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL', 'Cloudflare Pages'],
     visibility: 'private',
     status: 'Free for organizations, version 1.4.3',
-    art: 'generic',
-    artLabel: 'QR → MEAL',
+    art: 'meal',
+    artLabel: 'SCAN → SERVED',
   },
   {
     id: 'blockalert',
@@ -94,7 +94,7 @@ export const projects = [
     tech: ['Flutter', 'Dart', 'Open data APIs', 'Maps'],
     visibility: 'private',
     status: 'MVP, release in preparation',
-    art: 'generic',
+    art: 'roads',
     artLabel: 'TORONTO, NEARBY',
   },
   {
@@ -115,7 +115,7 @@ export const projects = [
     tech: ['Vue 3', 'Pinia', 'Vuetify 3', 'Vue Router', 'Vitest', 'i18n'],
     visibility: 'private',
     status: 'Private client code, walkthrough on request',
-    art: 'generic',
+    art: 'booking',
     artLabel: 'QUOTE → BOOK',
   },
   {
@@ -137,7 +137,7 @@ export const projects = [
     github: 'https://github.com/Robel-GH/Clinical-RAG-Medical-Assistant',
     visibility: 'public',
     status: 'Public code',
-    art: 'generic',
+    art: 'rag',
     artLabel: 'ASK → EVIDENCE',
   },
   {

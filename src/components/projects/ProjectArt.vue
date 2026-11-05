@@ -157,6 +157,12 @@
     </div>
   </div>
 
+  <ProjectCover
+    v-else-if="covers.includes(art)"
+    :art="art"
+    :label="label"
+  />
+
   <!-- Projects without their own illustration: a labelled grid card. -->
   <div
     v-else
@@ -167,11 +173,14 @@
 </template>
 
 <script setup>
+import ProjectCover from './ProjectCover.vue'
+
 const props = defineProps({
   art: { type: String, required: true },
   label: { type: String, default: '' },
 })
 
+const covers = ['hospital', 'keyboard', 'meal', 'roads', 'booking', 'rag']
 const gradientId = `planning-gradient-${props.art}`
 const kekeTiles = ['K', 'E', 'K', 'E', '★', '↗', '▣', 'IS', 'YOU', '◯', '▧', 'MOVE', '●', '▥', '↗', '△', '◻', 'WIN', '→', '◆']
 const salesBars = [41, 64, 52, 80, 58, 92, 71, 85]
