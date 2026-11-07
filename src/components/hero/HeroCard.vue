@@ -83,4 +83,13 @@ const areas = ['Software', 'AI / ML', 'Mobile']
 @media (max-width: 760px) {
   .field-notes small { font-size: 10px; }
 }
+/* Phones: leave room above the card so the field note never covers the buttons. */
+@media (max-width: 760px) {
+  .hero-group-wrap {
+    padding-top: 44px;
+  }
+  .field-notes {
+    top: 0;
+  }
+}
 </style>

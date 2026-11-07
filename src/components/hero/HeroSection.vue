@@ -160,4 +160,34 @@ function resetTilt () {
 .hero-actions {
   margin-top: 26px;
 }
+/* Phones: the three secondary buttons share one row, and the status chips move below them. */
+@media (max-width: 760px) {
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-status {
+    order: 5;
+    margin: 22px 0 0;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    gap: 8px;
+  }
+  .hero-actions .pill.primary {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .hero-actions .pill:not(.primary) {
+    min-height: 38px;
+    padding: 0 13px;
+    gap: 7px;
+    font-size: 12px;
+  }
+  .hero-actions .pill:not(.primary) :deep(svg) {
+    width: 15px;
+    height: 15px;
+  }
+}
 </style>
