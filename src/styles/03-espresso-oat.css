@@ -126,6 +126,7 @@ html[data-theme="dark"] .edu-period,html[data-theme="dark"] .edu-row p{color:#CB
 html[data-theme="dark"] .edu-row .edu-index{color:#8FA28A}
 html[data-theme="dark"] .contact{background:#281C17;color:#FAF4EA}
 html[data-theme="dark"] .contact h2 em{color:#8FA28A}
+html[data-theme="dark"] .contact .contact-intro{color:#D6C5B7}
 html[data-theme="dark"] .contact-links a{border-color:#6B5142;color:#EAD6C4}
 html[data-theme="dark"] .contact-form label{color:#D5BEAA}
 html[data-theme="dark"] .contact-form input,html[data-theme="dark"] .contact-form textarea{background:#39271F;border-color:#715546;color:#F9F2EA}
@@ -193,6 +194,7 @@ html[data-theme="light"] .edu-period,html[data-theme="light"] .edu-row p{color:#
 html[data-theme="light"] .edu-row .edu-index{color:#6B4435}
 html[data-theme="light"] .contact{background:#FFFFFF;color:#30221C}
 html[data-theme="light"] .contact h2 em{color:#6B4435}
+html[data-theme="light"] .contact .contact-intro{color:#766557}
 html[data-theme="light"] .contact-grid>div>p{color:#766358!important}
 html[data-theme="light"] .contact-links a{border-color:#DFD0C0;color:#4C3A30}
 html[data-theme="light"] .contact-links a:hover{color:#6B4435}
