@@ -6,24 +6,45 @@
     :title="label"
     @click="switchTheme"
   >
-    <!-- A half-filled circle (light and dark); it turns half a circle when the theme changes. -->
+    <!-- A sun that turns into a crescent moon: the sun shows in dark mode, the moon in light mode. -->
     <svg
       class="theme-icon"
-      :class="{ dark: mode === 'dark' }"
+      :class="mode === 'dark' ? 'is-sun' : 'is-moon'"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
       aria-hidden="true"
-    ><circle
-      cx="12"
-      cy="12"
-      r="9"
-    /><path
-      d="M12 3a9 9 0 0 1 0 18Z"
-      fill="currentColor"
-      stroke="none"
-    /></svg>
+    >
+      <mask id="theme-moon-mask">
+        <rect
+          width="24"
+          height="24"
+          fill="white"
+        />
+        <circle
+          class="moon-cut"
+          cx="17"
+          cy="7"
+          r="7"
+          fill="black"
+        />
+      </mask>
+      <circle
+        class="sun-core"
+        cx="12"
+        cy="12"
+        r="9"
+        fill="currentColor"
+        mask="url(#theme-moon-mask)"
+      />
+      <g
+        class="sun-rays"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      >
+        <path d="M12 1.5v2" /><path d="M12 20.5v2" /><path d="M1.5 12h2" /><path d="M20.5 12h2" />
+        <path d="m4.6 4.6 1.4 1.4" /><path d="m18 18 1.4 1.4" /><path d="m4.6 19.4 1.4-1.4" /><path d="m18 6 1.4-1.4" />
+      </g>
+    </svg>
   </button>
 </template>
 
@@ -45,12 +66,26 @@ function switchTheme () {
 
 <style scoped>
 .theme-icon {
-  transition: transform .45s cubic-bezier(.2, .83, .23, 1);
+  overflow: visible;
 }
-.theme-icon.dark {
-  transform: rotate(180deg);
+.sun-core,
+.moon-cut,
+.sun-rays {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform .5s cubic-bezier(.2, .83, .23, 1), opacity .3s;
 }
+/* Sun: a small disc with its rays out, and the cut-out moved away. */
+.is-sun .sun-core { transform: scale(.55); }
+.is-sun .moon-cut { transform: translate(9px, -9px); }
+.is-sun .sun-rays { transform: rotate(0); opacity: 1; }
+/* Moon: a full disc with a bite taken out, and the rays folded away. */
+.is-moon .sun-core { transform: scale(1); }
+.is-moon .moon-cut { transform: translate(0, 0); }
+.is-moon .sun-rays { transform: rotate(-60deg) scale(.4); opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
-  .theme-icon { transition: none; }
+  .sun-core,
+  .moon-cut,
+  .sun-rays { transition: none; }
 }
 </style>
