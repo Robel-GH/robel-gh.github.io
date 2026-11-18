@@ -1,18 +1,12 @@
 /**
  * src/styles/settings.scss
  *
- * Configures SASS variables and Vuetify overwrites
+ * Vuetify Sass settings. The site styles itself (src/styles) and uses only four Vuetify
+ * components, so Vuetify's utility classes (d-flex, ma-4, text-h5, …) and its Material
+ * colour classes are switched off. That cuts Vuetify's base CSS from about 254 KB to 17 KB.
+ * https://vuetifyjs.com/features/sass-variables/
  */
-
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
-// [class^="text-"] {
-//     text-align: justify;
-//     hyphens: auto;
-//     word-spacing: -1px;
-//     text-wrap: balance;
-//     line-height: 1.6;
-//   }
-  
+@use 'vuetify/settings' with (
+  $utilities: false,
+  $color-pack: false,
+);
