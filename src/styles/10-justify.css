@@ -16,4 +16,6 @@
   text-align-last: left;
   hyphens: manual;
   -webkit-hyphens: manual;
+  /* Better line breaks where supported, which keeps word gaps more even. */
+  text-wrap: pretty;
 }

@@ -110,4 +110,15 @@ watch(() => [scroll.y, scroll.height], () => {
   padding-left: 18px;
   line-height: 1.55;
 }
+/* Phones: a wider text column and slightly smaller text, so justified lines don't open wide gaps. */
+@media (max-width: 760px) {
+  .exp-card {
+    padding: 24px 20px;
+  }
+  .exp-bullets {
+    padding-left: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
 </style>
