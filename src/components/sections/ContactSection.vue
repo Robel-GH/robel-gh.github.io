@@ -37,8 +37,8 @@
 
       <div class="contact-grid">
         <p class="contact-intro">
-          Hiring for a software, mobile or junior ML role in Canada or remote? I can start immediately and I’m
-          happy to walk through any project, including the private client work.
+          Are you hiring a software, mobile or AI engineer in Canada or remote? I can start immediately, and I’d
+          be glad to talk through any of my projects and how I’d approach your team’s work.
         </p>
         <div class="contact-links">
           <a
