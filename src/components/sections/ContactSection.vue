@@ -97,3 +97,36 @@ async function copyEmail () {
 }
 </script>
 
+<style scoped>
+.footer {
+  align-items: center;
+}
+.footer-place {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* Social icons: evenly spaced round buttons, all the same size. */
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-icons a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: 50%;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.footer-icons a:hover {
+  border-color: currentColor;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .footer-icons a:hover { transform: none; }
+}
+</style>
