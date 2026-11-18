@@ -90,8 +90,8 @@
           ><AppIcon name="youtube" /> Watch on YouTube</a>
           <a
             v-if="project.visibility === 'private'"
-            :href="`mailto:${owner.email}?subject=${encodeURIComponent('Walkthrough: ' + project.title)}`"
-          ><AppIcon name="mail" /> Request a code walkthrough</a>
+            :href="`mailto:${owner.email}?subject=${encodeURIComponent('About: ' + project.title)}`"
+          ><AppIcon name="mail" /> Ask about this project</a>
         </div>
       </div>
     </section>
