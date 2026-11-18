@@ -13,7 +13,7 @@ export const skillGroups = [
     items: ['Flutter', 'Android (Kotlin)'],
   },
   {
-    label: 'Machine learning',
+    label: 'AI',
     items: ['PyTorch', 'TensorFlow', 'PyTorch Lightning', 'LLMs', 'FAISS', 'RAG (BM25 + dense retrieval)'],
   },
   {
