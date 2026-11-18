@@ -11,3 +11,18 @@
     padding-inline: 20px;
   }
 }
+
+/* Section headings scale with the screen on phones, so long words like "Experience." always fit. */
+@media (max-width: 760px) {
+  .section-heading h2,
+  .education h2,
+  .subhead {
+    font-size: min(64px, 13.5vw);
+  }
+}
+
+/* Keep phone browsers from enlarging text on their own, which can push headings off screen. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
