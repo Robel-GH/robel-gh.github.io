@@ -40,7 +40,7 @@ export const marqueeItems = [
 // Current situation, shown as chips with a pulsing dot. tone: live, offer or progress.
 export const heroChips = [
   { label: 'Available now', tone: 'live' },
-  { label: 'Toronto, on-site, hybrid or remote', tone: 'progress' },
+  { label: 'Toronto, on-site, hybrid or remote', shortLabel: 'Toronto or remote', tone: 'progress' },
 ]
 
 export const aboutChips = [

@@ -26,6 +26,7 @@
             >
               <StatusChip
                 :label="chip.label"
+                :short-label="chip.shortLabel"
                 :tone="chip.tone"
               />
             </li>
@@ -58,11 +59,12 @@
                 <a
                   v-for="link in profileLinks"
                   :key="link.label"
-                  class="pill"
+                  class="pill pill-social"
                   :href="link.href"
                   target="_blank"
                   rel="noopener"
-                ><AppIcon :name="link.icon" /> {{ link.label }}</a>
+                  :aria-label="link.label"
+                ><AppIcon :name="link.icon" /> <span class="pill-label">{{ link.label }}</span></a>
               </div>
             </div>
           </div>
@@ -160,34 +162,57 @@ function resetTilt () {
 .hero-actions {
   margin-top: 26px;
 }
-/* Phones: the three secondary buttons share one row, and the status chips move below them. */
+/* Phones: all four buttons share one row (GitHub and LinkedIn become icons), and the
+   status chips sit in one row below them. */
 @media (max-width: 760px) {
   .hero-text {
     display: flex;
     flex-direction: column;
+    width: auto;
   }
   .hero-status {
     order: 5;
+    flex-wrap: nowrap;
+    gap: 8px;
     margin: 22px 0 0;
   }
   .hero-actions {
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
-    gap: 8px;
+    flex-wrap: nowrap;
+    gap: 6px;
   }
-  .hero-actions .pill.primary {
-    grid-column: 1 / -1;
-    justify-self: start;
-  }
-  .hero-actions .pill:not(.primary) {
+  .hero-actions .pill {
     min-height: 38px;
-    padding: 0 13px;
-    gap: 7px;
+    padding: 0 11px;
+    gap: 6px;
     font-size: 12px;
   }
-  .hero-actions .pill:not(.primary) :deep(svg) {
-    width: 15px;
-    height: 15px;
+  .hero-actions .pill :deep(svg) {
+    width: 14px;
+    height: 14px;
+  }
+  .hero-actions .pill-social {
+    width: 38px;
+    padding: 0;
+  }
+  /* The label stays available to screen readers. */
+  .pill-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* Small phones (iPhone SE): tighter buttons, and no arrow on the main button. */
+@media (max-width: 374px) {
+  .hero-actions .pill:not(.pill-social) {
+    padding: 0 9px;
+  }
+}
+@media (max-width: 359px) {
+  .hero-actions .pill.primary :deep(svg) {
+    display: none;
   }
 }
 </style>

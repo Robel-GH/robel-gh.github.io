@@ -9,13 +9,22 @@
       class="status-dot"
       aria-hidden="true"
     />
-    <slot>{{ label }}</slot>
+    <slot>
+      <span :class="{ 'chip-full': shortLabel }">{{ label }}</span>
+      <span
+        v-if="shortLabel"
+        class="chip-short"
+        aria-hidden="true"
+      >{{ shortLabel }}</span>
+    </slot>
   </component>
 </template>
 
 <script setup>
 defineProps({
   label: { type: String, default: '' },
+  // Shorter wording for phones, where the full label would not fit on one row.
+  shortLabel: { type: String, default: '' },
   href: { type: String, default: '' },
   // live: available now (green), offer: something on offer (amber), progress: in testing or in progress (blue)
   tone: { type: String, default: 'live' },
@@ -71,7 +80,23 @@ a.status-chip:hover {
 @media (prefers-reduced-motion: reduce) {
   .status-dot::after { animation: none; opacity: 0; }
 }
-@media (max-width: 420px) {
-  .status-chip { white-space: normal; padding-block: 7px; line-height: 1.3; }
+.chip-short { display: none; }
+@media (max-width: 760px) {
+  .status-chip {
+    min-height: 30px;
+    gap: 8px;
+    padding: 0 12px 0 10px;
+    font-size: 10px;
+    letter-spacing: .06em;
+  }
+  .chip-full { display: none; }
+  .chip-short { display: inline; }
+}
+@media (max-width: 374px) {
+  .status-chip {
+    gap: 7px;
+    padding: 0 9px 0 8px;
+    letter-spacing: .03em;
+  }
 }
 </style>
