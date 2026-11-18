@@ -29,6 +29,7 @@ const scroll = useWindowScroll()
 // The last section whose top has passed 40% of the viewport ('' while on the hero).
 const activeSection = computed(() => {
   if (scroll.y < 0) return '' // reads scroll.y so this recomputes on every scroll
+  if (typeof document === 'undefined') return '' // prerendering at build time: no page to measure yet
   let current = ''
   for (const id of SECTION_IDS) {
     const el = document.getElementById(id)

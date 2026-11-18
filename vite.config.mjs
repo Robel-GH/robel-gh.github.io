@@ -29,6 +29,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  // The build-time prerender (scripts/prerender.mjs) bundles Vuetify, so its CSS imports are handled by Vite.
+  ssr: {
+    noExternal: ['vuetify'],
+  },
   css: {
     preprocessorOptions: {
       sass: {

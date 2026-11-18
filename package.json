@@ -5,7 +5,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.js --outDir dist-ssr && node scripts/prerender.mjs",
+    "build:client": "vite build",
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "lint": "eslint . --fix"
