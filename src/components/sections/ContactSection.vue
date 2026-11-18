@@ -19,11 +19,13 @@
           :href="`mailto:${owner.email}?subject=${encodeURIComponent('Opportunity for Robel')}`"
         ><AppIcon name="mail" /> Email me</a>
         <button
-          class="pill"
+          class="pill pill-copy"
           type="button"
+          :aria-label="`Copy email address ${owner.email}`"
+          :title="`Copy ${owner.email}`"
           @click="copyEmail"
         >
-          <AppIcon name="copy" /> {{ owner.email }}
+          <AppIcon name="copy" /> <span class="pill-label">{{ owner.email }}</span>
         </button>
         <a
           class="pill"
@@ -98,6 +100,40 @@ async function copyEmail () {
 </script>
 
 <style scoped>
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* Phones: the three buttons share one row (the copy button shows only its icon),
+   with less space before the intro. */
+@media (max-width: 760px) {
+  .contact-actions {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  .contact-actions .pill {
+    min-height: 40px;
+    padding: 0 13px;
+    gap: 7px;
+    font-size: 12px;
+  }
+  .contact-actions .pill-copy {
+    width: 40px;
+    padding: 0;
+  }
+  .pill-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .contact-grid {
+    margin-top: 36px;
+  }
+}
 .footer {
   align-items: center;
 }
