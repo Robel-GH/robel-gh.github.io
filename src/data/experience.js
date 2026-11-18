@@ -1,6 +1,16 @@
 // Work history, newest first.
 export const experiences = [
   {
+    role: 'Visiting Researcher',
+    company: 'York University, Toronto, Canada',
+    period: 'APR 2026 — PRESENT',
+    bullets: [
+      'Research diffusion models that change one clinical finding in a chest X-ray and keep the rest of the anatomy intact, to test whether diagnostic classifiers rely on shortcuts instead of the finding itself.',
+      'Build reproducible training and evaluation pipelines in PyTorch Lightning and Hugging Face Diffusers.',
+    ],
+    tech: ['PyTorch', 'PyTorch Lightning', 'Diffusers', 'Diffusion models'],
+  },
+  {
     role: 'Front-End Developer (Vue.js), contract',
     company: 'Upwork client (bus-rental marketplace), remote',
     period: 'NOV 2025 — APR 2026',
@@ -16,7 +26,7 @@ export const experiences = [
     company: 'Farming Revolution GmbH, Germany',
     period: 'OCT 2025 — JAN 2026',
     bullets: [
-      'Developed React/Ionic internal tools for Farming GT, an AI-powered autonomous weeding robot used in field operations across 10+ countries.',
+      'Developed React and Ionic internal tools for Farming GT, an AI-powered autonomous weeding robot used in field operations across 10+ countries.',
       'Integrated Apollo GraphQL queries, mutations and subscriptions on Hasura for real-time tagging, crop, ground-truth and evaluation workflows in the AI vision pipeline.',
       'Built bulk operations and improved ML evaluation dashboards used by technical and field-operations teams.',
     ],
@@ -27,7 +37,7 @@ export const experiences = [
     company: 'Tekeze Technologies PLC, Mekelle, Ethiopia',
     period: 'JUL 2020 — 2021, 2023 — SEP 2024 (PART-TIME)',
     bullets: [
-      'Led development of two client web systems, for sales management and indigent management, with Vue, Node/Express and MongoDB.',
+      'Led development of two client web systems, for sales management and indigent management, with Vue, Node.js and Express, and MongoDB.',
       'Built real-time analytics dashboards and dynamic reports for client managers.',
       'Reviewed pull requests and maintained the CI pipeline for a small development team.',
     ],
