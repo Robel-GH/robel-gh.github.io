@@ -19,3 +19,11 @@
   /* Better line breaks where supported, which keeps word gaps more even. */
   text-wrap: pretty;
 }
+
+/* Narrow columns open wide gaps in justified text, so these two get more room. */
+.section-heading p {
+  max-width: 420px;
+}
+.contact .contact-intro {
+  max-width: 460px;
+}

@@ -210,8 +210,8 @@ export const projects = [
     categoryLabel: 'SOFTWARE / CLIENT SYSTEMS',
     role: 'Software Developer, Tekeze Technologies',
     title: 'Sales & Indigent Management Systems',
-    summary: 'Two production web systems for Tekeze clients, built end to end in Vue, Node/Express and MongoDB.',
-    description: 'At Tekeze Technologies I led development of two client systems. The sales management system brings sales tracking, client management and inventory control into one workflow, with role-based dashboards and reports. The indigent management system registers beneficiaries and tracks the support they receive. Both pair a Vue + Vuetify front end with a Node/Express REST API on MongoDB.',
+    summary: 'Two production web systems for Tekeze clients, built end to end in Vue, Node.js and Express, and MongoDB.',
+    description: 'At Tekeze Technologies I led development of two client systems. The sales management system brings sales tracking, client management and inventory control into one workflow, with role-based dashboards and reports. The indigent management system registers beneficiaries and tracks the support they receive. Both pair a Vue + Vuetify front end with a Node.js and Express REST API on MongoDB.',
     highlights: [
       'Express REST APIs with JWT authentication and role-based access',
       'Real-time analytics dashboards and dynamic reports',
