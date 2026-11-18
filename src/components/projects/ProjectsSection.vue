@@ -36,7 +36,11 @@
           :aria-pressed="filter === option.value"
           @click="filter = option.value"
         >
-          {{ option.label }}
+          <span :class="{ 'filter-full': option.shortLabel }">{{ option.label }}</span>
+          <span
+            v-if="option.shortLabel"
+            class="filter-short"
+          >{{ option.shortLabel }}</span>
         </button>
       </div>
 
@@ -113,6 +117,26 @@ const { openProject } = useProjectDialog()
 </script>
 
 <style scoped>
+/* Phones: the four filters share one row ("All projects" becomes "All"). */
+.filter-short {
+  display: none;
+}
+@media (max-width: 760px) {
+  .filter-bar {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  .filter {
+    padding: 8px 13px;
+    white-space: nowrap;
+  }
+  .filter-full {
+    display: none;
+  }
+  .filter-short {
+    display: inline;
+  }
+}
 .other-work {
   margin-top: 70px;
   border-top: 1px solid rgba(160, 170, 160, .3);

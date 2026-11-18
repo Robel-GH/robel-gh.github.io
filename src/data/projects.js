@@ -5,7 +5,7 @@
 // `categories` drive the filter: software, ai, mobile.
 
 export const projectFilters = [
-  { value: 'all', label: 'All projects' },
+  { value: 'all', label: 'All projects', shortLabel: 'All' },
   { value: 'software', label: 'Software' },
   { value: 'mobile', label: 'Mobile' },
   { value: 'ai', label: 'AI / ML' },
