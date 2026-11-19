@@ -34,30 +34,20 @@
             </li>
           </ul>
           <p>
-            I build software that people can rely on. My work includes healthcare systems and tools for communities
-            that larger technology companies often overlook. Every project starts with understanding the problem. I
-            define what the software needs to do and test whether it works before releasing it.
+            I build software that people can rely on, from healthcare systems to tools for communities that larger
+            technology companies often overlook. I start by understanding the problem, defining the requirements, and
+            choosing an architecture that balances simplicity, reliability, and maintainability. I favour modular
+            designs, clear service boundaries, and well-defined APIs, introducing distributed components only when
+            the requirements justify the added complexity. I follow Agile practices, using MVPs to validate
+            assumptions, delivering working software incrementally, and refining priorities through feedback and
+            continuous testing. Retrospectives help improve how the work gets done.
           </p>
           <p>
-            My Clinical RAG Assistant answers medical questions using WHO guidelines. It cites the sources behind its
-            answers and makes clear when it cannot find enough evidence. My research at York University uses
-            diffusion models to change one medical finding in a chest X-ray while keeping the rest of the image
-            unchanged. This helps determine whether AI models recognize actual medical findings or rely on misleading
-            patterns. I am completing an MSc in AI and Computer Science at the University of Calabria.
-          </p>
-          <p id="meal-checker">
-            Meal Checker replaces paper meal records with a mobile and web application. Staff scan automatically
-            refreshing QR codes to record meals and prevent duplicate collection. Administrators can track meals in
-            real time and export reports. I built it with Flutter, Supabase and PostgreSQL. I am willing to make it
-            available free of charge to organizations that serve meals to their communities.
-          </p>
-          <p>
-            Tigrigna Keyboard is a native Android and iOS keyboard that supports Tigrigna and English typing. It also
-            uses Google’s ML Kit to recognize handwritten Tigrigna characters. Eleven people are currently testing
-            it. I built it to make typing in Tigrigna easier and more accessible.
-          </p>
-          <p>
-            I want my work to solve real problems for people who depend on it.
+            I apply the same engineering approach to AI systems, particularly in healthcare. I design workflows that
+            combine model-based reasoning with deterministic rules where predictable behaviour matters. I preprocess
+            data, train and evaluate models, optimize GPU performance, and build inference pipelines. I also
+            investigate why models make certain predictions, identify failure cases, and improve reliability beyond
+            accuracy alone.
           </p>
           <div class="about-signature">
             <strong>Open to work</strong>
@@ -82,8 +72,5 @@ import { aboutChips } from '@/data/site'
   margin: 0 0 26px;
   padding: 0;
   list-style: none;
-}
-#meal-checker {
-  scroll-margin-top: 110px;
 }
 </style>

@@ -44,7 +44,7 @@ export const heroChips = [
 ]
 
 export const aboutChips = [
-  { label: 'Meal Checker: free for organizations', tone: 'offer', href: '#meal-checker' },
+  { label: 'Meal Checker: free for organizations', tone: 'offer', href: '#contact' },
   { label: 'Tigrigna Keyboard: in testing', tone: 'progress' },
 ]
 
