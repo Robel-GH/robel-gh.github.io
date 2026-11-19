@@ -45,7 +45,9 @@
     </div>
     <a
       class="field-notes"
-      href="#contact"
+      href="/projects"
+      aria-label="Open the Meal Checker App project: volunteer offer, free"
+      @click.prevent="openProject('meal-checker')"
     >
       <span class="offer-blink">VOLUNTEER OFFER, FREE</span><strong>Meal Checker App</strong><small>QR code meal tracking</small>
     </a>
@@ -61,6 +63,7 @@
 <script setup>
 import { profile } from '@/data/focus'
 import IdentityDiagram from './IdentityDiagram.vue'
+import { useProjectDialog } from '@/composables/useProjectDialog'
 
 defineProps({
   // CSS transform for the pointer tilt, set by HeroSection
@@ -68,17 +71,35 @@ defineProps({
 })
 
 const areas = ['Software', 'AI / ML', 'Mobile']
+
+// The volunteer offer note opens the Meal Checker App case study.
+const { openProject } = useProjectDialog()
 </script>
 
 <style scoped>
 /* The "Volunteer offer, free" label fades gently in and out to draw the eye. */
 .offer-blink {
+  align-self: flex-start;
+  padding: 6px 13px;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 10%, transparent);
   font: 600 14px/1.2 var(--mono);
   letter-spacing: .08em;
   animation: offer-blink 1.6s ease-in-out infinite alternate;
 }
+/* A slightly smaller app name, so the offer label leads. */
+.field-notes strong {
+  font-size: clamp(17px, 1.6vw, 22px);
+}
 @media (max-width: 760px) {
-  .offer-blink { font-size: 11px; }
+  .offer-blink {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .field-notes strong {
+    font-size: clamp(13px, 3.4vw, 18px);
+  }
 }
 @keyframes offer-blink {
   from { opacity: 1; }
@@ -87,7 +108,7 @@ const areas = ['Software', 'AI / ML', 'Mobile']
 @media (prefers-reduced-motion: reduce) {
   .offer-blink { animation: none; }
 }
-/* The field note links to the Contact section, to ask about the Meal Checker offer. */
+/* The field note opens the Meal Checker App case study. */
 .field-notes small {
   font: 500 12px/1.3 var(--body);
   color: var(--field-note-ink, #D7F6EA);
