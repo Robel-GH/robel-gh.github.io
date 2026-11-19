@@ -58,16 +58,19 @@ export const experiences = [
     company: 'Guna Trading House PLC, Shire, Ethiopia',
     period: 'AUG 2019 — JUL 2020',
     bullets: [
-      'Installed and configured the local networks for the Shire and Humera branches, and ran scheduled hardware and software maintenance.',
-      'Trained branch employees on the company’s ERP system.',
+      'Built a cement queue management application in Python, with a Tkinter desktop interface and a MySQL database.',
+      'Designed the MySQL database and the desktop screens that staff use to register and manage the queue.',
     ],
-    tech: ['JavaScript', 'MongoDB'],
+    tech: ['Python', 'Tkinter', 'MySQL'],
   },
   {
     role: 'Software Developer, internship',
     company: 'Malam Engineering PLC, Mekelle, Ethiopia',
     period: 'SEP 2018 — FEB 2019',
-    bullets: [],
-    tech: ['JavaScript', 'SQL'],
+    bullets: [
+      'Built a web application in PHP with a SQL database as part of the development team.',
+      'Built an Android mobile app in Kotlin.',
+    ],
+    tech: ['PHP', 'Kotlin', 'SQL', 'JavaScript'],
   },
 ]
