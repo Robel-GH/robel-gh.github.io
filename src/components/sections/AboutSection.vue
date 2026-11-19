@@ -18,21 +18,6 @@
           v-reveal
           class="about-copy reveal"
         >
-          <ul
-            class="about-chips"
-            aria-label="Current projects"
-          >
-            <li
-              v-for="chip in aboutChips"
-              :key="chip.label"
-            >
-              <StatusChip
-                :label="chip.label"
-                :tone="chip.tone"
-                :href="chip.href"
-              />
-            </li>
-          </ul>
           <p>
             I build software that people can rely on, from healthcare systems to tools for communities that larger
             technology companies often overlook. I start by understanding the problem, defining the requirements, and
@@ -59,18 +44,6 @@
   </section>
 </template>
 
-<script setup>
-import StatusChip from '@/components/ui/StatusChip.vue'
-import { aboutChips } from '@/data/site'
-</script>
 
 <style scoped>
-.about-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0 0 26px;
-  padding: 0;
-  list-style: none;
-}
 </style>

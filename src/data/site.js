@@ -43,10 +43,6 @@ export const heroChips = [
   { label: 'Toronto, on-site, hybrid or remote', shortLabel: 'Toronto or remote', tone: 'progress' },
 ]
 
-export const aboutChips = [
-  { label: 'Meal Checker: free for organizations', tone: 'offer', href: '#contact' },
-  { label: 'Tigrigna Keyboard: in testing', tone: 'progress' },
-]
 
 
 export const focusProfiles = {
