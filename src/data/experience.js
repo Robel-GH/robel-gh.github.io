@@ -57,7 +57,10 @@ export const experiences = [
     role: 'Software Engineer, contract',
     company: 'Guna Trading House PLC, Shire, Ethiopia',
     period: 'AUG 2019 — JUL 2020',
-    bullets: [],
+    bullets: [
+      'Installed and configured the local networks for the Shire and Humera branches, and ran scheduled hardware and software maintenance.',
+      'Trained branch employees on the company’s ERP system.',
+    ],
     tech: ['JavaScript', 'MongoDB'],
   },
   {
