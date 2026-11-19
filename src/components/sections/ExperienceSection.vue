@@ -49,7 +49,10 @@
               <div class="exp-company">
                 {{ job.company }}
               </div>
-              <ul class="exp-bullets">
+              <ul
+                v-if="job.bullets.length"
+                class="exp-bullets"
+              >
                 <li
                   v-for="point in job.bullets"
                   :key="point"

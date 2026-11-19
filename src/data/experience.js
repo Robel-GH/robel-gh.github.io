@@ -1,9 +1,9 @@
 // Work history, newest first.
 export const experiences = [
   {
-    role: 'Visiting Researcher',
+    role: 'International Visiting Researcher',
     company: 'York University, Toronto, Canada',
-    period: 'APR 2026 — PRESENT',
+    period: 'APR 2026 — NOV 2026',
     bullets: [
       'Research diffusion models that change one clinical finding in a chest X-ray and keep the rest of the anatomy intact, to test whether diagnostic classifiers rely on shortcuts instead of the finding itself.',
       'Build reproducible training and evaluation pipelines in PyTorch Lightning and Hugging Face Diffusers.',
@@ -11,7 +11,7 @@ export const experiences = [
     tech: ['PyTorch', 'PyTorch Lightning', 'Diffusers', 'Diffusion models'],
   },
   {
-    role: 'Front-End Developer (Vue.js), contract',
+    role: 'Frontend Developer (Vue.js), freelance',
     company: 'Upwork client (bus-rental marketplace), remote',
     period: 'NOV 2025 — APR 2026',
     bullets: [
@@ -22,8 +22,8 @@ export const experiences = [
     tech: ['Vue 3', 'Pinia', 'Vuetify 3', 'Vitest'],
   },
   {
-    role: 'Working Student, Frontend Developer',
-    company: 'Farming Revolution GmbH, Germany',
+    role: 'Frontend Developer, part-time contract',
+    company: 'Farming Revolution GmbH, Germany (remote)',
     period: 'OCT 2025 — JAN 2026',
     bullets: [
       'Developed React and Ionic internal tools for Farming GT, an AI-powered autonomous weeding robot used in field operations across 10+ countries.',
@@ -33,9 +33,9 @@ export const experiences = [
     tech: ['React', 'Ionic', 'TypeScript', 'Apollo GraphQL', 'Hasura'],
   },
   {
-    role: 'Software Developer',
+    role: 'Senior Software Engineer',
     company: 'Tekeze Technologies PLC, Mekelle, Ethiopia',
-    period: 'JUL 2020 — 2021, 2023 — SEP 2024 (PART-TIME)',
+    period: 'JUL 2020 — OCT 2024 (PART-TIME FROM APR 2023)',
     bullets: [
       'Led development of two client web systems, for sales management and indigent management, with Vue, Node.js and Express, and MongoDB.',
       'Built real-time analytics dashboards and dynamic reports for client managers.',
@@ -46,7 +46,7 @@ export const experiences = [
   {
     role: 'Assistant Lecturer, Computer Science',
     company: 'Mekelle Institute of Technology, Mekelle University',
-    period: 'JUN 2021 — 2024',
+    period: 'JUN 2021 — SEP 2024',
     bullets: [
       'Taught undergraduate computer science courses and designed programming labs.',
       'Supervised internship and capstone projects, including scope, technical design and version-control workflow.',
@@ -54,13 +54,17 @@ export const experiences = [
     tech: ['Python', 'Java', 'Algorithms'],
   },
   {
-    role: 'Earlier roles',
-    company: 'Guna Trading House and Oxfo Business & Technology College',
-    period: '2019 — 2020',
-    bullets: [
-      'Junior ICT Officer: branch networks, systems maintenance and ERP training (Dec 2019 – Jul 2020).',
-      'College Lecturer: programming courses (Oct – Dec 2019).',
-    ],
-    tech: [],
+    role: 'Software Engineer, contract',
+    company: 'Guna Trading House PLC, Shire, Ethiopia',
+    period: 'AUG 2019 — JUL 2020',
+    bullets: [],
+    tech: ['JavaScript', 'MongoDB'],
+  },
+  {
+    role: 'Software Developer, internship',
+    company: 'Malam Engineering PLC, Mekelle, Ethiopia',
+    period: 'SEP 2018 — FEB 2019',
+    bullets: [],
+    tech: ['JavaScript', 'SQL'],
   },
 ]
