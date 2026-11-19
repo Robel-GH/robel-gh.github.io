@@ -106,6 +106,10 @@ watch(() => [scroll.y, scroll.height], () => {
 </script>
 
 <style scoped>
+/* A little space between the two digits of the big role number (01, 02, …). */
+.exp-number {
+  letter-spacing: .04em;
+}
 .exp-bullets {
   display: grid;
   gap: 8px;
