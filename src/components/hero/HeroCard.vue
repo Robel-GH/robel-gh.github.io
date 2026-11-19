@@ -73,7 +73,12 @@ const areas = ['Software', 'AI / ML', 'Mobile']
 <style scoped>
 /* The "Volunteer offer, free" label fades gently in and out to draw the eye. */
 .offer-blink {
+  font: 600 14px/1.2 var(--mono);
+  letter-spacing: .08em;
   animation: offer-blink 1.6s ease-in-out infinite alternate;
+}
+@media (max-width: 760px) {
+  .offer-blink { font-size: 11px; }
 }
 @keyframes offer-blink {
   from { opacity: 1; }
