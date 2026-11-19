@@ -47,7 +47,7 @@
       class="field-notes"
       href="#contact"
     >
-      <span>VOLUNTEER OFFER, FREE</span><strong>Meal Checker</strong><small>QR code meal tracking</small>
+      <span class="offer-blink">VOLUNTEER OFFER, FREE</span><strong>Meal Checker App</strong><small>QR code meal tracking</small>
     </a>
     <div
       class="orbit-serial"
@@ -71,6 +71,17 @@ const areas = ['Software', 'AI / ML', 'Mobile']
 </script>
 
 <style scoped>
+/* The "Volunteer offer, free" label fades gently in and out to draw the eye. */
+.offer-blink {
+  animation: offer-blink 1.6s ease-in-out infinite alternate;
+}
+@keyframes offer-blink {
+  from { opacity: 1; }
+  to { opacity: .25; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-blink { animation: none; }
+}
 /* The field note links to the Contact section, to ask about the Meal Checker offer. */
 .field-notes small {
   font: 500 12px/1.3 var(--body);
