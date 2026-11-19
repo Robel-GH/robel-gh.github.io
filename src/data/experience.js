@@ -54,7 +54,7 @@ export const experiences = [
     tech: ['Python', 'Java', 'Algorithms'],
   },
   {
-    role: 'Software Engineer, contract',
+    role: 'Software Developer, contract',
     company: 'Guna Trading House PLC, Shire, Ethiopia',
     period: 'AUG 2019 — JUL 2020',
     bullets: [
