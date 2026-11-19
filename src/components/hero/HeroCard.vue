@@ -78,8 +78,10 @@ const { openProject } = useProjectDialog()
 
 <style scoped>
 /* The "Volunteer offer, free" label fades gently in and out to draw the eye. */
+/* The pill's own padding is pulled back, so its text lines up with the lines below it. */
 .offer-blink {
   align-self: flex-start;
+  margin-left: -13px;
   padding: 6px 13px;
   border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   border-radius: 999px;
@@ -94,6 +96,7 @@ const { openProject } = useProjectDialog()
 }
 @media (max-width: 760px) {
   .offer-blink {
+    margin-left: -10px;
     padding: 4px 10px;
     font-size: 11px;
   }
